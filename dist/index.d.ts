@@ -1,0 +1,12 @@
+import { Manager } from './interfaces';
+export * from './aspect-ratio';
+export * from './bounding-box';
+export * from './change-ratio';
+export * from './change';
+export * from './l1-length';
+export * from './orthogonal-ordering';
+export * from './procrustus';
+export * from './ratio-edges';
+export * from './scale-change';
+export declare const manager: Manager;
+export default manager;
