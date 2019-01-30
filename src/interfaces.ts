@@ -1,46 +1,44 @@
-import { Graph } from 'agora-graph'
+import { Graph } from "agora-graph";
 
 export interface Dictionary<T> {
-  [key: string]: T
+  [key: string]: T;
 }
 
 export interface CriteraiResult extends Dictionary<any> {
-  value: number
+  value: number;
 }
 
 export interface CriteriaFunction {
-  (initial: Graph, updated: Graph): CriteraiResult
+  (initial: Graph, updated: Graph): CriteraiResult;
 }
 
 export interface Criteria {
-  short?: string
-  name: string
-  criteria: CriteriaFunction
+  short?: string;
+  name: string;
+  criteria: CriteriaFunction;
 }
 
 export function isCriteria(object: any): object is Criteria {
-  return object.criteria !== void 0
+  return object.criteria !== void 0;
 }
 
 export interface Manager {
   /**
    * Contains the list of the evaluated criterias
    */
-  criterias: { [key: string]: Criteria }
+  criterias: { [key: string]: Criteria };
 
   /**
    * Add a new criteria to evaluate
-   * @param name name of the criteria
-   * @param f the executing function
-   * @param short a short name used for timers
+   * @param Criteria name of the criteria
    */
-  add(this: Manager, name: string, f: CriteriaFunction, short?: string): void
+  add(this: Manager, criteria: Criteria): void;
 
   /**
    * Deletes the criteria from the evaluation
    * @param name name of the criteria
    */
-  delete(this: Manager, name: string): void
+  delete(this: Manager, name: string): void;
 
   /**
    * Runs all/given criterias against the updatedGraphs
@@ -53,7 +51,7 @@ export interface Manager {
     initial: Graph,
     updatedGraphs: { [key: string]: Graph },
     list?: string[]
-  ): any[]
+  ): any[];
 
   /**
    * Runs the given criteria agains the updatedGraphs list
@@ -66,7 +64,7 @@ export interface Manager {
     criteria: string | Criteria,
     initial: Graph,
     updatedGraphs: { [key: string]: Graph }
-  ): { results: Dictionary<CriteraiResult>, time: number }
+  ): { results: Dictionary<CriteraiResult>; time: number };
 
   /**
    * Evaluates the criteria for the updated graph
@@ -79,5 +77,5 @@ export interface Manager {
     criteria: string | Criteria,
     initial: Graph,
     updated: Graph
-  ): CriteraiResult
+  ): CriteraiResult;
 }

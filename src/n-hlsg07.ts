@@ -2,8 +2,8 @@ import { CriteriaFunction } from "./interfaces";
 import { right, left, bottom, top, norm } from "agora-graph";
 import _ from "lodash";
 import { lambda1Hlsg } from "./lambda-1-hlsg07";
-import { orthogonalOrderingHlgs } from "./lambda-2-hlsg07";
-import { areaHlsg } from "./area-hlsg07";
+import { orthogonalOrderingHlgs } from "./orthogonal-ordering/lambda-2-hlsg07";
+import { AreaNormalized } from "./spread/area-hlsg07";
 import { changeHl } from "./change-hl03";
 
 /**
@@ -30,7 +30,7 @@ export const nHlsg: CriteriaFunction = function(initialGraph, updatedGraph) {
     value:
       0.25 * lambda1Hlsg(initialGraph, updatedGraph).value +
       0.25 * orthogonalOrderingHlgs(initialGraph, updatedGraph).value +
-      0.25 * areaHlsg(initialGraph, updatedGraph).value +
+      0.25 * AreaNormalized(initialGraph, updatedGraph).value +
       0.25 * changeHl(initialGraph, updatedGraph).value
   };
 };

@@ -5,22 +5,16 @@ export * from "./aspect-ratio";
 export * from "./bounding-box";
 export * from "./change-ratio";
 export * from "./change";
-export * from "./l1-length-hlsg07";
-export * from "./orthogonal-ordering";
+export * from "./spread/l1-length-hlsg07";
+export * from "./orthogonal-ordering/custom";
 export * from "./displacement-gh10";
 export * from "./edge-ratio-len05";
 export * from "./scale-change";
 
 export const manager: Manager = {
   criterias: {},
-  add(name, f, short) {
-    const obj: Criteria = { name: name, criteria: f };
-
-    if (short) {
-      obj.short = short;
-    }
-
-    if (!this.criterias[name]) this.criterias[name] = obj;
+  add(criteria) {
+    if (!this.criterias[name]) this.criterias[name] = criteria;
     else console.error("criterias", "add", "lol");
   },
 

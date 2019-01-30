@@ -1,4 +1,4 @@
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 import { right, left, bottom, top } from "agora-graph";
 
 /**
@@ -7,7 +7,10 @@ import { right, left, bottom, top } from "agora-graph";
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const areaHlsg: CriteriaFunction = function(initialGraph, updatedGraph) {
+export const AreaNormalized: CriteriaFunction = function(
+  initialGraph,
+  updatedGraph
+) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
@@ -28,3 +31,11 @@ export const areaHlsg: CriteriaFunction = function(initialGraph, updatedGraph) {
 
   return { value: 1 - (w * h) / (wp * hp) };
 };
+
+export const SpreadBoundingBoxAreaNormalizedCriteria: Criteria = {
+  criteria: AreaNormalized,
+  name: "spread/bounding-box/area-normalized",
+  short: "sp_bb_an"
+};
+
+export default SpreadBoundingBoxAreaNormalizedCriteria;

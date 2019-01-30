@@ -1,4 +1,4 @@
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 
 /**
  * TODO: SSS*12
@@ -38,3 +38,10 @@ export const orthogonalOrderingSss: CriteriaFunction = function(
 
   return { value: sum };
 };
+
+export const OrthogonalOrderingNumberInversionsCriteria: Criteria = {
+  criteria: orthogonalOrderingSss,
+  name: "orthogonal-ordering/number-of-inversions",
+  short: "oo_ni"
+};
+export default OrthogonalOrderingNumberInversionsCriteria;

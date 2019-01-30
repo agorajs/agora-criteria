@@ -1,4 +1,4 @@
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 import { Node, top, left } from "agora-graph";
 
 /**
@@ -46,3 +46,10 @@ function iv(u: Node, v: Node, u_prime: Node, v_prime: Node): boolean {
     (top(u) < top(v) && top(u_prime) > top(v_prime))
   );
 }
+
+export const OrthogonalOrderingKendallTauCriteria: Criteria = {
+  criteria: orthogonalOrderingHlgs,
+  name: "orthogonal-ordering/kendall-tau",
+  short: "oo_kt"
+};
+export default OrthogonalOrderingKendallTauCriteria;

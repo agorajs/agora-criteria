@@ -1,4 +1,4 @@
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 
 /**
  * CUSTOM ?
@@ -48,3 +48,10 @@ export const orthogonalOrdering: CriteriaFunction = function(
 
   return { value: counter / ((nodesLength * (nodesLength - 1)) / 2) };
 };
+
+export const OrthogonalOrderingCustomCriteria: Criteria = {
+  criteria: orthogonalOrdering,
+  name: "orthogonal-ordering/custom",
+  short: "oo_c"
+};
+export default OrthogonalOrderingCustomCriteria;

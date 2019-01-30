@@ -1,5 +1,5 @@
 import { Graph, round, top, bottom, left, right } from "agora-graph";
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 
 /**
  * TODO : HLSG07
@@ -35,3 +35,11 @@ export const l1Length: CriteriaFunction = function(
     updated: updatedResult
   };
 };
+
+export const SpreadBoundingBoxL1Metriclength: Criteria = {
+  criteria: l1Length,
+  name: "spread/bounding-box/l1-metric-length",
+  short: "sp_bb_l1ml"
+};
+
+export default SpreadBoundingBoxL1Metriclength;

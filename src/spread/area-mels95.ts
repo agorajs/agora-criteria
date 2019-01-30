@@ -1,4 +1,4 @@
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 import { right, left, bottom, top } from "agora-graph";
 
 /**
@@ -28,3 +28,11 @@ export const areaMels: CriteriaFunction = function(initialGraph, updatedGraph) {
 
   return { value: (wp * hp) / (w * h) };
 };
+
+export const SpreadBoundingBoxAreaCriteria: Criteria = {
+  criteria: areaMels,
+  name: "spread/bounding-box/area",
+  short: "sp_bb_a"
+};
+
+export default SpreadBoundingBoxAreaCriteria;

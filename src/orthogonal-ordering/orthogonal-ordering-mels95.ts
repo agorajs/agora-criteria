@@ -1,4 +1,4 @@
-import { CriteriaFunction } from "./interfaces";
+import { CriteriaFunction, Criteria } from "../interfaces";
 
 export const orthogonalOrderingMels: CriteriaFunction = function(
   initialGraph,
@@ -33,3 +33,11 @@ export const orthogonalOrderingMels: CriteriaFunction = function(
   }
   return { value: 1 };
 };
+
+export const OrthogonalOrderingCriteria: Criteria = {
+  criteria: orthogonalOrderingMels,
+  name: "orthogonal-ordering",
+  short: "oo"
+};
+
+export default OrthogonalOrderingCriteria;
