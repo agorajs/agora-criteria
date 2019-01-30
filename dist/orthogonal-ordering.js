@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
+ * CUSTOM ?
  * Evaluates the updatedGraph using the orthogonal ordering criteria
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
@@ -9,10 +10,10 @@ exports.orthogonalOrdering = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     if (initialNodes.length !== updatedNodes.length) {
-        console.error('criteria', // family
-        'orthogonal-ordering', // type
-        'abording', // action
-        'not the same number of nodes' // reason
+        console.error("criteria", // family
+        "orthogonal-ordering", // type
+        "abording", // action
+        "not the same number of nodes" // reason
         );
         throw "Criteria orthogonal-ordering abording : not same number of nodes";
     }
@@ -32,5 +33,5 @@ exports.orthogonalOrdering = function (initialGraph, updatedGraph) {
             }
         }
     }
-    return { value: counter / (nodesLength * (nodesLength - 1) / 2) };
+    return { value: counter / ((nodesLength * (nodesLength - 1)) / 2) };
 };

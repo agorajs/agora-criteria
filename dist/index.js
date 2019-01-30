@@ -23,10 +23,10 @@ __export(require("./aspect-ratio"));
 __export(require("./bounding-box"));
 __export(require("./change-ratio"));
 __export(require("./change"));
-__export(require("./l1-length"));
+__export(require("./l1-length-hlsg07"));
 __export(require("./orthogonal-ordering"));
-__export(require("./procrustus"));
-__export(require("./ratio-edges"));
+__export(require("./displacement-gh10"));
+__export(require("./edge-ratio-len05"));
 __export(require("./scale-change"));
 exports.manager = {
     criterias: {},
@@ -38,13 +38,13 @@ exports.manager = {
         if (!this.criterias[name])
             this.criterias[name] = obj;
         else
-            console.error('criterias', 'add', 'lol');
+            console.error("criterias", "add", "lol");
     },
     delete: function (name) {
         if (this.criterias[name])
             delete this.criterias[name];
         else
-            console.error('criterias', 'delete', 'lol');
+            console.error("criterias", "delete", "lol");
     },
     batch: function (initial, updatedGraphs, list) {
         var _this = this;
@@ -53,7 +53,7 @@ exports.manager = {
                 return c.name;
             });
         }
-        console.group('criterias');
+        console.group("criterias");
         var results = [];
         lodash_1.default.forEach(list, function (name) {
             results.push(__assign({ name: name }, _this.execute(name, initial, updatedGraphs)));
@@ -63,7 +63,7 @@ exports.manager = {
     },
     execute: function (criteria, initial, updatedGraphs) {
         var _this = this;
-        if (typeof criteria === 'string') {
+        if (typeof criteria === "string") {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
             throw "Criteria does not exist";
@@ -72,16 +72,16 @@ exports.manager = {
             throw criteria + " is not a criterai";
         var results = {};
         console.group(criteria.name);
-        var start = new Date;
+        var start = new Date();
         lodash_1.default.forEach(updatedGraphs, function (updated, name) {
             results[name] = _this.evaluate(criteria, initial, updated);
         });
-        var diff = (new Date).getTime() - start.getTime();
+        var diff = new Date().getTime() - start.getTime();
         console.groupEnd();
         return { results: results, time: diff };
     },
     evaluate: function (criteria, initial, updated) {
-        if (typeof criteria === 'string') {
+        if (typeof criteria === "string") {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
             else

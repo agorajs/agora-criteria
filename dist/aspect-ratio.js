@@ -8,12 +8,12 @@ var agora_graph_1 = require("agora-graph");
  */
 exports.aspectRatio = function (initial, updated) {
     if (initial.nodes.length !== updated.nodes.length) {
-        console.error('criteria', // family
-        'change-ratio', // type
-        'abording', // action
-        'not the same number of nodes' // reason
+        console.error("criteria", // family
+        "aspect-ratio", // type
+        "abording", // action
+        "not the same number of nodes" // reason
         );
-        throw "Criteria change-ratio abording : not same number of nodes";
+        throw "Criteria aspect-ratio abording : not same number of nodes";
     }
     var initialSize = [
         agora_graph_1.round(agora_graph_1.bottom(agora_graph_1.bottom(initial.nodes)) - agora_graph_1.top(agora_graph_1.top(initial.nodes))),
@@ -23,7 +23,7 @@ exports.aspectRatio = function (initial, updated) {
         agora_graph_1.round(agora_graph_1.right(agora_graph_1.right(updated.nodes)) - agora_graph_1.left(agora_graph_1.left(updated.nodes)))
     ];
     return {
-        value: Math.max((initialSize[0] * updatedSize[0]) / (initialSize[1] * updatedSize[1]), (initialSize[0] * updatedSize[1]) / (initialSize[1] * updatedSize[0])),
+        value: Math.max((initialSize[1] * updatedSize[0]) / (initialSize[0] * updatedSize[1]), (initialSize[0] * updatedSize[1]) / (initialSize[1] * updatedSize[0])),
         updated: updatedSize,
         initial: initialSize
     };

@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
 function scaleChange(initial, updated) {
     if (initial.nodes.length !== updated.nodes.length) {
-        console.error('criteria', // family
-        'scale-change', // type
-        'abording', // action
-        'not the same number of nodes' // reason
+        console.error("criteria", // family
+        "scale-change", // type
+        "abording", // action
+        "not the same number of nodes" // reason
         );
         throw "Criteria scale-change abording : not same number of nodes";
     }

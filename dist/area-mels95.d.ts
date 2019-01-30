@@ -1,8 +1,8 @@
 import { CriteriaFunction } from "./interfaces";
 /**
- * CUSTOM ?
- * Evaluates the updatedGraph using the orthogonal ordering criteria
+ * TODO: MELS95
+ * Evaluates the updatedGraph
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export declare const orthogonalOrdering: CriteriaFunction;
+export declare const areaMels: CriteriaFunction;

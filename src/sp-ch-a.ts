@@ -1,7 +1,7 @@
 import d3 from "d3-polygon";
 import _ from "lodash";
 import { CriteriaFunction, CriteraiResult } from "./interfaces";
-import { delaunay, Node, top, left, right, bottom } from "agora-graph";
+import { Node, top, left, right, bottom } from "agora-graph";
 
 // Spread::Convex Hull::Area -- Strobelt 2012 SSS*12
 // TODO: SSS*12
@@ -31,12 +31,13 @@ const Spread: { ConvexHull: { area: CriteriaFunction } } = {
 
 function convertNodes(nodes: Node[]): [number, number][] {
   // TODO: add node boxes
-  return _.flatMap<Node, [number, number]>(nodes, n => {
+  return _.flatMap(nodes, n => {
     const t = top(n),
       l = left(n),
       r = right(n),
       b = bottom(n);
-    return [[l, t], [r, t], [r, b], [l, b]];
+
+    return [[l, t], [r, t], [r, b], [l, b]] as [number, number][];
   });
 }
 export default Spread;

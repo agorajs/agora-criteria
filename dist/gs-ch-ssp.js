@@ -1,7 +1,14 @@
 "use strict";
-exports.__esModule = true;
-var d3 = require("d3-polygon");
-var _ = require("lodash");
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var d3 = __importStar(require("d3-polygon"));
+var _ = __importStar(require("lodash"));
 var agora_graph_1 = require("agora-graph");
 var GlobalShape = {
     ConvexHull: {
@@ -53,11 +60,9 @@ function calculateConvexHullDistances(hull) {
     var buffer = elements[0];
     var rayIndex = 0;
     var distances = [];
-    console.log(buffer);
     for (var cur = 1; cur < elements.length; cur++) {
         var polarPoint = elements[cur][1];
         var vectorPoint = elements[cur][0];
-        console.log("begin", vectorPoint);
         // while it is before the current point we need to check if it is intersecting :)
         while (rays[rayIndex].angle < polarPoint.angle) {
             if (rays[rayIndex].angle < buffer[1].angle) {
@@ -65,7 +70,6 @@ function calculateConvexHullDistances(hull) {
                 continue;
             }
             var cartesianRay = agora_graph_1.toCartesian(rays[rayIndex]);
-            console.log(rays[rayIndex].angle, polarPoint.angle);
             // calculating intersection
             var intersectionPoint = lineIntersection({ start: [0, 0], end: [cartesianRay.x, cartesianRay.y] }, { start: buffer[0], end: vectorPoint });
             //if they intersect
@@ -75,10 +79,6 @@ function calculateConvexHullDistances(hull) {
                 throw "it is supposed to intersect :(";
             ++rayIndex;
         }
-        // if it is the same :) then easy peasy lemon squeezy
-        // if (rays[rayIndex].angle === polarPoint.angle) {
-        //   distances.push(magnitude({ x: vectorPoint[0], y: vectorPoint[1] }));
-        // }
         buffer = elements[cur];
     }
     // complete the circle
@@ -87,7 +87,6 @@ function calculateConvexHullDistances(hull) {
     var beginning = rayIndex; // where we start
     while (rays[rayIndex].angle < end[1].angle || rayIndex >= beginning) {
         var cartesianRay = agora_graph_1.toCartesian(rays[rayIndex]);
-        console.log(rays[rayIndex].angle, end[1].angle);
         var intersectionPoint = lineIntersection({ start: [0, 0], end: [cartesianRay.x, cartesianRay.y] }, { start: buffer[0], end: end[0] });
         //if they intersect
         if (intersectionPoint)
@@ -96,10 +95,6 @@ function calculateConvexHullDistances(hull) {
             throw "it is supposed to intersect :(";
         rayIndex = (rayIndex + 1) % rays.length;
     }
-    // if it is the same :) then easy peasy lemon squeezy
-    // if (rays[rayIndex].angle === end[1].angle) {
-    //   distances.push(magnitude({ x: end[0][0], y: end[0][1] }));
-    // }
     return distances;
 }
 function lineIntersection(line1, line2) {
@@ -132,5 +127,4 @@ function test() {
     console.log(calculateConvexHullDistances([[1, 1], [-1, 1], [-1, -1], [1, -1]]));
     console.log(calculateConvexHullDistances([[1, 0], [0, 1], [-1, 0], [0, -1]]));
 }
-test();
-exports["default"] = GlobalShape;
+exports.default = GlobalShape;
