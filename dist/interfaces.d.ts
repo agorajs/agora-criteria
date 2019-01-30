@@ -1,4 +1,4 @@
-import { Graph } from 'agora-graph';
+import { Graph } from "agora-graph";
 export interface Dictionary<T> {
     [key: string]: T;
 }
@@ -23,11 +23,9 @@ export interface Manager {
     };
     /**
      * Add a new criteria to evaluate
-     * @param name name of the criteria
-     * @param f the executing function
-     * @param short a short name used for timers
+     * @param Criteria name of the criteria
      */
-    add(this: Manager, name: string, f: CriteriaFunction, short?: string): void;
+    add(this: Manager, criteria: Criteria): void;
     /**
      * Deletes the criteria from the evaluation
      * @param name name of the criteria

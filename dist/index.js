@@ -23,20 +23,16 @@ __export(require("./aspect-ratio"));
 __export(require("./bounding-box"));
 __export(require("./change-ratio"));
 __export(require("./change"));
-__export(require("./l1-length-hlsg07"));
-__export(require("./orthogonal-ordering"));
+__export(require("./spread/l1-length-hlsg07"));
+__export(require("./orthogonal-ordering/custom"));
 __export(require("./displacement-gh10"));
 __export(require("./edge-ratio-len05"));
 __export(require("./scale-change"));
 exports.manager = {
     criterias: {},
-    add: function (name, f, short) {
-        var obj = { name: name, criteria: f };
-        if (short) {
-            obj.short = short;
-        }
+    add: function (criteria) {
         if (!this.criterias[name])
-            this.criterias[name] = obj;
+            this.criterias[name] = criteria;
         else
             console.error("criterias", "add", "lol");
     },
