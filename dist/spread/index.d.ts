@@ -5,7 +5,7 @@ export declare const Spread: {
         L1MetricLength: import("../interfaces").Criteria;
     };
     ConvexHull: {
-        SpreadConvexHullAreaCriteria: import("../interfaces").Criteria;
+        Area: import("../interfaces").Criteria;
     };
 };
 export default Spread;

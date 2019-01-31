@@ -5,15 +5,17 @@ var agora_graph_1 = require("agora-graph");
  * TODO check if the edge distance order has changed, apply a levenshtein strategy on it :)
  * @param initialGraph
  * @param updatedGraph
+ *
+ * @deprecated have no idea of what it is anymore
  */
 exports.changeRatio = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     if (initialNodes.length !== updatedNodes.length) {
-        console.error('criteria', // family
-        'change-ratio', // type
-        'abording', // action
-        'not the same number of nodes' // reason
+        console.error("criteria", // family
+        "change-ratio", // type
+        "abording", // action
+        "not the same number of nodes" // reason
         );
         throw "Criteria change-ratio abording : not same number of nodes";
     }
@@ -33,5 +35,5 @@ exports.changeRatio = function (initialGraph, updatedGraph) {
                 diffChange += agora_graph_1.length(agora_graph_1.Δ(upNode1, upNode2)) / initialDist;
         }
     }
-    return { value: diffChange / (nodesLength * (nodesLength - 1) / 2) };
+    return { value: diffChange / ((nodesLength * (nodesLength - 1)) / 2) };
 };

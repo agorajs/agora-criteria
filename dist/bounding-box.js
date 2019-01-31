@@ -17,15 +17,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @param updatedGraph the updated graph sorted by index
  *
  * @returns {{value: number, initial: number, updated: number}}
+ * @deprecated use mels95 version
+ * @see area-mels95.ts
  */
 exports.boundingBox = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     if (initialNodes.length !== updatedNodes.length) {
-        console.error('criteria', // family
-        'bounding-box', // type
-        'abording', // action
-        'not the same number of nodes' // reason
+        console.error("criteria", // family
+        "bounding-box", // type
+        "abording", // action
+        "not the same number of nodes" // reason
         );
         throw "Criteria bounding-box abording : not same number of nodes";
     }

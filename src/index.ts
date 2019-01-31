@@ -1,15 +1,13 @@
 import _ from "lodash";
 
-import { Manager, Criteria, isCriteria, CriteraiResult } from "./interfaces";
-export * from "./aspect-ratio";
-export * from "./bounding-box";
-export * from "./change-ratio";
-export * from "./change";
-export * from "./spread/l1-length-hlsg07";
-export * from "./orthogonal-ordering/custom";
-export * from "./displacement-gh10";
-export * from "./edge-ratio-len05";
-export * from "./scale-change";
+import { Manager, isCriteria, CriteraiResult } from "./interfaces";
+import EdgeLength from "./edge-length";
+import GlobalShape from "./global-shape";
+import NodeMouvement from "./node-mouvement";
+import OrthogonalOrdering from "./orthogonal-ordering";
+import Spread from "./spread";
+
+export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
 
 export const manager: Manager = {
   criterias: {},

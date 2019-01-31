@@ -14,7 +14,7 @@ exports.Spread = {
         L1MetricLength: l1_length_hlsg07_1.default
     },
     ConvexHull: {
-        SpreadConvexHullAreaCriteria: sp_ch_a_1.default
+        Area: sp_ch_a_1.default
     }
 };
 exports.default = exports.Spread;

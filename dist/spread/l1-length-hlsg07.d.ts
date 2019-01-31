@@ -5,5 +5,5 @@ import { CriteriaFunction, Criteria } from "../interfaces";
  * @param updated
  */
 export declare const l1Length: CriteriaFunction;
-export declare const SpreadBoundingBoxL1Metriclength: Criteria;
-export default SpreadBoundingBoxL1Metriclength;
+export declare const SpreadBoundingBoxL1MetriclengthCriteria: Criteria;
+export default SpreadBoundingBoxL1MetriclengthCriteria;

@@ -1,10 +1,9 @@
 import { CriteriaFunction } from "./interfaces";
-import { right, left, bottom, top, norm } from "agora-graph";
 import _ from "lodash";
-import { lambda1Hlsg } from "./lambda-1-hlsg07";
+import { lambda1Hlsg } from "./node-mouvement/lambda-1-hlsg07";
 import { orthogonalOrderingHlgs } from "./orthogonal-ordering/lambda-2-hlsg07";
 import { AreaNormalized } from "./spread/area-hlsg07";
-import { changeHl } from "./change-hl03";
+import { changeHl } from "./node-mouvement/change-hl03";
 
 /**
  * TODO: HLSG07

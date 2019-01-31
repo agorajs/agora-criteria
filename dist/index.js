@@ -10,24 +10,22 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = __importDefault(require("lodash"));
 var interfaces_1 = require("./interfaces");
-__export(require("./aspect-ratio"));
-__export(require("./bounding-box"));
-__export(require("./change-ratio"));
-__export(require("./change"));
-__export(require("./spread/l1-length-hlsg07"));
-__export(require("./orthogonal-ordering/custom"));
-__export(require("./displacement-gh10"));
-__export(require("./edge-ratio-len05"));
-__export(require("./scale-change"));
+var edge_length_1 = __importDefault(require("./edge-length"));
+exports.EdgeLength = edge_length_1.default;
+var global_shape_1 = __importDefault(require("./global-shape"));
+exports.GlobalShape = global_shape_1.default;
+var node_mouvement_1 = __importDefault(require("./node-mouvement"));
+exports.NodeMouvement = node_mouvement_1.default;
+var orthogonal_ordering_1 = __importDefault(require("./orthogonal-ordering"));
+exports.OrthogonalOrdering = orthogonal_ordering_1.default;
+var spread_1 = __importDefault(require("./spread"));
+exports.Spread = spread_1.default;
 exports.manager = {
     criterias: {},
     add: function (criteria) {

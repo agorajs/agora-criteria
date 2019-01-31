@@ -5,5 +5,7 @@ import { CriteriaFunction } from "./interfaces";
  * @param updatedGraph the updated graph sorted by index
  *
  * @returns {{value: number, initial: number, updated: number}}
+ * @deprecated use mels95 version
+ * @see area-mels95.ts
  */
 export declare const boundingBox: CriteriaFunction;

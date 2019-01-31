@@ -36,10 +36,10 @@ export const l1Length: CriteriaFunction = function(
   };
 };
 
-export const SpreadBoundingBoxL1Metriclength: Criteria = {
+export const SpreadBoundingBoxL1MetriclengthCriteria: Criteria = {
   criteria: l1Length,
   name: "spread/bounding-box/l1-metric-length",
   short: "sp_bb_l1ml"
 };
 
-export default SpreadBoundingBoxL1Metriclength;
+export default SpreadBoundingBoxL1MetriclengthCriteria;

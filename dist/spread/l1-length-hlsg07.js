@@ -23,9 +23,9 @@ exports.l1Length = function (initial, updated) {
         updated: updatedResult
     };
 };
-exports.SpreadBoundingBoxL1Metriclength = {
+exports.SpreadBoundingBoxL1MetriclengthCriteria = {
     criteria: exports.l1Length,
     name: "spread/bounding-box/l1-metric-length",
     short: "sp_bb_l1ml"
 };
-exports.default = exports.SpreadBoundingBoxL1Metriclength;
+exports.default = exports.SpreadBoundingBoxL1MetriclengthCriteria;

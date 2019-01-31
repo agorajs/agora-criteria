@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var lambda_1_hlsg07_1 = require("./lambda-1-hlsg07");
+var lambda_1_hlsg07_1 = require("./node-mouvement/lambda-1-hlsg07");
 var lambda_2_hlsg07_1 = require("./orthogonal-ordering/lambda-2-hlsg07");
 var area_hlsg07_1 = require("./spread/area-hlsg07");
-var change_hl03_1 = require("./change-hl03");
+var change_hl03_1 = require("./node-mouvement/change-hl03");
 /**
  * TODO: HLSG07
  * Evaluates the updatedGraph
