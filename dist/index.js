@@ -29,6 +29,11 @@ exports.Spread = spread_1.default;
 exports.manager = {
     criterias: {},
     add: function (criteria) {
+        var _this = this;
+        if (Array.isArray(criteria)) {
+            lodash_1.default.forEach(criteria, function (cr) { return _this.add(cr); });
+            return;
+        }
         if (!this.criterias[name])
             this.criterias[name] = criteria;
         else
