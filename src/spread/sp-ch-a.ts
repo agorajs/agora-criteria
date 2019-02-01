@@ -1,4 +1,4 @@
-import d3 from "d3-polygon";
+import { polygonHull, polygonArea } from "d3-polygon";
 import _ from "lodash";
 import { CriteriaFunction, CriteraiResult, Criteria } from "../interfaces";
 import { Node, top, left, right, bottom } from "agora-graph";
@@ -9,8 +9,8 @@ export const SpreadConvexHullArea: CriteriaFunction = function(
   initial,
   updated
 ): CriteraiResult {
-  const initialHull = d3.polygonHull(convertNodes(initial.nodes));
-  const updatedHull = d3.polygonHull(convertNodes(updated.nodes));
+  const initialHull = polygonHull(convertNodes(initial.nodes));
+  const updatedHull = polygonHull(convertNodes(updated.nodes));
 
   if (initialHull === null || updatedHull === null)
     return {
@@ -18,8 +18,8 @@ export const SpreadConvexHullArea: CriteriaFunction = function(
       error: "could not compute initial or updated convex hull"
     };
 
-  const initialArea = d3.polygonArea(initialHull);
-  const updatedArea = d3.polygonArea(updatedHull);
+  const initialArea = polygonArea(initialHull);
+  const updatedArea = polygonArea(updatedHull);
 
   return {
     value: updatedArea / initialArea,
