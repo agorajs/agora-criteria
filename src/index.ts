@@ -11,16 +11,14 @@ export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
 
 export const manager: Manager = {
   criterias: {},
-  add(criteria: Criteria | Criteria[]) {
-    if (Array.isArray(criteria)) {
-      _.forEach(criteria, cr => this.add(cr));
-      return;
-    }
+  add(...criterias: Criteria[]) {
+    _.forEach(criterias, criteria => {
+      const { name } = criteria;
 
-    const { name } = criteria;
-
-    if (!this.criterias[name]) this.criterias[name] = criteria;
-    else console.error("criterias", "add", "lol");
+      if (!this.criterias[name]) this.criterias[name] = criteria;
+      else console.error("criterias", "add", "lol");
+    });
+    return;
   },
 
   delete(name) {

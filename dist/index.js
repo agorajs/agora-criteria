@@ -28,17 +28,20 @@ var spread_1 = __importDefault(require("./spread"));
 exports.Spread = spread_1.default;
 exports.manager = {
     criterias: {},
-    add: function (criteria) {
+    add: function () {
         var _this = this;
-        if (Array.isArray(criteria)) {
-            lodash_1.default.forEach(criteria, function (cr) { return _this.add(cr); });
-            return;
+        var criterias = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            criterias[_i] = arguments[_i];
         }
-        var name = criteria.name;
-        if (!this.criterias[name])
-            this.criterias[name] = criteria;
-        else
-            console.error("criterias", "add", "lol");
+        lodash_1.default.forEach(criterias, function (criteria) {
+            var name = criteria.name;
+            if (!_this.criterias[name])
+                _this.criterias[name] = criteria;
+            else
+                console.error("criterias", "add", "lol");
+        });
+        return;
     },
     delete: function (name) {
         if (this.criterias[name])

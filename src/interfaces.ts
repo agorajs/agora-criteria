@@ -33,7 +33,6 @@ export interface Manager {
    * @param Criteria name of the criteria
    */
   add(this: Manager, ...criterias: Criteria[]): void;
-  add(this: Manager, criteria: Criteria): void;
 
   /**
    * Deletes the criteria from the evaluation
