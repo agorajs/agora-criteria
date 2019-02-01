@@ -17,6 +17,8 @@ export const manager: Manager = {
       return;
     }
 
+    const { name } = criteria;
+
     if (!this.criterias[name]) this.criterias[name] = criteria;
     else console.error("criterias", "add", "lol");
   },

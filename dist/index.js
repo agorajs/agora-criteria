@@ -34,6 +34,7 @@ exports.manager = {
             lodash_1.default.forEach(criteria, function (cr) { return _this.add(cr); });
             return;
         }
+        var name = criteria.name;
         if (!this.criterias[name])
             this.criterias[name] = criteria;
         else
