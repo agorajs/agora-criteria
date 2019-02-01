@@ -32,6 +32,7 @@ export interface Manager {
    * Add a new criteria to evaluate
    * @param Criteria name of the criteria
    */
+  add(this: Manager, ...criterias: Criteria[]): void;
   add(this: Manager, criteria: Criteria): void;
 
   /**

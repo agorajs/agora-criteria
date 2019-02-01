@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { Manager, isCriteria, CriteraiResult } from "./interfaces";
+import { Manager, isCriteria, CriteraiResult, Criteria } from "./interfaces";
 import EdgeLength from "./edge-length";
 import GlobalShape from "./global-shape";
 import NodeMouvement from "./node-mouvement";
@@ -11,7 +11,12 @@ export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
 
 export const manager: Manager = {
   criterias: {},
-  add(criteria) {
+  add(criteria: Criteria | Criteria[]) {
+    if (Array.isArray(criteria)) {
+      _.forEach(criteria, cr => this.add(cr));
+      return;
+    }
+
     if (!this.criterias[name]) this.criterias[name] = criteria;
     else console.error("criterias", "add", "lol");
   },
