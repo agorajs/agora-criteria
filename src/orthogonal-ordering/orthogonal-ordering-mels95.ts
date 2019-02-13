@@ -23,10 +23,10 @@ export const orthogonalOrderingMels: CriteriaFunction = function(
       const v_prime = updatedGraph.nodes[v_index];
 
       if (
-        !(u.x < v.x && u_prime.x < v_prime.x) &&
-        !(u.y < v.y && u_prime.y < v_prime.y) &&
-        !(u.x === v.y && u_prime.x === v_prime.x) &&
-        !(u.y === v.y && u_prime.y === v_prime.y)
+        u.x < v.x !== u_prime.x < v_prime.x ||
+        u.y < v.y !== u_prime.y < v_prime.y ||
+        (u.x === v.x) !== (u_prime.x === v_prime.x) ||
+        (u.y === v.y) !== (u_prime.y === v_prime.y)
       )
         return { value: 0 };
     }

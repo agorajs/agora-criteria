@@ -15,10 +15,10 @@ exports.orthogonalOrderingMels = function (initialGraph, updatedGraph) {
         for (var v_index = 0; v_index < initialGraph.nodes.length; v_index++) {
             var v = initialGraph.nodes[v_index];
             var v_prime = updatedGraph.nodes[v_index];
-            if (!(u.x < v.x && u_prime.x < v_prime.x) &&
-                !(u.y < v.y && u_prime.y < v_prime.y) &&
-                !(u.x === v.y && u_prime.x === v_prime.x) &&
-                !(u.y === v.y && u_prime.y === v_prime.y))
+            if (u.x < v.x !== u_prime.x < v_prime.x ||
+                u.y < v.y !== u_prime.y < v_prime.y ||
+                (u.x === v.x) !== (u_prime.x === v_prime.x) ||
+                (u.y === v.y) !== (u_prime.y === v_prime.y))
                 return { value: 0 };
         }
     }

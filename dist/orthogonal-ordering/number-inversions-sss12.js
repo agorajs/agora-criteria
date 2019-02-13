@@ -23,7 +23,7 @@ exports.orthogonalOrderingSss = function (initialGraph, updatedGraph) {
         var u_prime = updatedNodes[u_index];
         for (var v_index = 0; v_index < initialNodes.length; v_index++) {
             var v = initialNodes[v_index];
-            var v_prime = updatedNodes[u_index];
+            var v_prime = updatedNodes[v_index];
             if (u.x > v.x && u_prime.x < v_prime.x)
                 sum++;
             if (u.y > v.y && u_prime.y < v_prime.y)

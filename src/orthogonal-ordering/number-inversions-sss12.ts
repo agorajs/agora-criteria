@@ -29,7 +29,7 @@ export const orthogonalOrderingSss: CriteriaFunction = function(
     const u_prime = updatedNodes[u_index];
     for (let v_index = 0; v_index < initialNodes.length; v_index++) {
       const v = initialNodes[v_index];
-      const v_prime = updatedNodes[u_index];
+      const v_prime = updatedNodes[v_index];
 
       if (u.x > v.x && u_prime.x < v_prime.x) sum++;
       if (u.y > v.y && u_prime.y < v_prime.y) sum++;
