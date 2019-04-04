@@ -3,7 +3,7 @@ import { vector, Edge, delaunay, length, norm } from "agora-graph";
 import { CriteriaFunction, Criteria } from "../interfaces";
 
 // TODO: LEN05
-export const edgeRatioLen: CriteriaFunction = function(initial, updated) {
+export const edgeRatioLen: CriteriaFunction = function (initial, updated) {
   if (initial.nodes.length !== updated.nodes.length) {
     console.error(
       "criteria", // family
@@ -26,6 +26,7 @@ export const edgeRatioLen: CriteriaFunction = function(initial, updated) {
   if (max == undefined || min == undefined) {
     return { value: -1, error: "could not evaluate this criteria" };
   }
+  if (min === 0) min = 1
   return { value: max / min };
 };
 

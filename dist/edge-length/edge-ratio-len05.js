@@ -25,6 +25,8 @@ exports.edgeRatioLen = function (initial, updated) {
     if (max == undefined || min == undefined) {
         return { value: -1, error: "could not evaluate this criteria" };
     }
+    if (min === 0)
+        min = 1;
     return { value: max / min };
 };
 exports.EdgeLengthRatioCriteria = {
