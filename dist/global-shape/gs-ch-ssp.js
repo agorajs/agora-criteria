@@ -52,46 +52,59 @@ function calculateConvexHullDistances(hull) {
         pos,
         agora_graph_1.toPolar({ x: pos[0], y: pos[1] })
     ]; });
-    elements.sort(function (a, b) { return a[1].angle - b[1].angle; });
-    var buffer = elements[0];
-    var rayIndex = 0;
+    var lines = getLines(elements);
     var distances = [];
-    for (var cur = 1; cur < elements.length; cur++) {
-        var polarPoint = elements[cur][1];
-        var vectorPoint = elements[cur][0];
-        // while it is before the current point we need to check if it is intersecting :)
-        while (rays[rayIndex].angle < polarPoint.angle) {
-            if (rays[rayIndex].angle < buffer[1].angle) {
-                ++rayIndex;
-                continue;
-            }
-            var cartesianRay = agora_graph_1.toCartesian(rays[rayIndex]);
-            // calculating intersection
-            var intersectionPoint = lineIntersection({ start: [0, 0], end: [cartesianRay.x, cartesianRay.y] }, { start: buffer[0], end: vectorPoint });
-            //if they intersect
-            if (intersectionPoint)
-                distances.push(agora_graph_1.magnitude(intersectionPoint));
-            else
-                throw "it is supposed to intersect :(";
-            ++rayIndex;
-        }
-        buffer = elements[cur];
-    }
-    // complete the circle
-    var end = elements[0];
-    // buffer = elements[last]
-    var beginning = rayIndex; // where we start
-    while (rays[rayIndex].angle < end[1].angle || rayIndex >= beginning) {
-        var cartesianRay = agora_graph_1.toCartesian(rays[rayIndex]);
-        var intersectionPoint = lineIntersection({ start: [0, 0], end: [cartesianRay.x, cartesianRay.y] }, { start: buffer[0], end: end[0] });
-        //if they intersect
-        if (intersectionPoint)
-            distances.push(agora_graph_1.magnitude(intersectionPoint));
+    _.forEach(rays, function (ray) {
+        var line = getIntersectingLine(lines, ray);
+        var cartesianRay = agora_graph_1.toCartesian(ray);
+        var intersection = lineIntersection({ start: [0, 0], end: [cartesianRay.x, cartesianRay.y] }, { start: line.start[0], end: line.end[0] });
+        if (intersection)
+            distances.push(agora_graph_1.magnitude(intersection));
         else
             throw "it is supposed to intersect :(";
-        rayIndex = (rayIndex + 1) % rays.length;
-    }
+    });
     return distances;
+}
+exports.calculateConvexHullDistances = calculateConvexHullDistances;
+function getIntersectingLine(lines, ray) {
+    for (var _i = 0, lines_1 = lines; _i < lines_1.length; _i++) {
+        var line = lines_1[_i];
+        if (line.start[1] <= ray.angle && line.end[1] > ray.angle)
+            return line;
+    }
+    // should never be in this case
+    throw "Cannot be here";
+    return lines[0];
+}
+function getLines(elements) {
+    var sorted = _.sortBy(elements, function (a) { return a[1].angle; });
+    if (sorted.length === 0) {
+        return [];
+    }
+    if (sorted.length === 1) {
+        return [{
+                start: [sorted[0][0], sorted[0][1].angle],
+                end: [sorted[0][0], sorted[0][1].angle + 360]
+            }];
+    }
+    var lastEl = sorted[sorted.length - 1];
+    var buffer = sorted[0];
+    var lines = [{
+            start: [lastEl[0], lastEl[1].angle - 360],
+            end: [buffer[0], buffer[1].angle]
+        }];
+    for (var i = 1; i < sorted.length; i++) {
+        lines.push({
+            start: [buffer[0], buffer[1].angle],
+            end: [sorted[i][0], sorted[i][1].angle]
+        });
+        buffer = sorted[i];
+    }
+    lines.push({
+        start: [buffer[0], buffer[1].angle],
+        end: [sorted[0][0], sorted[0][1].angle + 360]
+    });
+    return lines;
 }
 function lineIntersection(line1, line2) {
     // if the lines intersect, the result contains the x and y of the intersection (treating the lines as infinite)
@@ -118,10 +131,6 @@ function convertNodes(nodes) {
         var t = agora_graph_1.top(n), l = agora_graph_1.left(n), r = agora_graph_1.right(n), b = agora_graph_1.bottom(n);
         return [[l, t], [r, t], [r, b], [l, b]];
     });
-}
-function test() {
-    console.log(calculateConvexHullDistances([[1, 1], [-1, 1], [-1, -1], [1, -1]]));
-    console.log(calculateConvexHullDistances([[1, 0], [0, 1], [-1, 0], [0, -1]]));
 }
 exports.GlobalShapeConvexHullStandardShapePreservationCriteria = {
     criteria: exports.GlobalShapeConvexHullStandardShapePreservation,

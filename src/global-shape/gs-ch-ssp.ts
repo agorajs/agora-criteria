@@ -16,8 +16,9 @@ import {
 } from "agora-graph";
 
 type Pos = [number, number];
+type Line = { start: [Pos, number], end: [Pos, number] };
 
-export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = function(
+export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = function (
   initial,
   updated
 ) {
@@ -47,7 +48,7 @@ export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = 
   return { value, initial: initialDistances, updated: updatedDistances };
 };
 
-function calculateConvexHullDistances(hull: [number, number][]) {
+export function calculateConvexHullDistances(hull: [number, number][]) {
   // STEP 2 get center of the hull and set as center
   const center = d3.polygonCentroid(hull);
   const centeredHull = _.map<Pos, Pos>(hull, pos => [
@@ -70,58 +71,68 @@ function calculateConvexHullDistances(hull: [number, number][]) {
     toPolar({ x: pos[0], y: pos[1] })
   ]);
 
-  elements.sort((a, b) => a[1].angle - b[1].angle);
-
-  let buffer = elements[0];
-  let rayIndex = 0;
-  let distances = [];
-  for (let cur = 1; cur < elements.length; cur++) {
-    const polarPoint = elements[cur][1];
-    const vectorPoint = elements[cur][0];
-
-    // while it is before the current point we need to check if it is intersecting :)
-    while (rays[rayIndex].angle < polarPoint.angle) {
-      if (rays[rayIndex].angle < buffer[1].angle) {
-        ++rayIndex;
-        continue;
-      }
-
-      const cartesianRay = toCartesian(rays[rayIndex]);
-
-      // calculating intersection
-      let intersectionPoint = lineIntersection(
-        { start: [0, 0], end: [cartesianRay.x, cartesianRay.y] },
-        { start: buffer[0], end: vectorPoint }
-      );
-
-      //if they intersect
-      if (intersectionPoint) distances.push(magnitude(intersectionPoint));
-      else throw "it is supposed to intersect :(";
-      ++rayIndex;
-    }
-
-    buffer = elements[cur];
-  }
-
-  // complete the circle
-  const end = elements[0];
-  // buffer = elements[last]
-  const beginning = rayIndex; // where we start
-  while (rays[rayIndex].angle < end[1].angle || rayIndex >= beginning) {
-    const cartesianRay = toCartesian(rays[rayIndex]);
-
-    let intersectionPoint = lineIntersection(
+  const lines = getLines(elements)
+  const distances: number[] = []
+  _.forEach(rays, (ray) => {
+    const line = getIntersectingLine(lines, ray);
+    const cartesianRay = toCartesian(ray)
+    const intersection = lineIntersection(
       { start: [0, 0], end: [cartesianRay.x, cartesianRay.y] },
-      { start: buffer[0], end: end[0] }
-    );
+      { start: line.start[0], end: line.end[0] })
 
-    //if they intersect
-    if (intersectionPoint) distances.push(magnitude(intersectionPoint));
-    else throw "it is supposed to intersect :(";
-    rayIndex = (rayIndex + 1) % rays.length;
+    if (intersection) distances.push(magnitude(intersection))
+    else throw "it is supposed to intersect :("
+  })
+
+  return distances
+}
+
+
+function getIntersectingLine(lines: Line[], ray: PolarVector): Line {
+  for (const line of lines) {
+    if (line.start[1] <= ray.angle && line.end[1] > ray.angle) return line
   }
 
-  return distances;
+  // should never be in this case
+  throw "Cannot be here"
+  return lines[0]
+}
+
+function getLines(elements: [Pos, PolarVector][]): Line[] {
+  const sorted = _.sortBy(elements, (a) => a[1].angle)
+
+  if (sorted.length === 0) {
+    return []
+  }
+
+  if (sorted.length === 1) {
+    return [{
+      start: [sorted[0][0], sorted[0][1].angle],
+      end: [sorted[0][0], sorted[0][1].angle + 360]
+    }]
+  }
+  let lastEl = sorted[sorted.length - 1]
+  let buffer = sorted[0]
+
+  const lines: Line[] = [{
+    start: [lastEl[0], lastEl[1].angle - 360],
+    end: [buffer[0], buffer[1].angle]
+  }]
+
+  for (let i = 1; i < sorted.length; i++) {
+    lines.push({
+      start: [buffer[0], buffer[1].angle],
+      end: [sorted[i][0], sorted[i][1].angle]
+    })
+    buffer = sorted[i]
+  }
+
+  lines.push({
+    start: [buffer[0], buffer[1].angle],
+    end: [sorted[0][0], sorted[0][1].angle + 360]
+  })
+
+  return lines
 }
 
 function lineIntersection(
@@ -156,20 +167,13 @@ function lineIntersection(
 
 function convertNodes(nodes: Node[]): [number, number][] {
   // TODO: add node boxes
-  return _.flatMap(nodes, function(n): [number, number][] {
+  return _.flatMap(nodes, function (n): [number, number][] {
     const t = top(n),
       l = left(n),
       r = right(n),
       b = bottom(n);
     return [[l, t], [r, t], [r, b], [l, b]];
   });
-}
-
-function test() {
-  console.log(
-    calculateConvexHullDistances([[1, 1], [-1, 1], [-1, -1], [1, -1]])
-  );
-  console.log(calculateConvexHullDistances([[1, 0], [0, 1], [-1, 0], [0, -1]]));
 }
 
 export const GlobalShapeConvexHullStandardShapePreservationCriteria: Criteria = {

@@ -17,6 +17,8 @@ exports.edgeRatioLen = function (initial, updated) {
         var u = updated.nodes[edge.source];
         var v = updated.nodes[edge.target];
         var norm_uv = agora_graph_1.norm(u, v);
+        if (norm_uv === 0)
+            continue;
         if (min === undefined || min > norm_uv)
             min = norm_uv;
         if (max === undefined || max < norm_uv)
@@ -25,8 +27,6 @@ exports.edgeRatioLen = function (initial, updated) {
     if (max == undefined || min == undefined) {
         return { value: -1, error: "could not evaluate this criteria" };
     }
-    if (min === 0)
-        min = 1;
     return { value: max / min };
 };
 exports.EdgeLengthRatioCriteria = {
