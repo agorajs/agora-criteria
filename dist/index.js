@@ -34,14 +34,13 @@ exports.manager = {
         for (var _i = 0; _i < arguments.length; _i++) {
             criterias[_i] = arguments[_i];
         }
-        lodash_1.default.forEach(criterias, function (criteria) {
-            var name = criteria.name;
+        lodash_1.default.forEach(criterias, function (c) {
+            var name = c.name;
             if (!_this.criterias[name])
-                _this.criterias[name] = criteria;
+                _this.criterias[name] = c;
             else
                 console.error('criterias', 'add', name);
         });
-        return;
     },
     delete: function (name) {
         if (this.criterias[name])
@@ -51,11 +50,7 @@ exports.manager = {
     },
     batch: function (initial, updatedGraphs, list) {
         var _this = this;
-        if (!list) {
-            list = lodash_1.default.map(this.criterias, function (c) {
-                return c.name;
-            });
-        }
+        if (list === void 0) { list = lodash_1.default.keys(this.criterias); }
         console.group('criterias');
         var results = [];
         lodash_1.default.forEach(list, function (name) {
@@ -88,11 +83,11 @@ exports.manager = {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
             else
-                throw 'Criteria not added';
+                throw 'criteria ' + criteria + ' was not added';
         }
         if (interfaces_1.isCriteria(criteria))
             return criteria.criteria(initial, updated);
-        throw 'Error while evaluating (should not happen though)';
+        throw 'reached unreachable code (should not happen though)';
     }
 };
 exports.default = exports.manager;
