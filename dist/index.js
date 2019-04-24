@@ -39,7 +39,7 @@ exports.manager = {
             if (!_this.criterias[name])
                 _this.criterias[name] = criteria;
             else
-                console.error("criterias", "add", "lol");
+                console.error('criterias', 'add', name);
         });
         return;
     },
@@ -47,7 +47,7 @@ exports.manager = {
         if (this.criterias[name])
             delete this.criterias[name];
         else
-            console.error("criterias", "delete", "lol");
+            console.error('criterias', 'delete', name);
     },
     batch: function (initial, updatedGraphs, list) {
         var _this = this;
@@ -56,7 +56,7 @@ exports.manager = {
                 return c.name;
             });
         }
-        console.group("criterias");
+        console.group('criterias');
         var results = [];
         lodash_1.default.forEach(list, function (name) {
             results.push(__assign({ name: name }, _this.execute(name, initial, updatedGraphs)));
@@ -66,13 +66,13 @@ exports.manager = {
     },
     execute: function (criteria, initial, updatedGraphs) {
         var _this = this;
-        if (typeof criteria === "string") {
+        if (typeof criteria === 'string') {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
-            throw "Criteria does not exist";
+            throw 'Criteria does not exist';
         }
         if (!interfaces_1.isCriteria(criteria))
-            throw criteria + " is not a criterai";
+            throw criteria + ' is not a criterai';
         var results = {};
         console.group(criteria.name);
         var start = new Date();
@@ -84,15 +84,15 @@ exports.manager = {
         return { results: results, time: diff };
     },
     evaluate: function (criteria, initial, updated) {
-        if (typeof criteria === "string") {
+        if (typeof criteria === 'string') {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
             else
-                throw "Criteria not added";
+                throw 'Criteria not added';
         }
         if (interfaces_1.isCriteria(criteria))
             return criteria.criteria(initial, updated);
-        throw "Error while evaluating (should not happen though)";
+        throw 'Error while evaluating (should not happen though)';
     }
 };
 exports.default = exports.manager;

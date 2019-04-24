@@ -1,11 +1,11 @@
-import _ from "lodash";
+import _ from 'lodash';
 
-import { Manager, isCriteria, CriteraiResult, Criteria } from "./interfaces";
-import EdgeLength from "./edge-length";
-import GlobalShape from "./global-shape";
-import NodeMouvement from "./node-mouvement";
-import OrthogonalOrdering from "./orthogonal-ordering";
-import Spread from "./spread";
+import { Manager, isCriteria, CriteraiResult, Criteria } from './interfaces';
+import EdgeLength from './edge-length';
+import GlobalShape from './global-shape';
+import NodeMouvement from './node-mouvement';
+import OrthogonalOrdering from './orthogonal-ordering';
+import Spread from './spread';
 
 export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
 
@@ -16,14 +16,14 @@ export const manager: Manager = {
       const { name } = criteria;
 
       if (!this.criterias[name]) this.criterias[name] = criteria;
-      else console.error("criterias", "add", "lol");
+      else console.error('criterias', 'add', name);
     });
     return;
   },
 
   delete(name) {
     if (this.criterias[name]) delete this.criterias[name];
-    else console.error("criterias", "delete", "lol");
+    else console.error('criterias', 'delete', name);
   },
 
   batch(initial, updatedGraphs, list): any[] {
@@ -33,7 +33,7 @@ export const manager: Manager = {
       });
     }
 
-    console.group("criterias");
+    console.group('criterias');
 
     const results: object[] = [];
     _.forEach(list, name => {
@@ -49,12 +49,12 @@ export const manager: Manager = {
   },
 
   execute(criteria, initial, updatedGraphs) {
-    if (typeof criteria === "string") {
+    if (typeof criteria === 'string') {
       if (this.criterias[criteria]) criteria = this.criterias[criteria];
-      throw "Criteria does not exist";
+      throw 'Criteria does not exist';
     }
 
-    if (!isCriteria(criteria)) throw criteria + " is not a criterai";
+    if (!isCriteria(criteria)) throw criteria + ' is not a criterai';
 
     const results: { [key: string]: CriteraiResult } = {};
     console.group(criteria.name);
@@ -69,13 +69,13 @@ export const manager: Manager = {
   },
 
   evaluate(criteria, initial, updated) {
-    if (typeof criteria === "string") {
+    if (typeof criteria === 'string') {
       if (this.criterias[criteria]) criteria = this.criterias[criteria];
-      else throw "Criteria not added";
+      else throw 'Criteria not added';
     }
 
     if (isCriteria(criteria)) return criteria.criteria(initial, updated);
-    throw "Error while evaluating (should not happen though)";
+    throw 'Error while evaluating (should not happen though)';
   }
 };
 
