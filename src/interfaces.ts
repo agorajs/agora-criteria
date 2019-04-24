@@ -1,4 +1,4 @@
-import { Graph } from "agora-graph";
+import { Graph } from 'agora-graph';
 
 export interface Dictionary<T> {
   [key: string]: T;

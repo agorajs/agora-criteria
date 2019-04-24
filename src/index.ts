@@ -12,13 +12,12 @@ export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
 export const manager: Manager = {
   criterias: {},
   add(...criterias: Criteria[]) {
-    _.forEach(criterias, criteria => {
-      const { name } = criteria;
+    _.forEach(criterias, c => {
+      const { name } = c;
 
-      if (!this.criterias[name]) this.criterias[name] = criteria;
+      if (!this.criterias[name]) this.criterias[name] = c;
       else console.error('criterias', 'add', name);
     });
-    return;
   },
 
   delete(name) {
@@ -26,13 +25,12 @@ export const manager: Manager = {
     else console.error('criterias', 'delete', name);
   },
 
-  batch(initial, updatedGraphs, list): any[] {
-    if (!list) {
-      list = _.map(this.criterias, c => {
-        return c.name;
-      });
-    }
-
+  batch(
+    this: Manager,
+    initial,
+    updatedGraphs,
+    list = _.keys(this.criterias)
+  ): any[] {
     console.group('criterias');
 
     const results: object[] = [];
@@ -71,11 +69,11 @@ export const manager: Manager = {
   evaluate(criteria, initial, updated) {
     if (typeof criteria === 'string') {
       if (this.criterias[criteria]) criteria = this.criterias[criteria];
-      else throw 'Criteria not added';
+      else throw 'criteria ' + criteria + ' was not added';
     }
 
     if (isCriteria(criteria)) return criteria.criteria(initial, updated);
-    throw 'Error while evaluating (should not happen though)';
+    throw 'reached unreachable code (should not happen though)';
   }
 };
 
