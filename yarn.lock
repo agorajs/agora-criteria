@@ -321,11 +321,6 @@
   resolved "https://registry.yarnpkg.com/@types/d3-polygon/-/d3-polygon-1.0.7.tgz#7b3947aa2d48287ff535230d3d396668ab17bfdf"
   integrity sha512-Xuw0eSjQQKs8jTiNbntWH0S+Xp+JyhqxmQ0YAQ3rDu6c3kKMFfgsaGN7Jv5u3zG6yVX/AsLP/Xs/QRjmi9g43Q==
 
-"@types/delaunator@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/delaunator/-/delaunator-2.0.0.tgz#61bd8374db4a75b010e90da162a7fe17fa83fae2"
-  integrity sha512-5MwdeoRF5Q3zfGljBt4uOVt2Xppf+kAoZk2fRQV4TOUa7HsZ9R6J4Bu2pfNx9RoIJrbtQwMGHPSdGiQsmJ9jEQ==
-
 "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.0.tgz#1eb8c033e98cf4e1a4cedcaf8bcafe8cb7591e85"
@@ -397,15 +392,6 @@ acorn@^6.0.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
-
-"agora-graph@git+ssh://git@gite.lirmm.fr:chen/agora-graph.git#semver:0.1.0":
-  version "0.1.0"
-  resolved "git+ssh://git@gite.lirmm.fr:chen/agora-graph.git#1944ff000404cba64bdc6d5550ebf0814bfdf629"
-  dependencies:
-    "@types/delaunator" "^2.0.0"
-    "@types/lodash" "^4.14.116"
-    delaunator "^3.0.2"
-    lodash "^4.17.11"
 
 ajv@^6.5.5:
   version "6.10.0"
@@ -962,11 +948,6 @@ define-property@^2.0.2:
   dependencies:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
-
-delaunator@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/delaunator/-/delaunator-3.0.2.tgz#62d5d9699cd64a736a2bb9c4d957d662452808d0"
-  integrity sha512-GNSex8jhF1mcqtNAMYvdZ6Ng7YieYNlbOq2xshyZhLc98P8y5O7Vm6buw4A60wGOd9qvK9RcIMm5qoe4PncAPw==
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -3476,10 +3457,10 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-ts-jest@^23.10.5:
-  version "23.10.5"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-23.10.5.tgz#cdb550df4466a30489bf70ba867615799f388dd5"
-  integrity sha512-MRCs9qnGoyKgFc8adDEntAOP64fWK1vZKnOYU1o2HxaqjdJvGqmkLCPCnVq1/If4zkUmEjKPnCiUisTrlX2p2A==
+ts-jest@^24.0.2:
+  version "24.0.2"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-24.0.2.tgz#8dde6cece97c31c03e80e474c749753ffd27194d"
+  integrity sha512-h6ZCZiA1EQgjczxq+uGLXQlNgeg02WWJBbeT8j6nyIBRQdglqbvzDoHahTEIiS6Eor6x8mK6PfZ7brQ9Q6tzHw==
   dependencies:
     bs-logger "0.x"
     buffer-from "1.x"
