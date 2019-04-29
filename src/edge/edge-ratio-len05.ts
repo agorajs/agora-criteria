@@ -35,7 +35,7 @@ function calculateEdgeRatio(graph: Graph): number {
   return max / min;
 }
 
-export const EdgeLengthRatioCriteria: Criteria = criteriaWrap({
+export const EdgeLengthRatioCriteria = criteriaWrap({
   criteria: edgeRatioLen,
   name: 'edge/ratio',
   short: 'e_r'

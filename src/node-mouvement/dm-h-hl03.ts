@@ -23,11 +23,9 @@ export const changeHl: CriteriaFunction = function(initialGraph, updatedGraph) {
   return { value: sum };
 };
 
-export const NodeMouvementDistanceMovedHamiltonianCriteria: Criteria = criteriaWrap(
-  {
-    criteria: changeHl,
-    name: 'node-mouvement/distance-moved/hamiltonian',
-    short: 'nm_dm_h'
-  }
-);
+export const NodeMouvementDistanceMovedHamiltonianCriteria = criteriaWrap({
+  criteria: changeHl,
+  name: 'node-mouvement/distance-moved/hamiltonian',
+  short: 'nm_dm_h'
+});
 export default NodeMouvementDistanceMovedHamiltonianCriteria;

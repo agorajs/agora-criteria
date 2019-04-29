@@ -25,7 +25,7 @@ export const orthogonalOrderingMels: CriteriaFunction = function(
   return { value: 1 };
 };
 
-export const OrthogonalOrderingCriteria: Criteria = criteriaWrap({
+export const OrthogonalOrderingCriteria = criteriaWrap({
   criteria: orthogonalOrderingMels,
   name: 'orthogonal-ordering',
   short: 'oo'

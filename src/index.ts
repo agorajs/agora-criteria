@@ -75,6 +75,6 @@ export const manager: Manager = {
     if (isCriteria(criteria)) return criteria.criteria(initial, updated);
     throw 'reached unreachable code (should not happen though)';
   }
-};
+});
 
 export default manager;

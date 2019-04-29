@@ -26,11 +26,9 @@ export const changeSquareMsth: CriteriaFunction = function(
   return { value: sum };
 };
 
-export const NodeMouvementDistanceMovedSquaredCriteria: Criteria = criteriaWrap(
-  {
-    criteria: changeSquareMsth,
-    name: 'node-mouvement/distance-moved/squared',
-    short: 'nm_dm_s'
-  }
-);
+export const NodeMouvementDistanceMovedSquaredCriteria = criteriaWrap({
+  criteria: changeSquareMsth,
+  name: 'node-mouvement/distance-moved/squared',
+  short: 'nm_dm_s'
+});
 export default NodeMouvementDistanceMovedSquaredCriteria;

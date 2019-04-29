@@ -27,11 +27,9 @@ export const aspectRatio: CriteriaFunction = function(initial, updated) {
   };
 };
 
-export const GlobalShapeBoundingBoxAspectRatioPlusCriteria: Criteria = criteriaWrap(
-  {
-    criteria: aspectRatio,
-    name: 'global-shape/bounding-box/aspect-ratio-plus',
-    short: 'gs_bb_arplus'
-  }
-);
+export const GlobalShapeBoundingBoxAspectRatioPlusCriteria = criteriaWrap({
+  criteria: aspectRatio,
+  name: 'global-shape/bounding-box/aspect-ratio-plus',
+  short: 'gs_bb_arplus'
+});
 export default GlobalShapeBoundingBoxAspectRatioPlusCriteria;

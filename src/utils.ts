@@ -1,7 +1,11 @@
 import { Graph } from 'agora-graph';
-import { Criteria, CriteriaFunction } from './interfaces';
+import { Criteria } from './interfaces';
 
-export function criteriaWrap({ name, criteria, short }: Criteria): Criteria {
+export function criteriaWrap<S extends string, N extends string>({
+  name,
+  criteria,
+  short
+}: Criteria<S, N>): Criteria<S, N> {
   return {
     name,
     short,

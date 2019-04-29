@@ -35,11 +35,9 @@ export const aspectRatioLmr: CriteriaFunction = function(
   return { value: sum / (k * Math.SQRT2 * n) };
 };
 
-export const NodeMouvementDistanceMovedNormalizedCriteria: Criteria = criteriaWrap(
-  {
-    criteria: aspectRatioLmr,
-    name: 'node-mouvement/distance-moved-normalized',
-    short: 'nm_dm_n'
-  }
-);
+export const NodeMouvementDistanceMovedNormalizedCriteria = criteriaWrap({
+  criteria: aspectRatioLmr,
+  name: 'node-mouvement/distance-moved-normalized',
+  short: 'nm_dm_n'
+});
 export default NodeMouvementDistanceMovedNormalizedCriteria;

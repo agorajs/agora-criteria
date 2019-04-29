@@ -10,7 +10,7 @@ import { criteriaWrap } from '../utils';
  *
  * @returns {{value: number, displacement: Edge[]}}
  */
-export const kNearestNeighborsNNB = function(
+export const kNearestNeighborsNNB: CriteriaFunction<{ k: number }> = function(
   initialGraph: Graph,
   updatedGraph: Graph,
   options: { k: number }
@@ -49,7 +49,7 @@ function n(k: number): (nodes: Node[], node: Node) => number[] {
   };
 }
 
-export function createKNearestNeighborsCriteria(k: number = 8): Criteria {
+export function createKNearestNeighborsCriteria(k: number = 8) {
   return criteriaWrap({
     criteria: (initial, updated) =>
       kNearestNeighborsNNB(initial, updated, { k }),
@@ -58,5 +58,5 @@ export function createKNearestNeighborsCriteria(k: number = 8): Criteria {
   });
 }
 
-export const NodeMouvement8NearestNeighborsCriteria: Criteria = createKNearestNeighborsCriteria();
+export const NodeMouvement8NearestNeighborsCriteria = createKNearestNeighborsCriteria();
 export default NodeMouvement8NearestNeighborsCriteria;

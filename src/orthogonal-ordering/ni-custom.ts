@@ -32,12 +32,11 @@ export const meanNumberInversions: CriteriaFunction = function(
     value: sum / ((initialNodes.length * (initialNodes.length - 1)) / 2)
   };
 };
-
-export const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria = criteriaWrap(
-  {
-    criteria: meanNumberInversions,
-    name: 'orthogonal-ordering/number-of-inversions/mean',
-    short: 'oo_ni_m'
-  }
-);
+// const NAME: 'orthogonal-ordering/number-of-inversions/mean' =
+//   ;
+export const OrthogonalOrderingNumberInversionsMeanCriteria = criteriaWrap({
+  criteria: meanNumberInversions,
+  name: 'orthogonal-ordering/number-of-inversions/mean',
+  short: 'oo_ni_m'
+});
 export default OrthogonalOrderingNumberInversionsMeanCriteria;

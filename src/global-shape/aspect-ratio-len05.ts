@@ -23,11 +23,9 @@ export const aspectRatioLen: CriteriaFunction = function(
   return { value: wp > hp ? (wp * h) / (hp * w) : (hp * w) / (wp * h) };
 };
 
-export const GlobalShapeBoundingBoxAspectRatioCriteria: Criteria = criteriaWrap(
-  {
-    criteria: aspectRatioLen,
-    name: 'global-shape/bounding-box/aspect-ratio',
-    short: 'gs_bb_ar'
-  }
-);
+export const GlobalShapeBoundingBoxAspectRatioCriteria = criteriaWrap({
+  criteria: aspectRatioLen,
+  name: 'global-shape/bounding-box/aspect-ratio',
+  short: 'gs_bb_ar'
+});
 export default GlobalShapeBoundingBoxAspectRatioCriteria;

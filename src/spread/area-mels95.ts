@@ -20,7 +20,7 @@ export const areaMels: CriteriaFunction = function(initialGraph, updatedGraph) {
   return { value: (wp * hp) / (w * h) };
 };
 
-export const SpreadBoundingBoxAreaCriteria: Criteria = criteriaWrap({
+export const SpreadBoundingBoxAreaCriteria = criteriaWrap({
   criteria: areaMels,
   name: 'spread/bounding-box/area',
   short: 'sp_bb_a'

@@ -27,7 +27,7 @@ export const l1Length: CriteriaFunction = function(
   };
 };
 
-export const SpreadBoundingBoxL1MetriclengthCriteria: Criteria = criteriaWrap({
+export const SpreadBoundingBoxL1MetriclengthCriteria = criteriaWrap({
   criteria: l1Length,
   name: 'spread/bounding-box/l1-metric-length',
   short: 'sp_bb_l1ml'

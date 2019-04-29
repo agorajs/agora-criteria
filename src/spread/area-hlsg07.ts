@@ -23,7 +23,7 @@ export const AreaNormalized: CriteriaFunction = function(
   return { value: 1 - (w * h) / (wp * hp) };
 };
 
-export const SpreadBoundingBoxAreaNormalizedCriteria: Criteria = criteriaWrap({
+export const SpreadBoundingBoxAreaNormalizedCriteria = criteriaWrap({
   criteria: AreaNormalized,
   name: 'spread/bounding-box/area-normalized',
   short: 'sp_bb_an'
