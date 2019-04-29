@@ -1,6 +1,6 @@
 {
   "name": "agora-criteria",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "criteria repository for Agora Framework",
   "main": "dist/index.js",
   "author": "stardisblue <stardisblue@gmail.com>",

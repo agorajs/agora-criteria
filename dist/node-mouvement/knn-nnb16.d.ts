@@ -1,5 +1,5 @@
-import { Graph } from "agora-graph";
-import { Criteria, CriteraiResult } from "../interfaces";
+import { Graph } from 'agora-graph';
+import { Criteria, CriteraiResult } from '../interfaces';
 /**
  * TODO: NNB*16
  * @param initialGraph the initial graph sorted by index

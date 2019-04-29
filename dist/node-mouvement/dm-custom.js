@@ -1,15 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 function scaleChange(initial, updated) {
-    if (initial.nodes.length !== updated.nodes.length) {
-        console.error('criteria', // family
-        'scale-change', // type
-        'abording', // action
-        'not the same number of nodes' // reason
-        );
-        throw 'Criteria scale-change abording : not same number of nodes';
-    }
     var nodesLength = initial.nodes.length;
     var sizes = {
         in: {
@@ -92,9 +85,9 @@ function scaleChange(initial, updated) {
     return { value: change / nodesLength, displacement: displacement };
 }
 exports.scaleChange = scaleChange;
-exports.NodeMouvementDistanceMovedCustomCriteria = {
+exports.NodeMouvementDistanceMovedCustomCriteria = utils_1.criteriaWrap({
     criteria: scaleChange,
     name: 'node-mouvement/distance-moved/custom',
     short: 'nm_dm_c'
-};
+});
 exports.default = exports.NodeMouvementDistanceMovedCustomCriteria;
