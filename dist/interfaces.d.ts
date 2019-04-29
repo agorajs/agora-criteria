@@ -8,9 +8,9 @@ export interface CriteraiResult extends Dictionary<any> {
 export interface CriteriaFunction {
     (initial: Graph, updated: Graph): CriteraiResult;
 }
-export interface Criteria {
-    short?: string;
-    name: string;
+export interface Criteria<S extends string = string, N extends string = string> {
+    short?: S;
+    name: N;
     criteria: CriteriaFunction;
 }
 export declare function isCriteria(object: any): object is Criteria;

@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const meanNumberInversions: CriteriaFunction;
-export declare const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria;
+export declare const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria<"oo_ni_m", "orthogonal-ordering/number-of-inversions/mean">;
 export default OrthogonalOrderingNumberInversionsMeanCriteria;

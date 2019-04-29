@@ -98,7 +98,7 @@ export function scaleChange(initial: Graph, updated: Graph) {
   return { value: change / nodesLength, displacement: displacement };
 }
 
-export const NodeMouvementDistanceMovedCustomCriteria: Criteria = criteriaWrap({
+export const NodeMouvementDistanceMovedCustomCriteria = criteriaWrap({
   criteria: scaleChange,
   name: 'node-mouvement/distance-moved/custom',
   short: 'nm_dm_c'

@@ -181,7 +181,7 @@ function convertNodes(nodes: Node[]): [number, number][] {
   });
 }
 
-export const GlobalShapeConvexHullStandardShapePreservationCriteria: Criteria = criteriaWrap(
+export const GlobalShapeConvexHullStandardShapePreservationCriteria = criteriaWrap(
   {
     criteria: GlobalShapeConvexHullStandardShapePreservation,
     name: 'global-shape/convex-hull/standard-shape-preservation',

@@ -33,11 +33,9 @@ export const meanNumberInversions: CriteriaFunction = function(
   };
 };
 
-export const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria = criteriaWrap(
-  {
-    criteria: meanNumberInversions,
-    name: 'orthogonal-ordering/number-of-inversions/mean',
-    short: 'oo_ni_m'
-  }
-);
+export const OrthogonalOrderingNumberInversionsMeanCriteria = criteriaWrap({
+  criteria: meanNumberInversions,
+  name: 'orthogonal-ordering/number-of-inversions/mean',
+  short: 'oo_ni_m'
+});
 export default OrthogonalOrderingNumberInversionsMeanCriteria;

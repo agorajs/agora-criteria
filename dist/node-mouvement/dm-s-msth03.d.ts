@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const changeSquareMsth: CriteriaFunction;
-export declare const NodeMouvementDistanceMovedSquaredCriteria: Criteria;
+export declare const NodeMouvementDistanceMovedSquaredCriteria: Criteria<"nm_dm_s", "node-mouvement/distance-moved/squared">;
 export default NodeMouvementDistanceMovedSquaredCriteria;

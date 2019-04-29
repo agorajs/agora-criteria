@@ -39,7 +39,7 @@ function iv(u: Node, v: Node, u_prime: Node, v_prime: Node): boolean {
   );
 }
 
-export const OrthogonalOrderingKendallTauCriteria: Criteria = criteriaWrap({
+export const OrthogonalOrderingKendallTauCriteria = criteriaWrap({
   criteria: orthogonalOrderingHlgs,
   name: 'orthogonal-ordering/kendall-tau',
   short: 'oo_kt'

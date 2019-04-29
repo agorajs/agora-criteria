@@ -27,7 +27,7 @@ export const lambda1Hlsg: CriteriaFunction = function(
   return { value: nb / n };
 };
 
-export const NodeMouvementMovedNodesCriteria: Criteria = criteriaWrap({
+export const NodeMouvementMovedNodesCriteria = criteriaWrap({
   criteria: lambda1Hlsg,
   name: 'node-mouvement/moved-nodes',
   short: 'nm_mn'

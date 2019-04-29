@@ -10,6 +10,6 @@ import { Criteria, CriteraiResult } from '../interfaces';
 export declare const kNearestNeighborsNNB: (initialGraph: Graph<number>, updatedGraph: Graph<number>, options: {
     k: number;
 }) => CriteraiResult;
-export declare function createKNearestNeighborsCriteria(k?: number): Criteria;
-export declare const NodeMouvement8NearestNeighborsCriteria: Criteria;
+export declare function createKNearestNeighborsCriteria(k?: number): Criteria<string, string>;
+export declare const NodeMouvement8NearestNeighborsCriteria: Criteria<string, string>;
 export default NodeMouvement8NearestNeighborsCriteria;

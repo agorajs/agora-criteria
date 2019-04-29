@@ -41,7 +41,7 @@ function convertNodes(nodes: Node[]): [number, number][] {
   });
 }
 
-export const SpreadConvexHullAreaCriteria: Criteria = criteriaWrap({
+export const SpreadConvexHullAreaCriteria = criteriaWrap({
   criteria: SpreadConvexHullArea,
   name: 'spread/convex-hull/area',
   short: 'sp_ch_a'

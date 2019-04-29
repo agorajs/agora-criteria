@@ -31,11 +31,9 @@ export const orthogonalOrderingSss: CriteriaFunction = function(
   return { value: sum };
 };
 
-export const OrthogonalOrderingNumberInversionsCriteria: Criteria = criteriaWrap(
-  {
-    criteria: orthogonalOrderingSss,
-    name: 'orthogonal-ordering/number-of-inversions',
-    short: 'oo_ni'
-  }
-);
+export const OrthogonalOrderingNumberInversionsCriteria = criteriaWrap({
+  criteria: orthogonalOrderingSss,
+  name: 'orthogonal-ordering/number-of-inversions',
+  short: 'oo_ni'
+});
 export default OrthogonalOrderingNumberInversionsCriteria;

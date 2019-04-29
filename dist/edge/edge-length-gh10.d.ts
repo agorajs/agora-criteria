@@ -9,6 +9,6 @@ import { Criteria } from '../interfaces';
 export declare const edgeLength: (initialGraph: Graph<number>, updatedGraph: Graph<number>, withDelaunay?: boolean) => {
     value: number;
 };
-export declare const EdgeRelativeStandardDeviationDelaunayCriteria: Criteria;
-export declare const EdgeRelativeStandardDeviationCriteria: Criteria;
+export declare const EdgeRelativeStandardDeviationDelaunayCriteria: Criteria<"e_rsd_d", "edge/relative-standard-deviation/delaunay">;
+export declare const EdgeRelativeStandardDeviationCriteria: Criteria<"e_rsd", "edge/relative-standard-deviation">;
 export default EdgeRelativeStandardDeviationDelaunayCriteria;
