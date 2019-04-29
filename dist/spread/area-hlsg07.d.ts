@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const AreaNormalized: CriteriaFunction;
-export declare const SpreadBoundingBoxAreaNormalizedCriteria: Criteria;
+export declare const SpreadBoundingBoxAreaNormalizedCriteria: Criteria<"sp_bb_an", "spread/bounding-box/area-normalized">;
 export default SpreadBoundingBoxAreaNormalizedCriteria;

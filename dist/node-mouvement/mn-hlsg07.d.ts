@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const lambda1Hlsg: CriteriaFunction;
-export declare const NodeMouvementMovedNodesCriteria: Criteria;
+export declare const NodeMouvementMovedNodesCriteria: Criteria<"nm_mn", "node-mouvement/moved-nodes">;
 export default NodeMouvementMovedNodesCriteria;

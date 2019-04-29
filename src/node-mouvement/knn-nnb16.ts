@@ -10,7 +10,7 @@ import { criteriaWrap } from '../utils';
  *
  * @returns {{value: number, displacement: Edge[]}}
  */
-export const kNearestNeighborsNNB: CriteriaFunction<{ k: number }> = function(
+export const kNearestNeighborsNNB = function(
   initialGraph: Graph,
   updatedGraph: Graph,
   options: { k: number }

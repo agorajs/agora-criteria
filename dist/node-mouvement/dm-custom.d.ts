@@ -4,5 +4,5 @@ export declare function scaleChange(initial: Graph, updated: Graph): {
     value: number;
     displacement: Edge<Point>[];
 };
-export declare const NodeMouvementDistanceMovedCustomCriteria: Criteria;
+export declare const NodeMouvementDistanceMovedCustomCriteria: Criteria<"nm_dm_c", "node-mouvement/distance-moved/custom">;
 export default NodeMouvementDistanceMovedCustomCriteria;
