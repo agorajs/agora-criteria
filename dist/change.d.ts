@@ -5,5 +5,6 @@ import { CriteriaFunction } from './interfaces';
  * @param updatedGraph the updated graph sorted by index
  *
  * @returns {{value: number, displacement: Edge[]}}
+ * @deprecated
  */
 export declare const change: CriteriaFunction;

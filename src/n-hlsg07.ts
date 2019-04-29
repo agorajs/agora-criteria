@@ -1,15 +1,18 @@
-import { CriteriaFunction } from "./interfaces";
-import _ from "lodash";
-import { lambda1Hlsg } from "./node-mouvement/lambda-1-hlsg07";
-import { orthogonalOrderingHlgs } from "./orthogonal-ordering/lambda-2-hlsg07";
-import { AreaNormalized } from "./spread/area-hlsg07";
-import { changeHl } from "./node-mouvement/change-hl03";
+import { CriteriaFunction } from './interfaces';
+import _ from 'lodash';
+import { lambda1Hlsg } from './node-mouvement/mn-hlsg07';
+import { orthogonalOrderingHlgs } from './orthogonal-ordering/lambda-2-hlsg07';
+import { AreaNormalized } from './spread/area-hlsg07';
+import { changeHl } from './node-mouvement/dm-h-hl03';
 
 /**
+ *
  * TODO: HLSG07
  * Evaluates the updatedGraph
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
+ *
+ * @deprecated
  */
 export const nHlsg: CriteriaFunction = function(initialGraph, updatedGraph) {
   const initialNodes = initialGraph.nodes;
@@ -17,12 +20,12 @@ export const nHlsg: CriteriaFunction = function(initialGraph, updatedGraph) {
 
   if (initialNodes.length !== updatedNodes.length) {
     console.error(
-      "criteria", // family
-      "degree-layout-adjustment-HLSG07", // type
-      "abording", // action
-      "not the same number of nodes" // reason
+      'criteria', // family
+      'degree-layout-adjustment-HLSG07', // type
+      'abording', // action
+      'not the same number of nodes' // reason
     );
-    throw "Criteria degree-layout-adjustment-HLSG07 abording : not same number of nodes";
+    throw 'Criteria degree-layout-adjustment-HLSG07 abording : not same number of nodes';
   }
 
   return {

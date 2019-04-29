@@ -1,15 +1,16 @@
-import _ from "lodash";
-import { Graph, Edge, Point, length, delta } from "agora-graph";
+import _ from 'lodash';
+import { Graph, Edge, Point, delta } from 'agora-graph';
+import { Criteria } from '../interfaces';
 
 export function scaleChange(initial: Graph, updated: Graph) {
   if (initial.nodes.length !== updated.nodes.length) {
     console.error(
-      "criteria", // family
-      "scale-change", // type
-      "abording", // action
-      "not the same number of nodes" // reason
+      'criteria', // family
+      'scale-change', // type
+      'abording', // action
+      'not the same number of nodes' // reason
     );
-    throw "Criteria scale-change abording : not same number of nodes";
+    throw 'Criteria scale-change abording : not same number of nodes';
   }
   const nodesLength = initial.nodes.length;
 
@@ -58,7 +59,6 @@ export function scaleChange(initial: Graph, updated: Graph) {
   // calculating the shift
   for (let index = 0; index < nodesLength; index++) {
     const node = initial.nodes[index];
-    const upNode = updated.nodes[index];
 
     const point: Point = {
       x: node.x * ratio.width,
@@ -75,7 +75,7 @@ export function scaleChange(initial: Graph, updated: Graph) {
   }
 
   if (proj.x === null || proj.y === null)
-    throw "Criteria scale-change projection error";
+    throw 'Criteria scale-change projection error';
 
   let change: number = 0;
   let displacement: Edge<Point>[] = [];
@@ -88,7 +88,12 @@ export function scaleChange(initial: Graph, updated: Graph) {
       y: proPoints[index].y - proj.y
     };
 
-    const diff = +length(delta(upNode, pPoint)).toFixed(9);
+    const distancePoints = delta(upNode, pPoint);
+
+    const diff = +(
+      distancePoints.x * distancePoints.x +
+      distancePoints.y * distancePoints.y
+    ).toFixed(9);
     change += diff;
     if (diff !== 0) {
       displacement.push({
@@ -98,5 +103,12 @@ export function scaleChange(initial: Graph, updated: Graph) {
     }
   }
 
-  return { value: change, displacement: displacement };
+  return { value: change / nodesLength, displacement: displacement };
 }
+
+export const NodeMouvementDistanceMovedCustomCriteria: Criteria = {
+  criteria: scaleChange,
+  name: 'node-mouvement/distance-moved/custom',
+  short: 'nm_dm_c'
+};
+export default NodeMouvementDistanceMovedCustomCriteria;

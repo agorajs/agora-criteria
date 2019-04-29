@@ -1,18 +1,20 @@
-import NodeMouvementDistanceMovedNormalizedCriteria from "./spread-lmr98";
-import NodeMouvementDistanceMovedHamiltonianCriteria from "./change-hl03";
-import NodeMouvementDistanceMovedSquaredCriteria from "./change-square-msth03";
-import NodeMouvementMovedNodesCriteria from "./lambda-1-hlsg07";
-import NodeMouvementDistanceMovedMeanEuclidianCriteria from "./nm-dme-sss12";
+import NodeMouvementDistanceMovedNormalizedCriteria from './dm-n-lmr98';
+import NodeMouvementDistanceMovedHamiltonianCriteria from './dm-h-hl03';
+import NodeMouvementDistanceMovedSquaredCriteria from './dm-s-msth03';
+import NodeMouvementDistanceMovedCustom from './dm-custom';
+import NodeMouvementMovedNodesCriteria from './mn-hlsg07';
+import NodeMouvementDistanceMovedMeanEuclidianCriteria from './dm-sss12';
 import NodeMouvement8NearestNeighborsCriteria, {
   createKNearestNeighborsCriteria
-} from "./nm-knn-nnb16";
+} from './knn-nnb16';
 
 export const NodeMouvement = {
   DistanceMoved: {
     Normalized: NodeMouvementDistanceMovedNormalizedCriteria,
     Hamiltonian: NodeMouvementDistanceMovedHamiltonianCriteria,
     Squared: NodeMouvementDistanceMovedSquaredCriteria,
-    MeanEuclidian: NodeMouvementDistanceMovedMeanEuclidianCriteria
+    MeanEuclidian: NodeMouvementDistanceMovedMeanEuclidianCriteria,
+    Custom: NodeMouvementDistanceMovedCustom
   },
   MovedNodes: NodeMouvementMovedNodesCriteria,
   KNearestNeighbors: {

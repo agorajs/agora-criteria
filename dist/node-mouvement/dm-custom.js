@@ -3,12 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
 function scaleChange(initial, updated) {
     if (initial.nodes.length !== updated.nodes.length) {
-        console.error("criteria", // family
-        "scale-change", // type
-        "abording", // action
-        "not the same number of nodes" // reason
+        console.error('criteria', // family
+        'scale-change', // type
+        'abording', // action
+        'not the same number of nodes' // reason
         );
-        throw "Criteria scale-change abording : not same number of nodes";
+        throw 'Criteria scale-change abording : not same number of nodes';
     }
     var nodesLength = initial.nodes.length;
     var sizes = {
@@ -55,7 +55,6 @@ function scaleChange(initial, updated) {
     // calculating the shift
     for (var index = 0; index < nodesLength; index++) {
         var node = initial.nodes[index];
-        var upNode = updated.nodes[index];
         var point = {
             x: node.x * ratio.width,
             y: node.y * ratio.height
@@ -69,7 +68,7 @@ function scaleChange(initial, updated) {
         proPoints.push(point);
     }
     if (proj.x === null || proj.y === null)
-        throw "Criteria scale-change projection error";
+        throw 'Criteria scale-change projection error';
     var change = 0;
     var displacement = [];
     // applying the shift and calculating the displacement
@@ -79,7 +78,9 @@ function scaleChange(initial, updated) {
             x: proPoints[index].x - proj.x,
             y: proPoints[index].y - proj.y
         };
-        var diff = +agora_graph_1.length(agora_graph_1.delta(upNode, pPoint)).toFixed(9);
+        var distancePoints = agora_graph_1.delta(upNode, pPoint);
+        var diff = +(distancePoints.x * distancePoints.x +
+            distancePoints.y * distancePoints.y).toFixed(9);
         change += diff;
         if (diff !== 0) {
             displacement.push({
@@ -88,6 +89,12 @@ function scaleChange(initial, updated) {
             });
         }
     }
-    return { value: change, displacement: displacement };
+    return { value: change / nodesLength, displacement: displacement };
 }
 exports.scaleChange = scaleChange;
+exports.NodeMouvementDistanceMovedCustomCriteria = {
+    criteria: scaleChange,
+    name: 'node-mouvement/distance-moved/custom',
+    short: 'nm_dm_c'
+};
+exports.default = exports.NodeMouvementDistanceMovedCustomCriteria;

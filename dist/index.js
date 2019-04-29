@@ -16,8 +16,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = __importDefault(require("lodash"));
 var interfaces_1 = require("./interfaces");
-var edge_length_1 = __importDefault(require("./edge-length"));
-exports.EdgeLength = edge_length_1.default;
+var edge_1 = __importDefault(require("./edge"));
+exports.EdgeLength = edge_1.default;
 var global_shape_1 = __importDefault(require("./global-shape"));
 exports.GlobalShape = global_shape_1.default;
 var node_mouvement_1 = __importDefault(require("./node-mouvement"));

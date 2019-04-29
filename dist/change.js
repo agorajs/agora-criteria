@@ -7,6 +7,7 @@ var agora_graph_1 = require("agora-graph");
  * @param updatedGraph the updated graph sorted by index
  *
  * @returns {{value: number, displacement: Edge[]}}
+ * @deprecated
  */
 exports.change = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
