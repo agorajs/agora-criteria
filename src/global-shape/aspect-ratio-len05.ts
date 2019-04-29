@@ -1,5 +1,6 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
-import { right, left, bottom, top } from "agora-graph";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { right, left, bottom, top } from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: LEN05
@@ -14,16 +15,6 @@ export const aspectRatioLen: CriteriaFunction = function(
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "aspect-ratio-LEN05", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria aspect-ratio-LEN05 abording : not same number of nodes";
-  }
-
   const w = right(right(initialNodes)) - left(left(initialNodes));
   const h = bottom(bottom(initialNodes)) - top(top(initialNodes));
   const wp = right(right(updatedNodes)) - left(left(updatedNodes));
@@ -32,9 +23,11 @@ export const aspectRatioLen: CriteriaFunction = function(
   return { value: wp > hp ? (wp * h) / (hp * w) : (hp * w) / (wp * h) };
 };
 
-export const GlobalShapeBoundingBoxAspectRatioCriteria: Criteria = {
-  criteria: aspectRatioLen,
-  name: "global-shape/bounding-box/aspect-ratio",
-  short: "gs_bb_ar"
-};
+export const GlobalShapeBoundingBoxAspectRatioCriteria: Criteria = criteriaWrap(
+  {
+    criteria: aspectRatioLen,
+    name: 'global-shape/bounding-box/aspect-ratio',
+    short: 'gs_bb_ar'
+  }
+);
 export default GlobalShapeBoundingBoxAspectRatioCriteria;

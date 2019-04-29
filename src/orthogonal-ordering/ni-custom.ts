@@ -1,4 +1,5 @@
 import { CriteriaFunction, Criteria } from '../interfaces';
+import { criteriaWrap } from '../utils';
 
 /**
  * * CHANGE to ni custom
@@ -12,16 +13,6 @@ export const meanNumberInversions: CriteriaFunction = function(
 ) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
-
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      'criteria', // family
-      'orthogonal-ordering', // type
-      'abording', // action
-      'not the same number of nodes' // reason
-    );
-    throw 'Criteria orthogonal-ordering abording : not same number of nodes';
-  }
 
   let sum = 0;
 
@@ -42,9 +33,11 @@ export const meanNumberInversions: CriteriaFunction = function(
   };
 };
 
-export const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria = {
-  criteria: meanNumberInversions,
-  name: 'orthogonal-ordering/number-of-inversions/mean',
-  short: 'oo_ni_m'
-};
+export const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria = criteriaWrap(
+  {
+    criteria: meanNumberInversions,
+    name: 'orthogonal-ordering/number-of-inversions/mean',
+    short: 'oo_ni_m'
+  }
+);
 export default OrthogonalOrderingNumberInversionsMeanCriteria;

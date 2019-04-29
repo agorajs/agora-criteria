@@ -1,5 +1,6 @@
-import { Edge, Point, norm } from "agora-graph";
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { Edge, Point, norm } from 'agora-graph';
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: SSS*12
@@ -16,15 +17,6 @@ export const euclidianDistanceSss: CriteriaFunction = function(
   const { nodes: initialNodes } = initialGraph;
   const { nodes: updatedNodes } = updatedGraph;
 
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "euclidian-distance-sss*12", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria change abording : not same number of nodes";
-  }
   const nodesLength = initialNodes.length;
 
   let change = 0;
@@ -47,9 +39,11 @@ export const euclidianDistanceSss: CriteriaFunction = function(
   return { value: change / nodesLength, displacement: displacement };
 };
 
-export const NodeMouvementDistanceMovedMeanEuclidianCriteria: Criteria = {
-  criteria: euclidianDistanceSss,
-  name: "node-mouvement/distance-moved/mean-euclidian",
-  short: "mn_dm_me"
-};
+export const NodeMouvementDistanceMovedMeanEuclidianCriteria: Criteria = criteriaWrap(
+  {
+    criteria: euclidianDistanceSss,
+    name: 'node-mouvement/distance-moved/mean-euclidian',
+    short: 'mn_dm_me'
+  }
+);
 export default NodeMouvementDistanceMovedMeanEuclidianCriteria;

@@ -1,5 +1,6 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
-import { right, left, bottom, top } from "agora-graph";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { right, left, bottom, top } from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: MELS95
@@ -11,16 +12,6 @@ export const areaMels: CriteriaFunction = function(initialGraph, updatedGraph) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "area-MELS95", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria orthogonal-ordering abording : not same number of nodes";
-  }
-
   const w = right(right(initialNodes)) - left(left(initialNodes));
   const h = bottom(bottom(initialNodes)) - top(top(initialNodes));
   const wp = right(right(updatedNodes)) - left(left(updatedNodes));
@@ -29,10 +20,10 @@ export const areaMels: CriteriaFunction = function(initialGraph, updatedGraph) {
   return { value: (wp * hp) / (w * h) };
 };
 
-export const SpreadBoundingBoxAreaCriteria: Criteria = {
+export const SpreadBoundingBoxAreaCriteria: Criteria = criteriaWrap({
   criteria: areaMels,
-  name: "spread/bounding-box/area",
-  short: "sp_bb_a"
-};
+  name: 'spread/bounding-box/area',
+  short: 'sp_bb_a'
+});
 
 export default SpreadBoundingBoxAreaCriteria;

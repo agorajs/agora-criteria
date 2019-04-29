@@ -1,6 +1,6 @@
-import GlobalShapeBoundingBoxAspectRatioCriteria from "./aspect-ratio-len05";
-import GlobalShapeBoundingBoxAspectRatioPlusCriteria from "./aspect-ratio";
-import GlobalShapeConvexHullStandardShapePreservationCriteria from "./gs-ch-ssp";
+import GlobalShapeBoundingBoxAspectRatioCriteria from './aspect-ratio-len05';
+import GlobalShapeBoundingBoxAspectRatioPlusCriteria from './aspect-ratio';
+import GlobalShapeConvexHullStandardShapePreservationCriteria from './gs-ch-ssp';
 
 export const GlobalShape = {
   BoundingBox: {

@@ -1,5 +1,6 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
-import { Node, top, left } from "agora-graph";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { Node, top, left } from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: HLGS07
@@ -15,15 +16,6 @@ export const orthogonalOrderingHlgs: CriteriaFunction = function(
   const updatedNodes = updatedGraph.nodes;
 
   const n = initialNodes.length;
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "orthogonal-ordering-HLGS07", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria orthogonal-ordering abording : not same number of nodes";
-  }
 
   let sum = 0;
   for (let u_index = 0; u_index < initialNodes.length; u_index++) {
@@ -47,9 +39,9 @@ function iv(u: Node, v: Node, u_prime: Node, v_prime: Node): boolean {
   );
 }
 
-export const OrthogonalOrderingKendallTauCriteria: Criteria = {
+export const OrthogonalOrderingKendallTauCriteria: Criteria = criteriaWrap({
   criteria: orthogonalOrderingHlgs,
-  name: "orthogonal-ordering/kendall-tau",
-  short: "oo_kt"
-};
+  name: 'orthogonal-ordering/kendall-tau',
+  short: 'oo_kt'
+});
 export default OrthogonalOrderingKendallTauCriteria;

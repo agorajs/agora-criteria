@@ -1,5 +1,6 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
-import { right, left, bottom, top } from "agora-graph";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { right, left, bottom, top } from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: HLSG07
@@ -14,16 +15,6 @@ export const AreaNormalized: CriteriaFunction = function(
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "area-HLSG07", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria orthogonal-ordering abording : not same number of nodes";
-  }
-
   const w = right(right(initialNodes)) - left(left(initialNodes));
   const h = bottom(bottom(initialNodes)) - top(top(initialNodes));
   const wp = right(right(updatedNodes)) - left(left(updatedNodes));
@@ -32,10 +23,10 @@ export const AreaNormalized: CriteriaFunction = function(
   return { value: 1 - (w * h) / (wp * hp) };
 };
 
-export const SpreadBoundingBoxAreaNormalizedCriteria: Criteria = {
+export const SpreadBoundingBoxAreaNormalizedCriteria: Criteria = criteriaWrap({
   criteria: AreaNormalized,
-  name: "spread/bounding-box/area-normalized",
-  short: "sp_bb_an"
-};
+  name: 'spread/bounding-box/area-normalized',
+  short: 'sp_bb_an'
+});
 
 export default SpreadBoundingBoxAreaNormalizedCriteria;

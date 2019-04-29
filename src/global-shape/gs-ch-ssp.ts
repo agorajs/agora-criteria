@@ -1,6 +1,6 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
-import * as d3 from "d3-polygon";
-import * as _ from "lodash";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import * as d3 from 'd3-polygon';
+import * as _ from 'lodash';
 import {
   bottom,
   top,
@@ -13,12 +13,13 @@ import {
   magnitude,
   Point,
   toCartesian
-} from "agora-graph";
+} from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 type Pos = [number, number];
-type Line = { start: [Pos, number], end: [Pos, number] };
+type Line = { start: [Pos, number]; end: [Pos, number] };
 
-export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = function (
+export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = function(
   initial,
   updated
 ) {
@@ -30,7 +31,7 @@ export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = 
   if (initialHull === null || updatedHull === null)
     return {
       value: -1,
-      error: "could not compute initial or updated convex hull"
+      error: 'could not compute initial or updated convex hull'
     };
 
   // DO STEP 2-3-4-5
@@ -71,68 +72,72 @@ export function calculateConvexHullDistances(hull: [number, number][]) {
     toPolar({ x: pos[0], y: pos[1] })
   ]);
 
-  const lines = getLines(elements)
-  const distances: number[] = []
-  _.forEach(rays, (ray) => {
+  const lines = getLines(elements);
+  const distances: number[] = [];
+  _.forEach(rays, ray => {
     const line = getIntersectingLine(lines, ray);
-    const cartesianRay = toCartesian(ray)
+    const cartesianRay = toCartesian(ray);
     const intersection = lineIntersection(
       { start: [0, 0], end: [cartesianRay.x, cartesianRay.y] },
-      { start: line.start[0], end: line.end[0] })
+      { start: line.start[0], end: line.end[0] }
+    );
 
-    if (intersection) distances.push(magnitude(intersection))
-    else throw "it is supposed to intersect :("
-  })
+    if (intersection) distances.push(magnitude(intersection));
+    else throw 'it is supposed to intersect :(';
+  });
 
-  return distances
+  return distances;
 }
-
 
 function getIntersectingLine(lines: Line[], ray: PolarVector): Line {
   for (const line of lines) {
-    if (line.start[1] <= ray.angle && line.end[1] > ray.angle) return line
+    if (line.start[1] <= ray.angle && line.end[1] > ray.angle) return line;
   }
 
   // should never be in this case
-  throw "Cannot be here"
-  return lines[0]
+  throw 'Cannot be here';
+  return lines[0];
 }
 
 function getLines(elements: [Pos, PolarVector][]): Line[] {
-  const sorted = _.sortBy(elements, (a) => a[1].angle)
+  const sorted = _.sortBy(elements, a => a[1].angle);
 
   if (sorted.length === 0) {
-    return []
+    return [];
   }
 
   if (sorted.length === 1) {
-    return [{
-      start: [sorted[0][0], sorted[0][1].angle],
-      end: [sorted[0][0], sorted[0][1].angle + 360]
-    }]
+    return [
+      {
+        start: [sorted[0][0], sorted[0][1].angle],
+        end: [sorted[0][0], sorted[0][1].angle + 360]
+      }
+    ];
   }
-  let lastEl = sorted[sorted.length - 1]
-  let buffer = sorted[0]
+  let lastEl = sorted[sorted.length - 1];
+  let buffer = sorted[0];
 
-  const lines: Line[] = [{
-    start: [lastEl[0], lastEl[1].angle - 360],
-    end: [buffer[0], buffer[1].angle]
-  }]
+  const lines: Line[] = [
+    {
+      start: [lastEl[0], lastEl[1].angle - 360],
+      end: [buffer[0], buffer[1].angle]
+    }
+  ];
 
   for (let i = 1; i < sorted.length; i++) {
     lines.push({
       start: [buffer[0], buffer[1].angle],
       end: [sorted[i][0], sorted[i][1].angle]
-    })
-    buffer = sorted[i]
+    });
+    buffer = sorted[i];
   }
 
   lines.push({
     start: [buffer[0], buffer[1].angle],
     end: [sorted[0][0], sorted[0][1].angle + 360]
-  })
+  });
 
-  return lines
+  return lines;
 }
 
 function lineIntersection(
@@ -167,7 +172,7 @@ function lineIntersection(
 
 function convertNodes(nodes: Node[]): [number, number][] {
   // TODO: add node boxes
-  return _.flatMap(nodes, function (n): [number, number][] {
+  return _.flatMap(nodes, function(n): [number, number][] {
     const t = top(n),
       l = left(n),
       r = right(n),
@@ -176,9 +181,11 @@ function convertNodes(nodes: Node[]): [number, number][] {
   });
 }
 
-export const GlobalShapeConvexHullStandardShapePreservationCriteria: Criteria = {
-  criteria: GlobalShapeConvexHullStandardShapePreservation,
-  name: "global-shape/convex-hull/standard-shape-preservation",
-  short: "gs_ch_ssp"
-};
+export const GlobalShapeConvexHullStandardShapePreservationCriteria: Criteria = criteriaWrap(
+  {
+    criteria: GlobalShapeConvexHullStandardShapePreservation,
+    name: 'global-shape/convex-hull/standard-shape-preservation',
+    short: 'gs_ch_ssp'
+  }
+);
 export default GlobalShapeConvexHullStandardShapePreservationCriteria;
