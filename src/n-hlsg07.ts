@@ -1,9 +1,9 @@
-import { CriteriaFunction } from '../interfaces';
+import { CriteriaFunction } from './interfaces';
 import _ from 'lodash';
-import { lambda1Hlsg } from './lambda-1-hlsg07';
-import { orthogonalOrderingHlgs } from '../orthogonal-ordering/lambda-2-hlsg07';
-import { AreaNormalized } from '../spread/area-hlsg07';
-import { changeHl } from './change-hl03';
+import { lambda1Hlsg } from './node-mouvement/mn-hlsg07';
+import { orthogonalOrderingHlgs } from './orthogonal-ordering/lambda-2-hlsg07';
+import { AreaNormalized } from './spread/area-hlsg07';
+import { changeHl } from './node-mouvement/dm-h-hl03';
 
 /**
  *
