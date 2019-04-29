@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const aspectRatioLmr: CriteriaFunction;
-export declare const NodeMouvementDistanceMovedNormalizedCriteria: Criteria;
+export declare const NodeMouvementDistanceMovedNormalizedCriteria: Criteria<"nm_dm_n", "node-mouvement/distance-moved-normalized">;
 export default NodeMouvementDistanceMovedNormalizedCriteria;

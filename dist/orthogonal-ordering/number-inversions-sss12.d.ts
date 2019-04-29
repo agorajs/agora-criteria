@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const orthogonalOrderingSss: CriteriaFunction;
-export declare const OrthogonalOrderingNumberInversionsCriteria: Criteria;
+export declare const OrthogonalOrderingNumberInversionsCriteria: Criteria<"oo_ni", "orthogonal-ordering/number-of-inversions">;
 export default OrthogonalOrderingNumberInversionsCriteria;

@@ -5,5 +5,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updated
  */
 export declare const aspectRatio: CriteriaFunction;
-export declare const GlobalShapeBoundingBoxAspectRatioPlusCriteria: Criteria;
+export declare const GlobalShapeBoundingBoxAspectRatioPlusCriteria: Criteria<"gs_bb_arplus", "global-shape/bounding-box/aspect-ratio-plus">;
 export default GlobalShapeBoundingBoxAspectRatioPlusCriteria;

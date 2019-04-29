@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const orthogonalOrderingHlgs: CriteriaFunction;
-export declare const OrthogonalOrderingKendallTauCriteria: Criteria;
+export declare const OrthogonalOrderingKendallTauCriteria: Criteria<"oo_kt", "orthogonal-ordering/kendall-tau">;
 export default OrthogonalOrderingKendallTauCriteria;

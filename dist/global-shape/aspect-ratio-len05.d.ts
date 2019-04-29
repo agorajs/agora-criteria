@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const aspectRatioLen: CriteriaFunction;
-export declare const GlobalShapeBoundingBoxAspectRatioCriteria: Criteria;
+export declare const GlobalShapeBoundingBoxAspectRatioCriteria: Criteria<"gs_bb_ar", "global-shape/bounding-box/aspect-ratio">;
 export default GlobalShapeBoundingBoxAspectRatioCriteria;
