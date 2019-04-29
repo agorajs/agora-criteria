@@ -12,12 +12,12 @@ exports.changeHl = function (initialGraph, updatedGraph) {
     var updatedNodes = updatedGraph.nodes;
     var n = initialNodes.length;
     if (initialNodes.length !== updatedNodes.length) {
-        console.error("criteria", // family
-        "change-HL03", // type
-        "abording", // action
-        "not the same number of nodes" // reason
+        console.error('criteria', // family
+        'change-HL03', // type
+        'abording', // action
+        'not the same number of nodes' // reason
         );
-        throw "Criteria change-HL03 abording : not same number of nodes";
+        throw 'Criteria change-HL03 abording : not same number of nodes';
     }
     var sum = 0;
     for (var u_index = 0; u_index < initialNodes.length; u_index++) {
@@ -29,7 +29,7 @@ exports.changeHl = function (initialGraph, updatedGraph) {
 };
 exports.NodeMouvementDistanceMovedHamiltonianCriteria = {
     criteria: exports.changeHl,
-    name: "node-mouvement/distance-moved-hamiltonian",
-    short: "nm_dm_h"
+    name: 'node-mouvement/distance-moved/hamiltonian',
+    short: 'nm_dm_h'
 };
 exports.default = exports.NodeMouvementDistanceMovedHamiltonianCriteria;
