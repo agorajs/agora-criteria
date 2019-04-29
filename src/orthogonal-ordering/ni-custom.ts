@@ -2,12 +2,12 @@ import { CriteriaFunction, Criteria } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 /**
- * TODO: SSS*12
+ * * CHANGE to ni custom
  * Evaluates the updatedGraph using the orthogonal ordering criteria
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const orthogonalOrderingSss: CriteriaFunction = function(
+export const meanNumberInversions: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -28,14 +28,16 @@ export const orthogonalOrderingSss: CriteriaFunction = function(
     }
   }
 
-  return { value: sum };
+  return {
+    value: sum / ((initialNodes.length * (initialNodes.length - 1)) / 2)
+  };
 };
 
-export const OrthogonalOrderingNumberInversionsCriteria: Criteria = criteriaWrap(
+export const OrthogonalOrderingNumberInversionsMeanCriteria: Criteria = criteriaWrap(
   {
-    criteria: orthogonalOrderingSss,
-    name: 'orthogonal-ordering/number-of-inversions',
-    short: 'oo_ni'
+    criteria: meanNumberInversions,
+    name: 'orthogonal-ordering/number-of-inversions/mean',
+    short: 'oo_ni_m'
   }
 );
-export default OrthogonalOrderingNumberInversionsCriteria;
+export default OrthogonalOrderingNumberInversionsMeanCriteria;

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 /**
  * TODO: LMR98
  * Evaluates the updatedGraph
@@ -11,14 +12,6 @@ exports.aspectRatioLmr = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     var n = initialNodes.length;
-    if (initialNodes.length !== updatedNodes.length) {
-        console.error("criteria", // family
-        "aspect-ratio-LMR98", // type
-        "abording", // action
-        "not the same number of nodes" // reason
-        );
-        throw "Criteria aspect-ratio-LMR98 abording : not same number of nodes";
-    }
     var sum = 0;
     for (var u_index = 0; u_index < initialNodes.length; u_index++) {
         var u = initialNodes[u_index];
@@ -32,9 +25,9 @@ exports.aspectRatioLmr = function (initialGraph, updatedGraph) {
     var k = Math.max(w, h, wp, hp);
     return { value: sum / (k * Math.SQRT2 * n) };
 };
-exports.NodeMouvementDistanceMovedNormalizedCriteria = {
+exports.NodeMouvementDistanceMovedNormalizedCriteria = utils_1.criteriaWrap({
     criteria: exports.aspectRatioLmr,
-    name: "node-mouvement/distance-moved-normalized",
-    short: "nm_dm_n"
-};
+    name: 'node-mouvement/distance-moved-normalized',
+    short: 'nm_dm_n'
+});
 exports.default = exports.NodeMouvementDistanceMovedNormalizedCriteria;

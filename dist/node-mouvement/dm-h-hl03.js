@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 /**
  * TODO: HL03, HLSG07
  * Evaluates the updatedGraph
@@ -10,15 +11,6 @@ var agora_graph_1 = require("agora-graph");
 exports.changeHl = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
-    var n = initialNodes.length;
-    if (initialNodes.length !== updatedNodes.length) {
-        console.error('criteria', // family
-        'change-HL03', // type
-        'abording', // action
-        'not the same number of nodes' // reason
-        );
-        throw 'Criteria change-HL03 abording : not same number of nodes';
-    }
     var sum = 0;
     for (var u_index = 0; u_index < initialNodes.length; u_index++) {
         var u = initialNodes[u_index];
@@ -27,9 +19,9 @@ exports.changeHl = function (initialGraph, updatedGraph) {
     }
     return { value: sum };
 };
-exports.NodeMouvementDistanceMovedHamiltonianCriteria = {
+exports.NodeMouvementDistanceMovedHamiltonianCriteria = utils_1.criteriaWrap({
     criteria: exports.changeHl,
     name: 'node-mouvement/distance-moved/hamiltonian',
     short: 'nm_dm_h'
-};
+});
 exports.default = exports.NodeMouvementDistanceMovedHamiltonianCriteria;

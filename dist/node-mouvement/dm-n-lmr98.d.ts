@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { CriteriaFunction, Criteria } from '../interfaces';
 /**
  * TODO: LMR98
  * Evaluates the updatedGraph

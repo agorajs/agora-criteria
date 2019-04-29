@@ -1,5 +1,6 @@
-import { Graph, round, top, bottom, left, right } from "agora-graph";
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { Graph, round, top, bottom, left, right } from 'agora-graph';
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO : HLSG07
@@ -10,16 +11,6 @@ export const l1Length: CriteriaFunction = function(
   initial,
   updated
 ): { value: number; initial: number; updated: number } {
-  if (initial.nodes.length !== updated.nodes.length) {
-    console.error(
-      "criteria", // family
-      "l1-length", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria l1-length abording : not same number of nodes";
-  }
-
   const initialResult = Math.max(
     round(bottom(bottom(initial.nodes)) - top(top(initial.nodes))),
     round(right(right(initial.nodes)) - left(left(initial.nodes)))
@@ -36,10 +27,10 @@ export const l1Length: CriteriaFunction = function(
   };
 };
 
-export const SpreadBoundingBoxL1MetriclengthCriteria: Criteria = {
+export const SpreadBoundingBoxL1MetriclengthCriteria: Criteria = criteriaWrap({
   criteria: l1Length,
-  name: "spread/bounding-box/l1-metric-length",
-  short: "sp_bb_l1ml"
-};
+  name: 'spread/bounding-box/l1-metric-length',
+  short: 'sp_bb_l1ml'
+});
 
 export default SpreadBoundingBoxL1MetriclengthCriteria;

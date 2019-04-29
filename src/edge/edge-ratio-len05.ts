@@ -1,23 +1,27 @@
-import _ from 'lodash';
-import { norm } from 'agora-graph';
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { norm, Edge, Graph } from 'agora-graph';
+import { Criteria, CriteriaFunction } from '../interfaces';
+import { criteriaWrap } from '../utils';
 
 // TODO: LEN05
 export const edgeRatioLen: CriteriaFunction = function(initial, updated) {
-  if (initial.nodes.length !== updated.nodes.length) {
-    console.error(
-      'criteria', // family
-      'edge-ratio-LEN05', // type
-      'abording', // action
-      'not the same number of nodes' // reason
-    );
-    throw 'Criteria edge-ratio-LEN05 abording : not same number of nodes';
+  try {
+    let ratioOfInitial = calculateEdgeRatio(initial);
+    let ratioOfUpdated = calculateEdgeRatio(updated);
+    return {
+      value: ratioOfUpdated / ratioOfInitial,
+      initial: ratioOfInitial,
+      updated: ratioOfUpdated
+    };
+  } catch (error) {
+    return { value: -1, error };
   }
+};
 
+function calculateEdgeRatio(graph: Graph): number {
   let min, max;
-  for (const edge of updated.edges) {
-    const u = updated.nodes[edge.source];
-    const v = updated.nodes[edge.target];
+  for (const edge of graph.edges) {
+    const u = graph.nodes[edge.source];
+    const v = graph.nodes[edge.target];
     let norm_uv = norm(u, v);
 
     if (norm_uv === 0) continue;
@@ -26,15 +30,14 @@ export const edgeRatioLen: CriteriaFunction = function(initial, updated) {
     if (max === undefined || max < norm_uv) max = norm_uv;
   }
 
-  if (max == undefined || min == undefined) {
-    return { value: -1, error: 'could not evaluate this criteria' };
-  }
-  return { value: max / min };
-};
+  if (max == undefined || min == undefined)
+    throw 'could not evaluate edge/ratio';
+  return max / min;
+}
 
-export const EdgeLengthRatioCriteria: Criteria = {
+export const EdgeLengthRatioCriteria: Criteria = criteriaWrap({
   criteria: edgeRatioLen,
   name: 'edge/ratio',
   short: 'e_r'
-};
+});
 export default EdgeLengthRatioCriteria;

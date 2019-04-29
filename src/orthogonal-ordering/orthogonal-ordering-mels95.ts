@@ -1,19 +1,10 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { criteriaWrap } from '../utils';
 
 export const orthogonalOrderingMels: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
-  if (initialGraph.nodes.length !== updatedGraph.nodes.length) {
-    console.error(
-      "criteria", // family
-      "orthogonal-ordering-MELS95", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria orthogonal-ordering abording : not same number of nodes";
-  }
-
   for (let u_index = 0; u_index < initialGraph.nodes.length; u_index++) {
     const u = initialGraph.nodes[u_index];
     const u_prime = updatedGraph.nodes[u_index];
@@ -34,10 +25,10 @@ export const orthogonalOrderingMels: CriteriaFunction = function(
   return { value: 1 };
 };
 
-export const OrthogonalOrderingCriteria: Criteria = {
+export const OrthogonalOrderingCriteria: Criteria = criteriaWrap({
   criteria: orthogonalOrderingMels,
-  name: "orthogonal-ordering",
-  short: "oo"
-};
+  name: 'orthogonal-ordering',
+  short: 'oo'
+});
 
 export default OrthogonalOrderingCriteria;

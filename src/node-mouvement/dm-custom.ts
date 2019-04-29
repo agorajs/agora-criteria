@@ -1,17 +1,9 @@
 import _ from 'lodash';
 import { Graph, Edge, Point, delta } from 'agora-graph';
 import { Criteria } from '../interfaces';
+import { criteriaWrap } from '../utils';
 
 export function scaleChange(initial: Graph, updated: Graph) {
-  if (initial.nodes.length !== updated.nodes.length) {
-    console.error(
-      'criteria', // family
-      'scale-change', // type
-      'abording', // action
-      'not the same number of nodes' // reason
-    );
-    throw 'Criteria scale-change abording : not same number of nodes';
-  }
   const nodesLength = initial.nodes.length;
 
   const sizes = {
@@ -106,9 +98,9 @@ export function scaleChange(initial: Graph, updated: Graph) {
   return { value: change / nodesLength, displacement: displacement };
 }
 
-export const NodeMouvementDistanceMovedCustomCriteria: Criteria = {
+export const NodeMouvementDistanceMovedCustomCriteria: Criteria = criteriaWrap({
   criteria: scaleChange,
   name: 'node-mouvement/distance-moved/custom',
   short: 'nm_dm_c'
-};
+});
 export default NodeMouvementDistanceMovedCustomCriteria;

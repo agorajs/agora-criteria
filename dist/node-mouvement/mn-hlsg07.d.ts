@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { CriteriaFunction, Criteria } from '../interfaces';
 /**
  * TODO: HLGS07
  * Evaluates the updatedGraph

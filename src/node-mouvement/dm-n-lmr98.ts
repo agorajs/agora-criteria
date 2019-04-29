@@ -1,5 +1,6 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
-import { right, left, bottom, top, norm } from "agora-graph";
+import { CriteriaFunction, Criteria } from '../interfaces';
+import { right, left, bottom, top, norm } from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: LMR98
@@ -15,15 +16,6 @@ export const aspectRatioLmr: CriteriaFunction = function(
   const updatedNodes = updatedGraph.nodes;
 
   const n = initialNodes.length;
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "aspect-ratio-LMR98", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria aspect-ratio-LMR98 abording : not same number of nodes";
-  }
 
   let sum = 0;
   for (let u_index = 0; u_index < initialNodes.length; u_index++) {
@@ -43,9 +35,11 @@ export const aspectRatioLmr: CriteriaFunction = function(
   return { value: sum / (k * Math.SQRT2 * n) };
 };
 
-export const NodeMouvementDistanceMovedNormalizedCriteria: Criteria = {
-  criteria: aspectRatioLmr,
-  name: "node-mouvement/distance-moved-normalized",
-  short: "nm_dm_n"
-};
+export const NodeMouvementDistanceMovedNormalizedCriteria: Criteria = criteriaWrap(
+  {
+    criteria: aspectRatioLmr,
+    name: 'node-mouvement/distance-moved-normalized',
+    short: 'nm_dm_n'
+  }
+);
 export default NodeMouvementDistanceMovedNormalizedCriteria;

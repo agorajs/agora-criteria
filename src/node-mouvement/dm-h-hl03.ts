@@ -1,5 +1,6 @@
 import { CriteriaFunction, Criteria } from '../interfaces';
 import { normX, normY } from 'agora-graph';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: HL03, HLSG07
@@ -10,17 +11,6 @@ import { normX, normY } from 'agora-graph';
 export const changeHl: CriteriaFunction = function(initialGraph, updatedGraph) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
-
-  const n = initialNodes.length;
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      'criteria', // family
-      'change-HL03', // type
-      'abording', // action
-      'not the same number of nodes' // reason
-    );
-    throw 'Criteria change-HL03 abording : not same number of nodes';
-  }
 
   let sum = 0;
   for (let u_index = 0; u_index < initialNodes.length; u_index++) {
@@ -33,9 +23,11 @@ export const changeHl: CriteriaFunction = function(initialGraph, updatedGraph) {
   return { value: sum };
 };
 
-export const NodeMouvementDistanceMovedHamiltonianCriteria: Criteria = {
-  criteria: changeHl,
-  name: 'node-mouvement/distance-moved/hamiltonian',
-  short: 'nm_dm_h'
-};
+export const NodeMouvementDistanceMovedHamiltonianCriteria: Criteria = criteriaWrap(
+  {
+    criteria: changeHl,
+    name: 'node-mouvement/distance-moved/hamiltonian',
+    short: 'nm_dm_h'
+  }
+);
 export default NodeMouvementDistanceMovedHamiltonianCriteria;

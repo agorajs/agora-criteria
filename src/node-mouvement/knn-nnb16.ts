@@ -1,6 +1,7 @@
-import { Edge, Point, norm, Node, Graph } from "agora-graph";
-import { CriteriaFunction, Criteria, CriteraiResult } from "../interfaces";
-import _ from "lodash";
+import { Edge, Point, norm, Node, Graph } from 'agora-graph';
+import { CriteriaFunction, Criteria, CriteraiResult } from '../interfaces';
+import _ from 'lodash';
+import { criteriaWrap } from '../utils';
 
 /**
  * TODO: NNB*16
@@ -18,15 +19,6 @@ export const kNearestNeighborsNNB = function(
   const { nodes: initialNodes } = initialGraph;
   const { nodes: updatedNodes } = updatedGraph;
 
-  if (initialNodes.length !== updatedNodes.length) {
-    console.error(
-      "criteria", // family
-      "nm-knn-nnb*12", // type
-      "abording", // action
-      "not the same number of nodes" // reason
-    );
-    throw "Criteria change abording : not same number of nodes";
-  }
   const nodesLength = initialNodes.length;
 
   const n_k = n(k);
@@ -58,12 +50,12 @@ function n(k: number): (nodes: Node[], node: Node) => number[] {
 }
 
 export function createKNearestNeighborsCriteria(k: number = 8): Criteria {
-  return {
+  return criteriaWrap({
     criteria: (initial, updated) =>
       kNearestNeighborsNNB(initial, updated, { k }),
-    name: "node-mouvement/distance-moved/" + k + "-nearest-neighbors",
-    short: "mn_dm_" + k + "nn"
-  };
+    name: 'node-mouvement/distance-moved/' + k + '-nearest-neighbors',
+    short: 'mn_dm_' + k + 'nn'
+  });
 }
 
 export const NodeMouvement8NearestNeighborsCriteria: Criteria = createKNearestNeighborsCriteria();

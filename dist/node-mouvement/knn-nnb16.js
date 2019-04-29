@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
 var lodash_1 = __importDefault(require("lodash"));
+var utils_1 = require("../utils");
 /**
  * TODO: NNB*16
  * @param initialGraph the initial graph sorted by index
@@ -16,14 +17,6 @@ exports.kNearestNeighborsNNB = function (initialGraph, updatedGraph, options) {
     var k = options.k;
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
-    if (initialNodes.length !== updatedNodes.length) {
-        console.error("criteria", // family
-        "nm-knn-nnb*12", // type
-        "abording", // action
-        "not the same number of nodes" // reason
-        );
-        throw "Criteria change abording : not same number of nodes";
-    }
     var nodesLength = initialNodes.length;
     var n_k = n(k);
     var value = 0;
@@ -46,13 +39,13 @@ function n(k) {
 }
 function createKNearestNeighborsCriteria(k) {
     if (k === void 0) { k = 8; }
-    return {
+    return utils_1.criteriaWrap({
         criteria: function (initial, updated) {
             return exports.kNearestNeighborsNNB(initial, updated, { k: k });
         },
-        name: "node-mouvement/distance-moved/" + k + "-nearest-neighbors",
-        short: "mn_dm_" + k + "nn"
-    };
+        name: 'node-mouvement/distance-moved/' + k + '-nearest-neighbors',
+        short: 'mn_dm_' + k + 'nn'
+    });
 }
 exports.createKNearestNeighborsCriteria = createKNearestNeighborsCriteria;
 exports.NodeMouvement8NearestNeighborsCriteria = createKNearestNeighborsCriteria();

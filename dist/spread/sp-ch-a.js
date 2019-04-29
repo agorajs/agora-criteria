@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var d3_polygon_1 = require("d3-polygon");
 var lodash_1 = __importDefault(require("lodash"));
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 // Spread::Convex Hull::Area -- Strobelt 2012 SSS*12
 // TODO: SSS*12
 exports.SpreadConvexHullArea = function (initial, updated) {
@@ -14,7 +15,7 @@ exports.SpreadConvexHullArea = function (initial, updated) {
     if (initialHull === null || updatedHull === null)
         return {
             value: -1,
-            error: "could not compute initial or updated convex hull"
+            error: 'could not compute initial or updated convex hull'
         };
     var initialArea = d3_polygon_1.polygonArea(initialHull);
     var updatedArea = d3_polygon_1.polygonArea(updatedHull);
@@ -31,9 +32,9 @@ function convertNodes(nodes) {
         return [[l, t], [r, t], [r, b], [l, b]];
     });
 }
-exports.SpreadConvexHullAreaCriteria = {
+exports.SpreadConvexHullAreaCriteria = utils_1.criteriaWrap({
     criteria: exports.SpreadConvexHullArea,
-    name: "spread/convex-hull/area",
-    short: "sp_ch_a"
-};
+    name: 'spread/convex-hull/area',
+    short: 'sp_ch_a'
+});
 exports.default = exports.SpreadConvexHullAreaCriteria;

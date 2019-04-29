@@ -1,14 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = require("../utils");
 exports.orthogonalOrderingMels = function (initialGraph, updatedGraph) {
-    if (initialGraph.nodes.length !== updatedGraph.nodes.length) {
-        console.error("criteria", // family
-        "orthogonal-ordering-MELS95", // type
-        "abording", // action
-        "not the same number of nodes" // reason
-        );
-        throw "Criteria orthogonal-ordering abording : not same number of nodes";
-    }
     for (var u_index = 0; u_index < initialGraph.nodes.length; u_index++) {
         var u = initialGraph.nodes[u_index];
         var u_prime = updatedGraph.nodes[u_index];
@@ -24,9 +17,9 @@ exports.orthogonalOrderingMels = function (initialGraph, updatedGraph) {
     }
     return { value: 1 };
 };
-exports.OrthogonalOrderingCriteria = {
+exports.OrthogonalOrderingCriteria = utils_1.criteriaWrap({
     criteria: exports.orthogonalOrderingMels,
-    name: "orthogonal-ordering",
-    short: "oo"
-};
+    name: 'orthogonal-ordering',
+    short: 'oo'
+});
 exports.default = exports.OrthogonalOrderingCriteria;
