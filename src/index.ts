@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import { Manager, isCriteria, CriteraiResult, Criteria } from './interfaces';
-import EdgeLength from './edge-length';
+import EdgeLength from './edge';
 import GlobalShape from './global-shape';
 import NodeMouvement from './node-mouvement';
 import OrthogonalOrdering from './orthogonal-ordering';

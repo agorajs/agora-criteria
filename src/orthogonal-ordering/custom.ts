@@ -1,6 +1,7 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { CriteriaFunction, Criteria } from '../interfaces';
 
 /**
+ * TODO: CHANGE
  * CUSTOM ?
  * Evaluates the updatedGraph using the orthogonal ordering criteria
  * @param initialGraph the initial graph sorted by index
@@ -15,12 +16,12 @@ export const orthogonalOrdering: CriteriaFunction = function(
 
   if (initialNodes.length !== updatedNodes.length) {
     console.error(
-      "criteria", // family
-      "orthogonal-ordering", // type
-      "abording", // action
-      "not the same number of nodes" // reason
+      'criteria', // family
+      'orthogonal-ordering', // type
+      'abording', // action
+      'not the same number of nodes' // reason
     );
-    throw "Criteria orthogonal-ordering abording : not same number of nodes";
+    throw 'Criteria orthogonal-ordering abording : not same number of nodes';
   }
 
   const nodesLength = initialNodes.length;
@@ -51,7 +52,7 @@ export const orthogonalOrdering: CriteriaFunction = function(
 
 export const OrthogonalOrderingCustomCriteria: Criteria = {
   criteria: orthogonalOrdering,
-  name: "orthogonal-ordering/custom",
-  short: "oo_c"
+  name: 'orthogonal-ordering/custom',
+  short: 'oo_c'
 };
 export default OrthogonalOrderingCustomCriteria;

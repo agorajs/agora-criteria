@@ -7,6 +7,7 @@ import { CriteriaFunction } from './interfaces';
  * @param updatedGraph the updated graph sorted by index
  *
  * @returns {{value: number, displacement: Edge[]}}
+ * @deprecated
  */
 export const change: CriteriaFunction = function (initialGraph, updatedGraph): { value: number; displacement: Edge<Point>[]; } {
   const initialNodes = initialGraph.nodes
