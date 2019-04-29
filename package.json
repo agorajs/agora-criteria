@@ -8,7 +8,9 @@
   "private": false,
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "release:start": "git flow release start",
+    "release:end": "git flow release finish -p"
   },
   "jest": {
     "preset": "ts-jest",
