@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from "../interfaces";
+import { CriteriaFunction, Criteria } from '../interfaces';
 /**
  * TODO: SSS*12
  * Evaluates the updatedGraph using the orthogonal ordering criteria

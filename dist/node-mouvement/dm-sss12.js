@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 /**
  * TODO: SSS*12
  * Evaluates the updatedGraph using the Change criteria
@@ -12,14 +13,6 @@ var agora_graph_1 = require("agora-graph");
 exports.euclidianDistanceSss = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
-    if (initialNodes.length !== updatedNodes.length) {
-        console.error("criteria", // family
-        "euclidian-distance-sss*12", // type
-        "abording", // action
-        "not the same number of nodes" // reason
-        );
-        throw "Criteria change abording : not same number of nodes";
-    }
     var nodesLength = initialNodes.length;
     var change = 0;
     var displacement = [];
@@ -37,9 +30,9 @@ exports.euclidianDistanceSss = function (initialGraph, updatedGraph) {
     }
     return { value: change / nodesLength, displacement: displacement };
 };
-exports.NodeMouvementDistanceMovedMeanEuclidianCriteria = {
+exports.NodeMouvementDistanceMovedMeanEuclidianCriteria = utils_1.criteriaWrap({
     criteria: exports.euclidianDistanceSss,
-    name: "node-mouvement/distance-moved/mean-euclidian",
-    short: "mn_dm_me"
-};
+    name: 'node-mouvement/distance-moved/mean-euclidian',
+    short: 'mn_dm_me'
+});
 exports.default = exports.NodeMouvementDistanceMovedMeanEuclidianCriteria;

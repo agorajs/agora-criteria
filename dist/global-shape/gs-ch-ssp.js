@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var d3 = __importStar(require("d3-polygon"));
 var _ = __importStar(require("lodash"));
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 exports.GlobalShapeConvexHullStandardShapePreservation = function (initial, updated) {
     // STEP 1 : retrieve convex hull
     var initialHull = d3.polygonHull(convertNodes(initial.nodes));
@@ -18,7 +19,7 @@ exports.GlobalShapeConvexHullStandardShapePreservation = function (initial, upda
     if (initialHull === null || updatedHull === null)
         return {
             value: -1,
-            error: "could not compute initial or updated convex hull"
+            error: 'could not compute initial or updated convex hull'
         };
     // DO STEP 2-3-4-5
     var initialDistances = calculateConvexHullDistances(initialHull);
@@ -61,7 +62,7 @@ function calculateConvexHullDistances(hull) {
         if (intersection)
             distances.push(agora_graph_1.magnitude(intersection));
         else
-            throw "it is supposed to intersect :(";
+            throw 'it is supposed to intersect :(';
     });
     return distances;
 }
@@ -73,7 +74,7 @@ function getIntersectingLine(lines, ray) {
             return line;
     }
     // should never be in this case
-    throw "Cannot be here";
+    throw 'Cannot be here';
     return lines[0];
 }
 function getLines(elements) {
@@ -82,17 +83,21 @@ function getLines(elements) {
         return [];
     }
     if (sorted.length === 1) {
-        return [{
+        return [
+            {
                 start: [sorted[0][0], sorted[0][1].angle],
                 end: [sorted[0][0], sorted[0][1].angle + 360]
-            }];
+            }
+        ];
     }
     var lastEl = sorted[sorted.length - 1];
     var buffer = sorted[0];
-    var lines = [{
+    var lines = [
+        {
             start: [lastEl[0], lastEl[1].angle - 360],
             end: [buffer[0], buffer[1].angle]
-        }];
+        }
+    ];
     for (var i = 1; i < sorted.length; i++) {
         lines.push({
             start: [buffer[0], buffer[1].angle],
@@ -132,9 +137,9 @@ function convertNodes(nodes) {
         return [[l, t], [r, t], [r, b], [l, b]];
     });
 }
-exports.GlobalShapeConvexHullStandardShapePreservationCriteria = {
+exports.GlobalShapeConvexHullStandardShapePreservationCriteria = utils_1.criteriaWrap({
     criteria: exports.GlobalShapeConvexHullStandardShapePreservation,
-    name: "global-shape/convex-hull/standard-shape-preservation",
-    short: "gs_ch_ssp"
-};
+    name: 'global-shape/convex-hull/standard-shape-preservation',
+    short: 'gs_ch_ssp'
+});
 exports.default = exports.GlobalShapeConvexHullStandardShapePreservationCriteria;

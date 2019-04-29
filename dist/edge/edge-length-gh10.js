@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = __importDefault(require("lodash"));
 var agora_graph_1 = require("agora-graph");
+var utils_1 = require("../utils");
 /**
  * TODO: GH10
  * Evaluates the updatedGraph
@@ -15,14 +16,6 @@ exports.edgeLength = function (initialGraph, updatedGraph, withDelaunay) {
     if (withDelaunay === void 0) { withDelaunay = true; }
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
-    if (initialNodes.length !== updatedNodes.length) {
-        console.error('criteria', // family
-        'edge-length-GH10', // type
-        'abording', // action
-        'not the same number of nodes' // reason
-        );
-        throw 'Criteria edge-length-GH10 abording : not same number of nodes';
-    }
     var initialSorted = lodash_1.default.sortBy(initialNodes, 'index');
     var updatedSorted = lodash_1.default.sortBy(updatedNodes, 'index');
     var r = function (e) {
@@ -51,14 +44,14 @@ function delta(edges, r) {
     return (Math.sqrt(lodash_1.default.sumBy(edges, function (e) { return Math.pow(r(e) - meanR, 2); }) / edges.length) /
         meanR);
 }
-exports.EdgeRelativeStandardDeviationDelaunayCriteria = {
+exports.EdgeRelativeStandardDeviationDelaunayCriteria = utils_1.criteriaWrap({
     criteria: function (initial, updated) { return exports.edgeLength(initial, updated, true); },
     name: 'edge/relative-standard-deviation/delaunay',
     short: 'e_rsd_d'
-};
-exports.EdgeRelativeStandardDeviationCriteria = {
+});
+exports.EdgeRelativeStandardDeviationCriteria = utils_1.criteriaWrap({
     criteria: function (initial, updated) { return exports.edgeLength(initial, updated, false); },
     name: 'edge/relative-standard-deviation',
     short: 'e_rsd'
-};
+});
 exports.default = exports.EdgeRelativeStandardDeviationDelaunayCriteria;
