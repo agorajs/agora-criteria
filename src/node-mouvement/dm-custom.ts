@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import { Graph, Edge, Point, delta } from 'agora-graph';
-import { Criteria } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 export function scaleChange(initial: Graph, updated: Graph) {
@@ -57,8 +56,8 @@ export function scaleChange(initial: Graph, updated: Graph) {
       y: node.y * ratio.height
     };
 
-    const left = point.x - node.width / 2;
-    const top = point.y - node.height / 2;
+    const left = point.x;
+    const top = point.y;
 
     if (proj.x === null || left < proj.x) proj.x = left;
     if (proj.y === null || top < proj.y) proj.y = top;
