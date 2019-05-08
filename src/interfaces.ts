@@ -4,12 +4,12 @@ export interface Dictionary<T> {
   [key: string]: T;
 }
 
-export interface CriteraiResult extends Dictionary<any> {
+export interface CriteriaResult extends Dictionary<any> {
   value: number;
 }
 
 export interface CriteriaFunction {
-  (initial: Graph, updated: Graph): CriteraiResult;
+  (initial: Graph, updated: Graph): CriteriaResult;
 }
 
 export interface Criteria<
@@ -67,7 +67,7 @@ export interface Manager {
     criteria: string | Criteria,
     initial: Graph,
     updatedGraphs: { [key: string]: Graph }
-  ): { results: Dictionary<CriteraiResult>; time: number };
+  ): { results: Dictionary<CriteriaResult>; time: number };
 
   /**
    * Evaluates the criteria for the updated graph
@@ -80,5 +80,5 @@ export interface Manager {
     criteria: string | Criteria,
     initial: Graph,
     updated: Graph
-  ): CriteraiResult;
+  ): CriteriaResult;
 }
