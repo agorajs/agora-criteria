@@ -1,100 +1,91 @@
 import _ from 'lodash';
-import { Graph, Edge, Point, delta } from 'agora-graph';
+import { Graph, Point, Node, norm, round } from 'agora-graph';
 import { criteriaWrap } from '../utils';
+import { CriteriaResult } from '../interfaces';
 
-export function scaleChange(initial: Graph, updated: Graph) {
+interface IndexedPoint extends Point {
+  index: number;
+}
+
+/**
+ * scale to transform a to b
+ * @param a first value
+ * @param b second value
+ */
+const getScale = (a: number, b: number): number => b / a;
+
+function getCenter(nodes: Node[], orientation: 'x' | 'y') {
+  const min = _.minBy(nodes, orientation);
+  const max = _.maxBy(nodes, orientation);
+
+  if (!min || !max) {
+    throw `Criteria nm_dm_c getSpan error either: ${min} or ${max}`;
+  }
+
+  return max[orientation] / 2 + min[orientation] / 2;
+}
+
+function getSpan(nodes: Node[], orientation: 'x' | 'y') {
+  const min = _.minBy(nodes, orientation);
+  const max = _.maxBy(nodes, orientation);
+
+  if (!min || !max) {
+    throw `Criteria nm_dm_c getSpan error either: ${min} or ${max}`;
+  }
+
+  return max[orientation] - min[orientation];
+}
+
+export function scaleChange(initial: Graph, updated: Graph): CriteriaResult {
   const nodesLength = initial.nodes.length;
 
-  const sizes = {
-    in: {
-      min: { x: initial.nodes[0].x, y: initial.nodes[0].y },
-      max: { x: initial.nodes[0].x, y: initial.nodes[0].y }
+  const scale = {
+    x: getScale(getSpan(initial.nodes, 'x'), getSpan(updated.nodes, 'x')),
+    y: getScale(getSpan(initial.nodes, 'y'), getSpan(updated.nodes, 'y'))
+  };
+
+  const initialCenteredNodes = _.sortBy(
+    positionFromCenter(initial.nodes),
+    'index'
+  );
+  const updatedCenteredNodes = _.sortBy(
+    positionFromCenter(updated.nodes),
+    'index'
+  );
+
+  console.log(initialCenteredNodes, updatedCenteredNodes);
+
+  return _.reduce<IndexedPoint, { value: number; displacement: number[] }>(
+    initialCenteredNodes,
+    ({ value, displacement }, { x, y, index }) => {
+      const projected = {
+        x: round(x * scale.x, -9),
+        y: round(y * scale.y, -9)
+      };
+
+      const up = _.find(updatedCenteredNodes, ['index', index]);
+
+      if (!up)
+        throw `Criteria nm_dm_c : index ${index} does not exist in updated`;
+
+      const diff = norm(projected, up);
+      value += diff;
+      displacement.push(diff);
+      return { value, displacement };
     },
-    up: {
-      min: { x: updated.nodes[0].x, y: updated.nodes[0].y },
-      max: { x: updated.nodes[0].x, y: updated.nodes[0].y }
-    }
-  };
+    { value: 0, displacement: [] }
+  );
+}
 
-  // determining the scale ratio
-  for (let index = 0; index < nodesLength; index++) {
-    const node = initial.nodes[index];
-    const upNode = updated.nodes[index];
+function positionFromCenter(nodes: Node[]): IndexedPoint[] {
+  const center_x = getCenter(nodes, 'x');
+  const center_y = getCenter(nodes, 'y');
 
-    if (sizes.in.min.x > node.x) sizes.in.min.x = node.x;
-    if (sizes.in.max.x < node.x) sizes.in.max.x = node.x;
-    if (sizes.in.min.y > node.y) sizes.in.min.y = node.y;
-    if (sizes.in.max.y < node.y) sizes.in.max.y = node.y;
-
-    if (sizes.up.min.x > upNode.x) sizes.up.min.x = upNode.x;
-    if (sizes.up.max.x < upNode.x) sizes.up.max.x = upNode.x;
-    if (sizes.up.min.y > upNode.y) sizes.up.min.y = upNode.y;
-    if (sizes.up.max.y < upNode.y) sizes.up.max.y = upNode.y;
-  }
-
-  // there you go
-  const ratio = {
-    width:
-      (sizes.up.max.x - sizes.up.min.x) / (sizes.in.max.x - sizes.in.min.x),
-    height:
-      (sizes.up.max.y - sizes.up.min.y) / (sizes.in.max.y - sizes.in.min.y)
-  };
-
-  const proPoints: Point[] = [];
-
-  let proj: { x: number | null; y: number | null } = {
-    x: null,
-    y: null
-  };
-
-  // calculating the shift
-  for (let index = 0; index < nodesLength; index++) {
-    const node = initial.nodes[index];
-
-    const point: Point = {
-      x: node.x * ratio.width,
-      y: node.y * ratio.height
-    };
-
-    const left = point.x;
-    const top = point.y;
-
-    if (proj.x === null || left < proj.x) proj.x = left;
-    if (proj.y === null || top < proj.y) proj.y = top;
-
-    proPoints.push(point);
-  }
-
-  if (proj.x === null || proj.y === null)
-    throw 'Criteria scale-change projection error';
-
-  let change: number = 0;
-  let displacement: Edge<Point>[] = [];
-
-  // applying the shift and calculating the displacement
-  for (let index = 0; index < nodesLength; index++) {
-    const upNode = updated.nodes[index];
-    const pPoint = {
-      x: proPoints[index].x - proj.x,
-      y: proPoints[index].y - proj.y
-    };
-
-    const distancePoints = delta(upNode, pPoint);
-
-    const diff = +(
-      distancePoints.x * distancePoints.x +
-      distancePoints.y * distancePoints.y
-    ).toFixed(9);
-    change += diff;
-    if (diff !== 0) {
-      displacement.push({
-        source: { x: upNode.x, y: upNode.y },
-        target: pPoint
-      });
-    }
-  }
-
-  return { value: change / nodesLength, displacement: displacement };
+  return _.map(nodes, ({ index, x, y }) => ({
+    index,
+    x: x - center_x,
+    y: y - center_y
+  }));
 }
 
 export const NodeMouvementDistanceMovedCustomCriteria = criteriaWrap({
