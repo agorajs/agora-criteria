@@ -1,5 +1,5 @@
 import { Graph } from 'agora-graph';
-import { Criteria, CriteraiResult } from '../interfaces';
+import { CriteriaResult } from '../interfaces';
 /**
  * TODO: NNB*16
  * @param initialGraph the initial graph sorted by index
@@ -9,7 +9,7 @@ import { Criteria, CriteraiResult } from '../interfaces';
  */
 export declare const kNearestNeighborsNNB: (initialGraph: Graph<number>, updatedGraph: Graph<number>, options: {
     k: number;
-}) => CriteraiResult;
-export declare function createKNearestNeighborsCriteria(k?: number): Criteria<string, string>;
-export declare const NodeMouvement8NearestNeighborsCriteria: Criteria<string, string>;
+}) => CriteriaResult;
+export declare function createKNearestNeighborsCriteria(k?: number): import("../interfaces").Criteria<string, string>;
+export declare const NodeMouvement8NearestNeighborsCriteria: import("../interfaces").Criteria<string, string>;
 export default NodeMouvement8NearestNeighborsCriteria;

@@ -1,5 +1,5 @@
-import { Edge, Point, norm, Node, Graph } from 'agora-graph';
-import { CriteriaFunction, Criteria, CriteraiResult } from '../interfaces';
+import { norm, Node, Graph } from 'agora-graph';
+import { CriteriaResult } from '../interfaces';
 import _ from 'lodash';
 import { criteriaWrap } from '../utils';
 
@@ -14,7 +14,7 @@ export const kNearestNeighborsNNB = function(
   initialGraph: Graph,
   updatedGraph: Graph,
   options: { k: number }
-): CriteraiResult {
+): CriteriaResult {
   const { k } = options;
   const { nodes: initialNodes } = initialGraph;
   const { nodes: updatedNodes } = updatedGraph;

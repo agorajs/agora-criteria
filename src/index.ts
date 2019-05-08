@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { Manager, isCriteria, CriteraiResult, Criteria } from './interfaces';
+import { Manager, isCriteria, CriteriaResult, Criteria } from './interfaces';
 import EdgeLength from './edge';
 import GlobalShape from './global-shape';
 import NodeMouvement from './node-mouvement';
@@ -54,7 +54,7 @@ export const manager: Manager = {
 
     if (!isCriteria(criteria)) throw criteria + ' is not a criterai';
 
-    const results: { [key: string]: CriteraiResult } = {};
+    const results: { [key: string]: CriteriaResult } = {};
     console.group(criteria.name);
     const start = new Date();
     _.forEach(updatedGraphs, (updated, name) => {

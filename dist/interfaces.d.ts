@@ -2,11 +2,11 @@ import { Graph } from 'agora-graph';
 export interface Dictionary<T> {
     [key: string]: T;
 }
-export interface CriteraiResult extends Dictionary<any> {
+export interface CriteriaResult extends Dictionary<any> {
     value: number;
 }
 export interface CriteriaFunction {
-    (initial: Graph, updated: Graph): CriteraiResult;
+    (initial: Graph, updated: Graph): CriteriaResult;
 }
 export interface Criteria<S extends string = string, N extends string = string> {
     short?: S;
@@ -49,7 +49,7 @@ export interface Manager {
     execute(this: Manager, criteria: string | Criteria, initial: Graph, updatedGraphs: {
         [key: string]: Graph;
     }): {
-        results: Dictionary<CriteraiResult>;
+        results: Dictionary<CriteriaResult>;
         time: number;
     };
     /**
@@ -58,5 +58,5 @@ export interface Manager {
      * @param initial initial graph disposition
      * @param updated updated graph disposition
      */
-    evaluate(this: Manager, criteria: string | Criteria, initial: Graph, updated: Graph): CriteraiResult;
+    evaluate(this: Manager, criteria: string | Criteria, initial: Graph, updated: Graph): CriteriaResult;
 }

@@ -1,6 +1,6 @@
 import { polygonHull, polygonArea } from 'd3-polygon';
 import _ from 'lodash';
-import { CriteriaFunction, CriteraiResult, Criteria } from '../interfaces';
+import { CriteriaFunction, CriteriaResult, Criteria } from '../interfaces';
 import { Node, top, left, right, bottom } from 'agora-graph';
 import { criteriaWrap } from '../utils';
 
@@ -9,7 +9,7 @@ import { criteriaWrap } from '../utils';
 export const SpreadConvexHullArea: CriteriaFunction = function(
   initial,
   updated
-): CriteraiResult {
+): CriteriaResult {
   const initialHull = polygonHull(convertNodes(initial.nodes));
   const updatedHull = polygonHull(convertNodes(updated.nodes));
 

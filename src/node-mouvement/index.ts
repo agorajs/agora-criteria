@@ -1,7 +1,7 @@
 import NodeMouvementDistanceMovedNormalizedCriteria from './dm-n-lmr98';
 import NodeMouvementDistanceMovedHamiltonianCriteria from './dm-h-hl03';
 import NodeMouvementDistanceMovedSquaredCriteria from './dm-s-msth03';
-import NodeMouvementDistanceMovedCustom from './dm-custom';
+import NodeMouvementDistanceMovedCustomCriteria from './dm-custom';
 import NodeMouvementMovedNodesCriteria from './mn-hlsg07';
 import NodeMouvementDistanceMovedMeanEuclidianCriteria from './dm-sss12';
 import NodeMouvement8NearestNeighborsCriteria, {
@@ -14,7 +14,7 @@ export const NodeMouvement = {
     Hamiltonian: NodeMouvementDistanceMovedHamiltonianCriteria,
     Squared: NodeMouvementDistanceMovedSquaredCriteria,
     MeanEuclidian: NodeMouvementDistanceMovedMeanEuclidianCriteria,
-    Custom: NodeMouvementDistanceMovedCustom
+    Custom: NodeMouvementDistanceMovedCustomCriteria
   },
   MovedNodes: NodeMouvementMovedNodesCriteria,
   KNearestNeighbors: {

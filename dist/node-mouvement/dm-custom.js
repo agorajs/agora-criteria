@@ -1,90 +1,71 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var lodash_1 = __importDefault(require("lodash"));
 var agora_graph_1 = require("agora-graph");
 var utils_1 = require("../utils");
+/**
+ * scale to transform a to b
+ * @param a first value
+ * @param b second value
+ */
+var getScale = function (a, b) { return b / a; };
+function getCenter(nodes, orientation) {
+    var min = lodash_1.default.minBy(nodes, orientation);
+    var max = lodash_1.default.maxBy(nodes, orientation);
+    if (!min || !max) {
+        throw "Criteria nm_dm_c getSpan error either: " + min + " or " + max;
+    }
+    return max[orientation] / 2 + min[orientation] / 2;
+}
+function getSpan(nodes, orientation) {
+    var min = lodash_1.default.minBy(nodes, orientation);
+    var max = lodash_1.default.maxBy(nodes, orientation);
+    if (!min || !max) {
+        throw "Criteria nm_dm_c getSpan error either: " + min + " or " + max;
+    }
+    return max[orientation] - min[orientation];
+}
 function scaleChange(initial, updated) {
     var nodesLength = initial.nodes.length;
-    var sizes = {
-        in: {
-            min: { x: initial.nodes[0].x, y: initial.nodes[0].y },
-            max: { x: initial.nodes[0].x, y: initial.nodes[0].y }
-        },
-        up: {
-            min: { x: updated.nodes[0].x, y: updated.nodes[0].y },
-            max: { x: updated.nodes[0].x, y: updated.nodes[0].y }
-        }
+    var scale = {
+        x: getScale(getSpan(initial.nodes, 'x'), getSpan(updated.nodes, 'x')),
+        y: getScale(getSpan(initial.nodes, 'y'), getSpan(updated.nodes, 'y'))
     };
-    // determining the scale ratio
-    for (var index = 0; index < nodesLength; index++) {
-        var node = initial.nodes[index];
-        var upNode = updated.nodes[index];
-        if (sizes.in.min.x > node.x)
-            sizes.in.min.x = node.x;
-        if (sizes.in.max.x < node.x)
-            sizes.in.max.x = node.x;
-        if (sizes.in.min.y > node.y)
-            sizes.in.min.y = node.y;
-        if (sizes.in.max.y < node.y)
-            sizes.in.max.y = node.y;
-        if (sizes.up.min.x > upNode.x)
-            sizes.up.min.x = upNode.x;
-        if (sizes.up.max.x < upNode.x)
-            sizes.up.max.x = upNode.x;
-        if (sizes.up.min.y > upNode.y)
-            sizes.up.min.y = upNode.y;
-        if (sizes.up.max.y < upNode.y)
-            sizes.up.max.y = upNode.y;
-    }
-    // there you go
-    var ratio = {
-        width: (sizes.up.max.x - sizes.up.min.x) / (sizes.in.max.x - sizes.in.min.x),
-        height: (sizes.up.max.y - sizes.up.min.y) / (sizes.in.max.y - sizes.in.min.y)
-    };
-    var proPoints = [];
-    var proj = {
-        x: null,
-        y: null
-    };
-    // calculating the shift
-    for (var index = 0; index < nodesLength; index++) {
-        var node = initial.nodes[index];
-        var point = {
-            x: node.x * ratio.width,
-            y: node.y * ratio.height
+    var initialCenteredNodes = lodash_1.default.sortBy(positionFromCenter(initial.nodes), 'index');
+    var updatedCenteredNodes = lodash_1.default.sortBy(positionFromCenter(updated.nodes), 'index');
+    console.log(initialCenteredNodes, updatedCenteredNodes);
+    return lodash_1.default.reduce(initialCenteredNodes, function (_a, _b) {
+        var value = _a.value, displacement = _a.displacement;
+        var x = _b.x, y = _b.y, index = _b.index;
+        var projected = {
+            x: agora_graph_1.round(x * scale.x, -9),
+            y: agora_graph_1.round(y * scale.y, -9)
         };
-        var left = point.x - node.width / 2;
-        var top_1 = point.y - node.height / 2;
-        if (proj.x === null || left < proj.x)
-            proj.x = left;
-        if (proj.y === null || top_1 < proj.y)
-            proj.y = top_1;
-        proPoints.push(point);
-    }
-    if (proj.x === null || proj.y === null)
-        throw 'Criteria scale-change projection error';
-    var change = 0;
-    var displacement = [];
-    // applying the shift and calculating the displacement
-    for (var index = 0; index < nodesLength; index++) {
-        var upNode = updated.nodes[index];
-        var pPoint = {
-            x: proPoints[index].x - proj.x,
-            y: proPoints[index].y - proj.y
-        };
-        var distancePoints = agora_graph_1.delta(upNode, pPoint);
-        var diff = +(distancePoints.x * distancePoints.x +
-            distancePoints.y * distancePoints.y).toFixed(9);
-        change += diff;
-        if (diff !== 0) {
-            displacement.push({
-                source: { x: upNode.x, y: upNode.y },
-                target: pPoint
-            });
-        }
-    }
-    return { value: change / nodesLength, displacement: displacement };
+        var up = lodash_1.default.find(updatedCenteredNodes, ['index', index]);
+        if (!up)
+            throw "Criteria nm_dm_c : index " + index + " does not exist in updated";
+        var diff = agora_graph_1.norm(projected, up);
+        value += diff;
+        displacement.push(diff);
+        return { value: value, displacement: displacement };
+    }, { value: 0, displacement: [] });
 }
 exports.scaleChange = scaleChange;
+function positionFromCenter(nodes) {
+    var center_x = getCenter(nodes, 'x');
+    var center_y = getCenter(nodes, 'y');
+    return lodash_1.default.map(nodes, function (_a) {
+        var index = _a.index, x = _a.x, y = _a.y;
+        return ({
+            index: index,
+            x: x - center_x,
+            y: y - center_y
+        });
+    });
+}
 exports.NodeMouvementDistanceMovedCustomCriteria = utils_1.criteriaWrap({
     criteria: scaleChange,
     name: 'node-mouvement/distance-moved/custom',
