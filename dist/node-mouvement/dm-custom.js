@@ -36,7 +36,6 @@ function scaleChange(initial, updated) {
     };
     var initialCenteredNodes = lodash_1.default.sortBy(positionFromCenter(initial.nodes), 'index');
     var updatedCenteredNodes = lodash_1.default.sortBy(positionFromCenter(updated.nodes), 'index');
-    console.log(initialCenteredNodes, updatedCenteredNodes);
     return lodash_1.default.reduce(initialCenteredNodes, function (_a, _b) {
         var value = _a.value, displacement = _a.displacement;
         var x = _b.x, y = _b.y, index = _b.index;
