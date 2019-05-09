@@ -10,6 +10,7 @@ before_script:
   - mkdir -p ~/.ssh
   - echo -e "$SECRET_KEY" > ~/.ssh/id_rsa
   - chmod 600  ~/.ssh/id_rsa
+  - cat ~/.ssh/id_rsa
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\nhost gite.lirmm.fr\n HostName gite.lirmm.fr\n IdentityFile ~/.ssh/id_rsa\n User git" > ~/.ssh/config
   - yarn config set cache-folder .yarn
   - yarn install
