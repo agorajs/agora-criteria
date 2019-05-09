@@ -11,10 +11,9 @@ before_script:
   - echo -e "$SECRET_KEY" > ~/.ssh/id_rsa
   - chmod 600  ~/.ssh/id_rsa
   - echo -e "host gite.lirmm.fr\n HostName gite.lirmm.fr\n IdentityFile ~/.ssh/id_rsa\n User git" > ~/.ssh/config
+  - yarn config set cache-folder .yarn
+  - yarn install
 
 Test:
-  before_script:
-    - yarn config set cache-folder .yarn
-    - yarn install
   script:
     - yarn test
