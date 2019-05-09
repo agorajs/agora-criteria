@@ -3,22 +3,18 @@ image: node:12
 cache:
   paths:
     - node_modules/
+    - .yarn
 
 before_script:
-  - apt-get update -qq
-  - apt-get install -y -qq curl
-  - curl -sL https://deb.nodesource.com/setup_12.x | bash -
-  - apt-get install -y -qq nodejs
-  - node -v
-  - npm -v
+  - apt-get update -qq && apt-get install
   - mkdir -p ~/.ssh
   - echo -e "$SECRET_KEY" > ~/.ssh/id_rsa
   - chmod 600  ~/.ssh/id_rsa
-  - echo -e "host gite.lirmm.fr\n HostName gite.lirmm.fr\n IdentityFile ~/.ssh/id_rsa" > ~/.ssh/config
+  - echo -e "host gite.lirmm.fr\n HostName gite.lirmm.fr\n IdentityFile ~/.ssh/id_rsa\n User git" > ~/.ssh/config
 
-test:
-  stage: test
+Test:
   before_script:
-    - npm install
+    - yarn config set cache-folder .yarn
+    - yarn install
   script:
-    - npm test
+    - yarn test
