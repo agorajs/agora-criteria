@@ -33,6 +33,20 @@ before_script:
   - yarn config set cache-folder .yarn
   - yarn install
 
+stages:
+  - test
+  - build
+
 Test:
+  stage: test
   script:
     - yarn test
+
+build:
+  stage: build
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist
+  script:
+    - yarn build
