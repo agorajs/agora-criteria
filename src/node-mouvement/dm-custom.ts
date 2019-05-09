@@ -53,8 +53,6 @@ export function scaleChange(initial: Graph, updated: Graph): CriteriaResult {
     'index'
   );
 
-  console.log(initialCenteredNodes, updatedCenteredNodes);
-
   return _.reduce<IndexedPoint, { value: number; displacement: number[] }>(
     initialCenteredNodes,
     ({ value, displacement }, { x, y, index }) => {
