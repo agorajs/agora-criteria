@@ -33,7 +33,8 @@
     "@types/jest-diff": "^20.0.1",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "agora-graph": "git+ssh://git@gite.lirmm.fr/chen/agora-graph.git#semver:^0.1.0"
   },
   "peerDependencies": {
     "agora-graph": "git+ssh://git@gite.lirmm.fr/chen/agora-graph.git#semver:^0.1.0"
