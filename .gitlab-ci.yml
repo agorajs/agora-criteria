@@ -40,7 +40,7 @@ Test:
   stage: test
   script:
     - yarn test --coverage
-  coverage: All files[^|]*\|[^|]*\s+([\d\.]+)
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
 
 build:
   stage: build
