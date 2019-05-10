@@ -3,7 +3,7 @@ image: node:12
 cache:
   paths:
     - node_modules/
-    - .yarn
+    - .yarn/
 
 before_script:
   # install update if i missed anything
