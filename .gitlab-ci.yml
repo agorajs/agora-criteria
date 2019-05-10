@@ -1,0 +1,55 @@
+image: node:12
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn/
+
+before_script:
+  # install update if i missed anything
+  - apt-get update -qq && apt-get install
+
+  # check/lauch ssh-agent
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+
+  # setting ssh private key
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+
+  # Create the SSH directory and give it the right permissions
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+  # adding to known hosts
+  - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
+  # Adding credentials to git config
+  - git config --global user.email "chen@lirmm.fr"
+  - git config --global user.name "Fati CHEN"
+
+  # setting up project
+  - yarn config set cache-folder .yarn
+  - yarn install
+
+stages:
+  - test
+  - build
+
+Test:
+  stage: test
+  script:
+    - yarn test --coverage
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+
+build:
+  stage: build
+  only:
+    - master
+    - tags
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist
+  script:
+    - yarn build
