@@ -1,10 +1,13 @@
 import _ from 'lodash';
-import { Edge, delaunay, norm, Graph } from 'agora-graph';
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { Edge, delaunay, norm, Graph, round } from 'agora-graph';
 import { criteriaWrap } from '../utils';
 
 /**
  * TODO: GH10
+ *
+ * reference:  https://gitlab.com/graphviz/graphviz/blob/master/lib/sfdpgen/layout_similarity.c#L161-180
+ * permalink reference : https://gitlab.com/graphviz/graphviz/blob/b0871968de2252653b001bf700ed98c240e8aad6/lib/sfdpgen/layout_similarity.c#L161-180
+ *
  * Evaluates the updatedGraph
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
@@ -22,29 +25,31 @@ export const edgeLength = function(
 
   const r = (e: Edge) => {
     const initLength = norm(initialSorted[e.source], initialSorted[e.target]);
-    const uLenght = norm(updatedSorted[e.source], updatedSorted[e.target]);
-    return uLenght / initLength;
+    const uLength = norm(updatedSorted[e.source], updatedSorted[e.target]);
+    return uLength / initLength;
   };
 
+  /* not used and supposedly wrong 
   const r_prime = (e: Edge) => {
     const initLength = norm(initialSorted[e.source], initialSorted[e.target]);
     const uLength = norm(updatedSorted[e.source], updatedSorted[e.target]);
     return initLength / uLength;
-  };
+  }; */
 
   if (withDelaunay) {
     const delaunayEdges = delaunay(initialNodes);
+    return { value: round(delta(delaunayEdges, r), -6) };
+    /* this is how it should be done, but it is unclear about how do we manage r_prime calculation
     const delaunayEdgesPrime = delaunay(updatedNodes);
-
     return {
-      value: (delta(delaunayEdges, r) + delta(delaunayEdgesPrime, r_prime)) / 2
-    };
+      value: round(
+        (delta(delaunayEdges, r) + delta(delaunayEdgesPrime, r_prime)) / 2,
+        -6
+      )
+    }; */
   }
 
-  return {
-    value:
-      (delta(initialGraph.edges, r) + delta(updatedGraph.edges, r_prime)) / 2
-  };
+  return { value: round(delta(initialGraph.edges, r), -6) };
 };
 
 function delta(edges: Edge[], r: (e: Edge) => number) {
