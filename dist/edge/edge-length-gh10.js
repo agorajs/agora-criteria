@@ -8,6 +8,10 @@ var agora_graph_1 = require("agora-graph");
 var utils_1 = require("../utils");
 /**
  * TODO: GH10
+ *
+ * reference:  https://gitlab.com/graphviz/graphviz/blob/master/lib/sfdpgen/layout_similarity.c#L161-180
+ * permalink reference : https://gitlab.com/graphviz/graphviz/blob/b0871968de2252653b001bf700ed98c240e8aad6/lib/sfdpgen/layout_similarity.c#L161-180
+ *
  * Evaluates the updatedGraph
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
@@ -20,24 +24,28 @@ exports.edgeLength = function (initialGraph, updatedGraph, withDelaunay) {
     var updatedSorted = lodash_1.default.sortBy(updatedNodes, 'index');
     var r = function (e) {
         var initLength = agora_graph_1.norm(initialSorted[e.source], initialSorted[e.target]);
-        var uLenght = agora_graph_1.norm(updatedSorted[e.source], updatedSorted[e.target]);
-        return uLenght / initLength;
-    };
-    var r_prime = function (e) {
-        var initLength = agora_graph_1.norm(initialSorted[e.source], initialSorted[e.target]);
         var uLength = agora_graph_1.norm(updatedSorted[e.source], updatedSorted[e.target]);
-        return initLength / uLength;
+        return uLength / initLength;
     };
+    /* not used and supposedly wrong
+    const r_prime = (e: Edge) => {
+      const initLength = norm(initialSorted[e.source], initialSorted[e.target]);
+      const uLength = norm(updatedSorted[e.source], updatedSorted[e.target]);
+      return initLength / uLength;
+    }; */
     if (withDelaunay) {
         var delaunayEdges = agora_graph_1.delaunay(initialNodes);
-        var delaunayEdgesPrime = agora_graph_1.delaunay(updatedNodes);
+        return { value: agora_graph_1.round(delta(delaunayEdges, r), -6) };
+        /* this is how it should be done, but it is unclear about how do we manage r_prime calculation
+        const delaunayEdgesPrime = delaunay(updatedNodes);
         return {
-            value: (delta(delaunayEdges, r) + delta(delaunayEdgesPrime, r_prime)) / 2
-        };
+          value: round(
+            (delta(delaunayEdges, r) + delta(delaunayEdgesPrime, r_prime)) / 2,
+            -6
+          )
+        }; */
     }
-    return {
-        value: (delta(initialGraph.edges, r) + delta(updatedGraph.edges, r_prime)) / 2
-    };
+    return { value: agora_graph_1.round(delta(initialGraph.edges, r), -6) };
 };
 function delta(edges, r) {
     var meanR = lodash_1.default.meanBy(edges, r);
