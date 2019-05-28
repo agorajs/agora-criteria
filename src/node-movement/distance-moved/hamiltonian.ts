@@ -1,14 +1,14 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction, Criteria } from '../../interfaces';
 import { normX, normY } from 'agora-graph';
-import { criteriaWrap } from '../utils';
+import { criteriaWrap } from '../../utils';
 
 /**
- * TODO: MSTH03
+ * TODO: HL03, HLSG07
  * Evaluates the updatedGraph
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const changeSquareMsth: CriteriaFunction = function(
+export const costFunction: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -20,15 +20,15 @@ export const changeSquareMsth: CriteriaFunction = function(
     const u = initialNodes[u_index];
     const u_prime = updatedNodes[u_index];
 
-    sum += normX(u_prime, u) ** 2 + normY(u_prime, u) ** 2;
+    sum += normX(u_prime, u) + normY(u_prime, u);
   }
 
   return { value: sum };
 };
 
-export const NodeMouvementDistanceMovedSquaredCriteria = criteriaWrap({
-  criteria: changeSquareMsth,
-  name: 'node-mouvement/distance-moved/squared',
-  short: 'nm_dm_s'
+export const NodeMouvementDistanceMovedHamiltonianCriteria = criteriaWrap({
+  criteria: costFunction,
+  name: 'node-mouvement/distance-moved/hamiltonian',
+  short: 'nm_dm_h'
 });
-export default NodeMouvementDistanceMovedSquaredCriteria;
+export default NodeMouvementDistanceMovedHamiltonianCriteria;

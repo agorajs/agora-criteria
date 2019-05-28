@@ -1,6 +1,6 @@
 import { Edge, Point, norm } from 'agora-graph';
-import { CriteriaFunction, Criteria } from '../interfaces';
-import { criteriaWrap } from '../utils';
+import { CriteriaFunction, Criteria } from '../../interfaces';
+import { criteriaWrap } from '../../utils';
 
 /**
  * TODO: SSS*12
@@ -10,7 +10,7 @@ import { criteriaWrap } from '../utils';
  *
  * @returns {{value: number, displacement: Edge[]}}
  */
-export const euclidianDistanceSss: CriteriaFunction = function(
+export const euclideanDistance: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ): { value: number; displacement: Edge<Point>[] } {
@@ -39,9 +39,9 @@ export const euclidianDistanceSss: CriteriaFunction = function(
   return { value: change / nodesLength, displacement: displacement };
 };
 
-export const NodeMouvementDistanceMovedMeanEuclidianCriteria = criteriaWrap({
-  criteria: euclidianDistanceSss,
-  name: 'node-mouvement/distance-moved/mean-euclidian',
+export const NodeMovementDistanceMovedMeanEuclideanCriteria = criteriaWrap({
+  criteria: euclideanDistance,
+  name: 'node-movement/distance-moved/mean-euclidean',
   short: 'mn_dm_me'
 });
-export default NodeMouvementDistanceMovedMeanEuclidianCriteria;
+export default NodeMovementDistanceMovedMeanEuclideanCriteria;

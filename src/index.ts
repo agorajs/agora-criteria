@@ -3,11 +3,11 @@ import _ from 'lodash';
 import { Manager, isCriteria, CriteriaResult, Criteria } from './interfaces';
 import EdgeLength from './edge';
 import GlobalShape from './global-shape';
-import NodeMouvement from './node-mouvement';
+import NodeMovement from './node-movement';
 import OrthogonalOrdering from './orthogonal-ordering';
 import Spread from './spread';
 
-export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
+export { EdgeLength, GlobalShape, NodeMovement, OrthogonalOrdering, Spread };
 
 export const manager: Manager = {
   criterias: {},

@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 /**
@@ -7,10 +7,7 @@ import { criteriaWrap } from '../utils';
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const lambda1Hlsg: CriteriaFunction = function(
-  initialGraph,
-  updatedGraph
-) {
+export const lambda1: CriteriaFunction = function(initialGraph, updatedGraph) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
@@ -27,9 +24,9 @@ export const lambda1Hlsg: CriteriaFunction = function(
   return { value: nb / n };
 };
 
-export const NodeMouvementMovedNodesCriteria = criteriaWrap({
-  criteria: lambda1Hlsg,
-  name: 'node-mouvement/moved-nodes',
+export const NodeMovementMovedNodesCriteria = criteriaWrap({
+  criteria: lambda1,
+  name: 'node-movement/moved-nodes',
   short: 'nm_mn'
 });
-export default NodeMouvementMovedNodesCriteria;
+export default NodeMovementMovedNodesCriteria;
