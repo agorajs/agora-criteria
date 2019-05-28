@@ -1,6 +1,6 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../../interfaces';
 import { right, left, bottom, top } from 'agora-graph';
-import { criteriaWrap } from '../utils';
+import { criteriaWrap } from '../../utils';
 
 /**
  * TODO: LEN05
@@ -8,7 +8,7 @@ import { criteriaWrap } from '../utils';
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const aspectRatioLen: CriteriaFunction = function(
+export const aspectRatio: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -24,7 +24,7 @@ export const aspectRatioLen: CriteriaFunction = function(
 };
 
 export const GlobalShapeBoundingBoxAspectRatioCriteria = criteriaWrap({
-  criteria: aspectRatioLen,
+  criteria: aspectRatio,
   name: 'global-shape/bounding-box/aspect-ratio',
   short: 'gs_bb_ar'
 });

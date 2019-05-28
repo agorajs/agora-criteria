@@ -1,6 +1,4 @@
-import GlobalShapeConvexHullStandardShapePreservationCriteria, {
-  calculateConvexHullDistances
-} from './gs-ch-ssp';
+import { calculateConvexHullDistances } from './convex-hull_standard-deviation';
 
 test('global-shape/convex-hull/standard-shape-preservation is working correctly', () => {
   expect(

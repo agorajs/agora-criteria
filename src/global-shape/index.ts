@@ -1,14 +1,14 @@
-import GlobalShapeBoundingBoxAspectRatioCriteria from './aspect-ratio-len05';
-import GlobalShapeBoundingBoxAspectRatioPlusCriteria from './aspect-ratio';
-import GlobalShapeConvexHullStandardShapePreservationCriteria from './gs-ch-ssp';
+import GlobalShapeBoundingBoxAspectRatioCriteria from './bounding-box/aspect-ratio';
+import GlobalShapeBoundingBoxImprovedAspectRatioCriteria from './bounding-box/improved-aspect-ratio';
+import GlobalShapeConvexHullStandardDeviationCriteria from './convex-hull_standard-deviation';
 
 export const GlobalShape = {
   BoundingBox: {
     AspectRatio: GlobalShapeBoundingBoxAspectRatioCriteria,
-    AspectRatioPlus: GlobalShapeBoundingBoxAspectRatioPlusCriteria
+    AspectRatioPlus: GlobalShapeBoundingBoxImprovedAspectRatioCriteria
   },
   ConvexHull: {
-    StandardShapePreservation: GlobalShapeConvexHullStandardShapePreservationCriteria
+    StandardDeviation: GlobalShapeConvexHullStandardDeviationCriteria
   }
 };
 export default GlobalShape;

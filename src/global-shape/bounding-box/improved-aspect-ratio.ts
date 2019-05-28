@@ -1,13 +1,16 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../../interfaces';
 import { bottom, right, top, left, round } from 'agora-graph';
-import { criteriaWrap } from '../utils';
+import { criteriaWrap } from '../../utils';
 
 /**
  * checks how the aspect ratio has changed
  * @param initial
  * @param updated
  */
-export const aspectRatio: CriteriaFunction = function(initial, updated) {
+export const improvedAspectRatio: CriteriaFunction = function(
+  initial,
+  updated
+) {
   const initialSize = [
       round(bottom(bottom(initial.nodes)) - top(top(initial.nodes))),
       round(right(right(initial.nodes)) - left(left(initial.nodes)))
@@ -27,9 +30,9 @@ export const aspectRatio: CriteriaFunction = function(initial, updated) {
   };
 };
 
-export const GlobalShapeBoundingBoxAspectRatioPlusCriteria = criteriaWrap({
-  criteria: aspectRatio,
-  name: 'global-shape/bounding-box/aspect-ratio-plus',
-  short: 'gs_bb_arplus'
+export const GlobalShapeBoundingBoxImprovedAspectRatioCriteria = criteriaWrap({
+  criteria: improvedAspectRatio,
+  name: 'global-shape/bounding-box/improved-aspect-ratio',
+  short: 'gs_bb_iar'
 });
-export default GlobalShapeBoundingBoxAspectRatioPlusCriteria;
+export default GlobalShapeBoundingBoxImprovedAspectRatioCriteria;

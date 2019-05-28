@@ -2,7 +2,7 @@ import { CriteriaFunction } from './interfaces';
 import _ from 'lodash';
 import { lambda1Hlsg } from './node-mouvement/mn-hlsg07';
 import { lambda2 } from './orthogonal-ordering/kendall-tau-distance';
-import { areaNormalized } from './spread/bounding-box_area-normalized';
+import { areaNormalized } from './spread/bounding-box/area-normalized';
 import { changeHl } from './node-mouvement/dm-h-hl03';
 
 /**

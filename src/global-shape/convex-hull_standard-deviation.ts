@@ -19,10 +19,10 @@ import { criteriaWrap } from '../utils';
 type Pos = [number, number];
 type Line = { start: [Pos, number]; end: [Pos, number] };
 
-export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = function(
-  initial,
-  updated
-) {
+/**
+ * TODO: SSS12
+ */
+export const shapePreservation: CriteriaFunction = function(initial, updated) {
   // STEP 1 : retrieve convex hull
   const initialHull = d3.polygonHull(convertNodes(initial.nodes));
   const updatedHull = d3.polygonHull(convertNodes(updated.nodes));
@@ -39,12 +39,12 @@ export const GlobalShapeConvexHullStandardShapePreservation: CriteriaFunction = 
   const updatedDistances = calculateConvexHullDistances(updatedHull);
   const d = [];
   for (let i = 0; i < initialDistances.length; i++) {
-    d.push(initialDistances[i] / updatedDistances[i]);
+    d.push(updatedDistances[i] / initialDistances[i]);
   }
 
-  const dMean = _.mean(d);
+  const mean_d = _.mean(d);
 
-  const value = _.sumBy(d, dI => (dI - dMean) ** 2);
+  const value = _.sumBy(d, d_a => (d_a - mean_d) ** 2);
 
   return { value, initial: initialDistances, updated: updatedDistances };
 };
@@ -181,11 +181,9 @@ function convertNodes(nodes: Node[]): [number, number][] {
   });
 }
 
-export const GlobalShapeConvexHullStandardShapePreservationCriteria = criteriaWrap(
-  {
-    criteria: GlobalShapeConvexHullStandardShapePreservation,
-    name: 'global-shape/convex-hull/standard-shape-preservation',
-    short: 'gs_ch_ssp'
-  }
-);
-export default GlobalShapeConvexHullStandardShapePreservationCriteria;
+export const GlobalShapeConvexHullStandardDeviationCriteria = criteriaWrap({
+  criteria: shapePreservation,
+  name: 'global-shape/convex-hull/standard-deviation',
+  short: 'gs_ch_sd'
+});
+export default GlobalShapeConvexHullStandardDeviationCriteria;
