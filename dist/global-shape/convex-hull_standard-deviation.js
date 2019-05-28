@@ -11,7 +11,10 @@ var d3 = __importStar(require("d3-polygon"));
 var _ = __importStar(require("lodash"));
 var agora_graph_1 = require("agora-graph");
 var utils_1 = require("../utils");
-exports.GlobalShapeConvexHullStandardShapePreservation = function (initial, updated) {
+/**
+ * TODO: SSS12
+ */
+exports.shapePreservation = function (initial, updated) {
     // STEP 1 : retrieve convex hull
     var initialHull = d3.polygonHull(convertNodes(initial.nodes));
     var updatedHull = d3.polygonHull(convertNodes(updated.nodes));
@@ -26,10 +29,10 @@ exports.GlobalShapeConvexHullStandardShapePreservation = function (initial, upda
     var updatedDistances = calculateConvexHullDistances(updatedHull);
     var d = [];
     for (var i = 0; i < initialDistances.length; i++) {
-        d.push(initialDistances[i] / updatedDistances[i]);
+        d.push(updatedDistances[i] / initialDistances[i]);
     }
-    var dMean = _.mean(d);
-    var value = _.sumBy(d, function (dI) { return Math.pow((dI - dMean), 2); });
+    var mean_d = _.mean(d);
+    var value = _.sumBy(d, function (d_a) { return Math.pow((d_a - mean_d), 2); });
     return { value: value, initial: initialDistances, updated: updatedDistances };
 };
 function calculateConvexHullDistances(hull) {
@@ -137,9 +140,9 @@ function convertNodes(nodes) {
         return [[l, t], [r, t], [r, b], [l, b]];
     });
 }
-exports.GlobalShapeConvexHullStandardShapePreservationCriteria = utils_1.criteriaWrap({
-    criteria: exports.GlobalShapeConvexHullStandardShapePreservation,
-    name: 'global-shape/convex-hull/standard-shape-preservation',
-    short: 'gs_ch_ssp'
+exports.GlobalShapeConvexHullStandardDeviationCriteria = utils_1.criteriaWrap({
+    criteria: exports.shapePreservation,
+    name: 'global-shape/convex-hull/standard-deviation',
+    short: 'gs_ch_sd'
 });
-exports.default = exports.GlobalShapeConvexHullStandardShapePreservationCriteria;
+exports.default = exports.GlobalShapeConvexHullStandardDeviationCriteria;

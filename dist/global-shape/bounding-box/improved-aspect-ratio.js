@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
-var utils_1 = require("../utils");
+var utils_1 = require("../../utils");
 /**
  * checks how the aspect ratio has changed
  * @param initial
  * @param updated
  */
-exports.aspectRatio = function (initial, updated) {
+exports.improvedAspectRatio = function (initial, updated) {
     var initialSize = [
         agora_graph_1.round(agora_graph_1.bottom(agora_graph_1.bottom(initial.nodes)) - agora_graph_1.top(agora_graph_1.top(initial.nodes))),
         agora_graph_1.round(agora_graph_1.right(agora_graph_1.right(initial.nodes)) - agora_graph_1.left(agora_graph_1.left(initial.nodes)))
@@ -21,9 +21,9 @@ exports.aspectRatio = function (initial, updated) {
         initial: initialSize
     };
 };
-exports.GlobalShapeBoundingBoxAspectRatioPlusCriteria = utils_1.criteriaWrap({
-    criteria: exports.aspectRatio,
-    name: 'global-shape/bounding-box/aspect-ratio-plus',
-    short: 'gs_bb_arplus'
+exports.GlobalShapeBoundingBoxImprovedAspectRatioCriteria = utils_1.criteriaWrap({
+    criteria: exports.improvedAspectRatio,
+    name: 'global-shape/bounding-box/improved-aspect-ratio',
+    short: 'gs_bb_iar'
 });
-exports.default = exports.GlobalShapeBoundingBoxAspectRatioPlusCriteria;
+exports.default = exports.GlobalShapeBoundingBoxImprovedAspectRatioCriteria;

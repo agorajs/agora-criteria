@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
-var utils_1 = require("../utils");
+var utils_1 = require("../../utils");
 /**
  * TODO : LEN05
  * @param initial

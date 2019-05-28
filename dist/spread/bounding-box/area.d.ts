@@ -1,4 +1,4 @@
-import { CriteriaFunction } from '../interfaces';
+import { CriteriaFunction } from '../../interfaces';
 /**
  * TODO: MELS95
  * Evaluates the updatedGraph
@@ -6,5 +6,5 @@ import { CriteriaFunction } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const area: CriteriaFunction;
-export declare const SpreadBoundingBoxAreaCriteria: import("../interfaces").Criteria<"sp_bb_a", "spread/bounding-box/area">;
+export declare const SpreadBoundingBoxAreaCriteria: import("../../interfaces").Criteria<"sp_bb_a", "spread/bounding-box/area">;
 export default SpreadBoundingBoxAreaCriteria;

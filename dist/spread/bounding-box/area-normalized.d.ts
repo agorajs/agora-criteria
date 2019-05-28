@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../../interfaces';
 /**
  * TODO: HLSG07
  * Evaluates the updatedGraph
@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const areaNormalized: CriteriaFunction;
-export declare const SpreadBoundingBoxAreaNormalizedCriteria: Criteria<"sp_bb_an", "spread/bounding-box/area-normalized">;
+export declare const SpreadBoundingBoxAreaNormalizedCriteria: import("../../interfaces").Criteria<"sp_bb_an", "spread/bounding-box/area-normalized">;
 export default SpreadBoundingBoxAreaNormalizedCriteria;
