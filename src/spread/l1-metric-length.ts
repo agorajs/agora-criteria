@@ -1,13 +1,13 @@
-import { Graph, round, top, bottom, left, right } from 'agora-graph';
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { round, top, bottom, left, right } from 'agora-graph';
+import { CriteriaFunction } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 /**
- * TODO : HLSG07
+ * TODO : LEN05
  * @param initial
  * @param updated
  */
-export const l1Length: CriteriaFunction = function(
+export const l1MetricLength: CriteriaFunction = function(
   initial,
   updated
 ): { value: number; initial: number; updated: number } {
@@ -27,10 +27,10 @@ export const l1Length: CriteriaFunction = function(
   };
 };
 
-export const SpreadBoundingBoxL1MetriclengthCriteria = criteriaWrap({
-  criteria: l1Length,
+export const SpreadBoundingBoxL1MetricLengthCriteria = criteriaWrap({
+  criteria: l1MetricLength,
   name: 'spread/bounding-box/l1-metric-length',
   short: 'sp_bb_l1ml'
 });
 
-export default SpreadBoundingBoxL1MetriclengthCriteria;
+export default SpreadBoundingBoxL1MetricLengthCriteria;

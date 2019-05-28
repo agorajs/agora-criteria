@@ -6,7 +6,7 @@ import { criteriaWrap } from '../utils';
 
 // Spread::Convex Hull::Area -- Strobelt 2012 SSS*12
 // TODO: SSS*12
-export const SpreadConvexHullArea: CriteriaFunction = function(
+export const sizeIncrease: CriteriaFunction = function(
   initial,
   updated
 ): CriteriaResult {
@@ -42,7 +42,7 @@ function convertNodes(nodes: Node[]): [number, number][] {
 }
 
 export const SpreadConvexHullAreaCriteria = criteriaWrap({
-  criteria: SpreadConvexHullArea,
+  criteria: sizeIncrease,
   name: 'spread/convex-hull/area',
   short: 'sp_ch_a'
 });
