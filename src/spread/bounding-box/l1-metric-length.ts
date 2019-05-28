@@ -1,6 +1,6 @@
 import { round, top, bottom, left, right } from 'agora-graph';
-import { CriteriaFunction } from '../interfaces';
-import { criteriaWrap } from '../utils';
+import { CriteriaFunction } from '../../interfaces';
+import { criteriaWrap } from '../../utils';
 
 /**
  * TODO : LEN05
