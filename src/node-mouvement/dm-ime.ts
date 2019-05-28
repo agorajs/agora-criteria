@@ -67,7 +67,7 @@ export function scaleChange(initial: Graph, updated: Graph): CriteriaResult {
         throw `Criteria nm_dm_c : index ${index} does not exist in updated`;
 
       const diff = norm(projected, up);
-      value += diff;
+      value += (diff * diff) / nodesLength;
       displacement.push(diff);
       return { value, displacement };
     },

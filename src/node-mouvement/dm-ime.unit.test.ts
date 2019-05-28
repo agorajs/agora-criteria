@@ -81,7 +81,7 @@ test('Custom is working correctly', () => {
 
   expect(
     NodeMouvementDistanceMovedCustomCriteria.criteria(init, change)
-  ).toEqual({ displacement: [2, 0, 0, 0, 0, 0], value: 2 });
+  ).toEqual({ displacement: [2, 0, 0, 0, 0, 0], value: 0.6666666666666666 });
 
   expect(
     NodeMouvementDistanceMovedCustomCriteria.criteria(init, doubleInitX)
@@ -107,7 +107,7 @@ test('Custom is working correctly', () => {
   expect(
     NodeMouvementDistanceMovedCustomCriteria.criteria(init, nudgedDoubleXY)
   ).toEqual({
-    value: 1,
+    value: 0.16666666666666666,
     displacement: [1, 0, 0, 0, 0, 0]
   });
 });
