@@ -10,7 +10,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dm_n_lmr98_1 = __importDefault(require("./dm-n-lmr98"));
+var dm_sn_lmr98_1 = __importDefault(require("./dm_sn-lmr98"));
 var dm_h_hl03_1 = __importDefault(require("./dm-h-hl03"));
 var dm_s_msth03_1 = __importDefault(require("./dm-s-msth03"));
 var dm_ime_1 = __importDefault(require("./dm-ime"));
@@ -19,7 +19,7 @@ var dm_sss12_1 = __importDefault(require("./dm-sss12"));
 var knn_nnb16_1 = __importStar(require("./knn-nnb16"));
 exports.NodeMouvement = {
     DistanceMoved: {
-        Normalized: dm_n_lmr98_1.default,
+        Normalized: dm_sn_lmr98_1.default,
         Hamiltonian: dm_h_hl03_1.default,
         Squared: dm_s_msth03_1.default,
         MeanEuclidian: dm_sss12_1.default,

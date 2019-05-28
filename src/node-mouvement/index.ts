@@ -1,4 +1,4 @@
-import NodeMouvementDistanceMovedNormalizedCriteria from './dm-n-lmr98';
+import NodeMouvementDistanceMovedNormalizedCriteria from './dm_sn-lmr98';
 import NodeMouvementDistanceMovedHamiltonianCriteria from './dm-h-hl03';
 import NodeMouvementDistanceMovedSquaredCriteria from './dm-s-msth03';
 import NodeMouvementDistanceMovedCustomCriteria from './dm-ime';

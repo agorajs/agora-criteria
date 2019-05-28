@@ -1,4 +1,4 @@
-import NodeMouvementDistanceMovedCustomCriteria from './dm-custom';
+import NodeMouvementDistanceMovedCustomCriteria from './dm-ime';
 
 const init = {
   nodes: [

@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../interfaces';
 import { right, left, bottom, top, norm } from 'agora-graph';
 import { criteriaWrap } from '../utils';
 
@@ -22,7 +22,8 @@ export const aspectRatioLmr: CriteriaFunction = function(
     const u = initialNodes[u_index];
     const u_prime = updatedNodes[u_index];
 
-    sum += norm(u_prime, u);
+    const dist = norm(u_prime, u);
+    sum += dist * dist;
   }
 
   const w = right(right(initialNodes)) - left(left(initialNodes));
