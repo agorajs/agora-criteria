@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mn_hlsg07_1 = require("./node-mouvement/mn-hlsg07");
-var lambda_2_hlsg07_1 = require("./orthogonal-ordering/lambda-2-hlsg07");
+var kendall_tau_distance_1 = require("./orthogonal-ordering/kendall-tau-distance");
 var area_hlsg07_1 = require("./spread/area-hlsg07");
 var dm_h_hl03_1 = require("./node-mouvement/dm-h-hl03");
 /**
@@ -26,7 +26,7 @@ exports.nHlsg = function (initialGraph, updatedGraph) {
     }
     return {
         value: 0.25 * mn_hlsg07_1.lambda1Hlsg(initialGraph, updatedGraph).value +
-            0.25 * lambda_2_hlsg07_1.orthogonalOrderingHlgs(initialGraph, updatedGraph).value +
+            0.25 * kendall_tau_distance_1.lambda2(initialGraph, updatedGraph).value +
             0.25 * area_hlsg07_1.AreaNormalized(initialGraph, updatedGraph).value +
             0.25 * dm_h_hl03_1.changeHl(initialGraph, updatedGraph).value
     };

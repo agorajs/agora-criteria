@@ -1,4 +1,4 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 /**
@@ -7,7 +7,7 @@ import { criteriaWrap } from '../utils';
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const orthogonalOrderingSss: CriteriaFunction = function(
+export const numberOfInversions: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -32,7 +32,7 @@ export const orthogonalOrderingSss: CriteriaFunction = function(
 };
 
 export const OrthogonalOrderingNumberInversionsCriteria = criteriaWrap({
-  criteria: orthogonalOrderingSss,
+  criteria: numberOfInversions,
   name: 'orthogonal-ordering/number-of-inversions',
   short: 'oo_ni'
 });

@@ -1,7 +1,8 @@
 import { CriteriaFunction, Criteria } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
-export const orthogonalOrderingMels: CriteriaFunction = function(
+//TODO: MELS 95
+export const orthogonalOrdering: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -26,9 +27,9 @@ export const orthogonalOrderingMels: CriteriaFunction = function(
 };
 
 export const OrthogonalOrderingCriteria = criteriaWrap({
-  criteria: orthogonalOrderingMels,
-  name: 'orthogonal-ordering',
-  short: 'oo'
+  criteria: orthogonalOrdering,
+  name: 'orthogonal-ordering/original',
+  short: 'oo_o'
 });
 
 export default OrthogonalOrderingCriteria;

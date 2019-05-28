@@ -1,13 +1,13 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 /**
- * * CHANGE to ni custom
+ * TODO : US
  * Evaluates the updatedGraph using the orthogonal ordering criteria
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const meanNumberInversions: CriteriaFunction = function(
+export const numberOfInversionsNormalized: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -29,13 +29,15 @@ export const meanNumberInversions: CriteriaFunction = function(
   }
 
   return {
-    value: sum / ((initialNodes.length * (initialNodes.length - 1)) / 2)
+    value: sum / (initialNodes.length * (initialNodes.length - 1))
   };
 };
 
-export const OrthogonalOrderingNumberInversionsMeanCriteria = criteriaWrap({
-  criteria: meanNumberInversions,
-  name: 'orthogonal-ordering/number-of-inversions/mean',
-  short: 'oo_ni_m'
-});
-export default OrthogonalOrderingNumberInversionsMeanCriteria;
+export const OrthogonalOrderingNumberInversionsNormalizedCriteria = criteriaWrap(
+  {
+    criteria: numberOfInversionsNormalized,
+    name: 'orthogonal-ordering/number-of-inversions-normalized',
+    short: 'oo_nin'
+  }
+);
+export default OrthogonalOrderingNumberInversionsNormalizedCriteria;

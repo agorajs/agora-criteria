@@ -1,17 +1,14 @@
-import { CriteriaFunction, Criteria } from '../interfaces';
+import { CriteriaFunction } from '../interfaces';
 import { Node, top, left } from 'agora-graph';
 import { criteriaWrap } from '../utils';
 
 /**
- * TODO: HLGS07
+ * TODO: HLGS 07
  * Evaluates the updatedGraph using the orthogonal ordering criteria
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const orthogonalOrderingHlgs: CriteriaFunction = function(
-  initialGraph,
-  updatedGraph
-) {
+export const lambda2: CriteriaFunction = function(initialGraph, updatedGraph) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
@@ -39,9 +36,9 @@ function iv(u: Node, v: Node, u_prime: Node, v_prime: Node): boolean {
   );
 }
 
-export const OrthogonalOrderingKendallTauCriteria = criteriaWrap({
-  criteria: orthogonalOrderingHlgs,
-  name: 'orthogonal-ordering/kendall-tau',
-  short: 'oo_kt'
+export const OrthogonalOrderingKendallTauDistanceCriteria = criteriaWrap({
+  criteria: lambda2,
+  name: 'orthogonal-ordering/kendall-tau-distance',
+  short: 'oo_ktd'
 });
-export default OrthogonalOrderingKendallTauCriteria;
+export default OrthogonalOrderingKendallTauDistanceCriteria;

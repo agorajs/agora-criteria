@@ -1,12 +1,12 @@
-import OrthogonalOrderingCriteria from './orthogonal-ordering-mels95';
-import OrthogonalOrderingNumberInversionsCriteria from './number-inversions-sss12';
-import OrthogonalOrderingNumberInversionsMeanCriteria from './ni-custom';
-import OrthogonalOrderingKendallTauCriteria from './lambda-2-hlsg07';
+import OrthogonalOrderingCriteria from './original';
+import OrthogonalOrderingNumberInversionsCriteria from './number-of-inversions';
+import OrthogonalOrderingNumberInversionsNormalizedCriteria from './number-of-inversions-normalized';
+import OrthogonalOrderingKendallTauDistanceCriteria from './kendall-tau-distance';
 
 export const OrthogonalOrdering = {
   Default: OrthogonalOrderingCriteria,
   NumberInversions: OrthogonalOrderingNumberInversionsCriteria,
-  NumberInversionsMean: OrthogonalOrderingNumberInversionsMeanCriteria,
-  KendallTau: OrthogonalOrderingKendallTauCriteria
+  NumberInversionsNormalized: OrthogonalOrderingNumberInversionsNormalizedCriteria,
+  KendallTauDistance: OrthogonalOrderingKendallTauDistanceCriteria
 };
 export default OrthogonalOrdering;
