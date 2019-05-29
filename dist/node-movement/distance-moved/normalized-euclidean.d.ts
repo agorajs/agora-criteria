@@ -6,5 +6,5 @@ import { CriteriaFunction } from '../../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const distancesMoved: CriteriaFunction;
-export declare const NodeMovementDistanceMovedEuclideanNormalizedCriteria: import("../../interfaces").Criteria<"nm_dm_en", "node-movement/distance-moved/euclidean-normalized">;
-export default NodeMovementDistanceMovedEuclideanNormalizedCriteria;
+export declare const NodeMovementDistanceMovedNormalizedEuclideanCriteria: import("../../interfaces").Criteria<"nm_dm_ne", "node-movement/distance-moved/normalized-euclidean">;
+export default NodeMovementDistanceMovedNormalizedEuclideanCriteria;

@@ -7,7 +7,7 @@ var utils_1 = require("../utils");
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-exports.numberOfInversionsNormalized = function (initialGraph, updatedGraph) {
+exports.normalizedNumberOfInversions = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     var sum = 0;
@@ -27,9 +27,9 @@ exports.numberOfInversionsNormalized = function (initialGraph, updatedGraph) {
         value: sum / (initialNodes.length * (initialNodes.length - 1))
     };
 };
-exports.OrthogonalOrderingNumberInversionsNormalizedCriteria = utils_1.criteriaWrap({
-    criteria: exports.numberOfInversionsNormalized,
-    name: 'orthogonal-ordering/number-of-inversions-normalized',
-    short: 'oo_nin'
+exports.OrthogonalOrderingNumberNormalizedInversionsCriteria = utils_1.criteriaWrap({
+    criteria: exports.normalizedNumberOfInversions,
+    name: 'orthogonal-ordering/normalized-number-of-inversions',
+    short: 'oo_nni'
 });
-exports.default = exports.OrthogonalOrderingNumberInversionsNormalizedCriteria;
+exports.default = exports.OrthogonalOrderingNumberNormalizedInversionsCriteria;
