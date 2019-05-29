@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var moved_nodes_1 = require("./node-movement/moved-nodes");
 var kendall_tau_distance_1 = require("./orthogonal-ordering/kendall-tau-distance");
-var area_normalized_1 = require("./spread/bounding-box/area-normalized");
+var normalized_area_1 = require("./spread/bounding-box/normalized-area");
 var hamiltonian_1 = require("./node-movement/distance-moved/hamiltonian");
 /**
  *
@@ -27,7 +27,7 @@ exports.nHlsg = function (initialGraph, updatedGraph) {
     return {
         value: 0.25 * moved_nodes_1.lambda1(initialGraph, updatedGraph).value +
             0.25 * kendall_tau_distance_1.lambda2(initialGraph, updatedGraph).value +
-            0.25 * area_normalized_1.areaNormalized(initialGraph, updatedGraph).value +
+            0.25 * normalized_area_1.lambda3(initialGraph, updatedGraph).value +
             0.25 * hamiltonian_1.costFunction(initialGraph, updatedGraph).value
     };
 };
