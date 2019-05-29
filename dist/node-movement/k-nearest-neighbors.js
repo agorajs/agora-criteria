@@ -13,7 +13,7 @@ var utils_1 = require("../utils");
  *
  * @returns {{value: number, displacement: Edge[]}}
  */
-exports.kNearestNeighborsNNB = function (initialGraph, updatedGraph, options) {
+exports.kNearestNeighbors = function (initialGraph, updatedGraph, options) {
     var k = options.k;
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
@@ -40,13 +40,11 @@ function n(k) {
 function createKNearestNeighborsCriteria(k) {
     if (k === void 0) { k = 8; }
     return utils_1.criteriaWrap({
-        criteria: function (initial, updated) {
-            return exports.kNearestNeighborsNNB(initial, updated, { k: k });
-        },
-        name: 'node-mouvement/distance-moved/' + k + '-nearest-neighbors',
-        short: 'mn_dm_' + k + 'nn'
+        criteria: function (initial, updated) { return exports.kNearestNeighbors(initial, updated, { k: k }); },
+        name: 'node-mouvement/' + k + '-nearest-neighbors',
+        short: 'mn_' + k + 'nn'
     });
 }
 exports.createKNearestNeighborsCriteria = createKNearestNeighborsCriteria;
-exports.NodeMouvement8NearestNeighborsCriteria = createKNearestNeighborsCriteria();
-exports.default = exports.NodeMouvement8NearestNeighborsCriteria;
+exports.NodeMovement8NearestNeighborsCriteria = createKNearestNeighborsCriteria();
+exports.default = exports.NodeMovement8NearestNeighborsCriteria;

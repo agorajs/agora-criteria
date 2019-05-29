@@ -52,14 +52,17 @@ function delta(edges, r) {
     return (Math.sqrt(lodash_1.default.sumBy(edges, function (e) { return Math.pow(r(e) - meanR, 2); }) / edges.length) /
         meanR);
 }
-exports.EdgeRelativeStandardDeviationDelaunayCriteria = utils_1.criteriaWrap({
+exports.EdgeBasedRelativeStandardDeviationDelaunayCriteria = utils_1.criteriaWrap({
     criteria: function (initial, updated) { return exports.edgeLength(initial, updated, true); },
-    name: 'edge/relative-standard-deviation/delaunay',
-    short: 'e_rsd_d'
+    name: 'edge-based/relative-standard-deviation/delaunay',
+    short: 'e_rsdd'
 });
-exports.EdgeRelativeStandardDeviationCriteria = utils_1.criteriaWrap({
+/**
+ * @deprecated
+ */
+exports.EdgeBasedRelativeStandardDeviationCriteria = utils_1.criteriaWrap({
     criteria: function (initial, updated) { return exports.edgeLength(initial, updated, false); },
-    name: 'edge/relative-standard-deviation',
+    name: 'edge-based/relative-standard-deviation',
     short: 'e_rsd'
 });
-exports.default = exports.EdgeRelativeStandardDeviationDelaunayCriteria;
+exports.default = exports.EdgeBasedRelativeStandardDeviationDelaunayCriteria;

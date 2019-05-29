@@ -1,9 +1,9 @@
 import { Manager } from './interfaces';
-import EdgeLength from './edge';
+import EdgeBased from './edge-based';
 import GlobalShape from './global-shape';
-import NodeMouvement from './node-mouvement';
+import NodeMovement from './node-movement';
 import OrthogonalOrdering from './orthogonal-ordering';
 import Spread from './spread';
-export { EdgeLength, GlobalShape, NodeMouvement, OrthogonalOrdering, Spread };
+export { EdgeBased, GlobalShape, NodeMovement, OrthogonalOrdering, Spread };
 export declare const manager: Manager;
 export default manager;

@@ -4,18 +4,13 @@ var agora_graph_1 = require("agora-graph");
 var utils_1 = require("../utils");
 // TODO: LEN05
 exports.edgeRatioLen = function (initial, updated) {
-    try {
-        var ratioOfInitial = calculateEdgeRatio(initial);
-        var ratioOfUpdated = calculateEdgeRatio(updated);
-        return {
-            value: ratioOfUpdated / ratioOfInitial,
-            initial: ratioOfInitial,
-            updated: ratioOfUpdated
-        };
-    }
-    catch (error) {
-        return { value: -1, error: error };
-    }
+    var ratioOfInitial = calculateEdgeRatio(initial);
+    var ratioOfUpdated = calculateEdgeRatio(updated);
+    return {
+        value: ratioOfUpdated / ratioOfInitial,
+        initial: ratioOfInitial,
+        updated: ratioOfUpdated
+    };
 };
 function calculateEdgeRatio(graph) {
     var min, max;
@@ -32,12 +27,12 @@ function calculateEdgeRatio(graph) {
             max = norm_uv;
     }
     if (max == undefined || min == undefined)
-        throw 'could not evaluate edge/ratio';
+        throw 'could not evaluate edge-based/ratio';
     return max / min;
 }
-exports.EdgeLengthRatioCriteria = utils_1.criteriaWrap({
+exports.EdgeBasedRatioCriteria = utils_1.criteriaWrap({
     criteria: exports.edgeRatioLen,
-    name: 'edge/ratio',
-    short: 'e_r'
+    name: 'edge-based/ratio',
+    short: 'eb_r'
 });
-exports.default = exports.EdgeLengthRatioCriteria;
+exports.default = exports.EdgeBasedRatioCriteria;

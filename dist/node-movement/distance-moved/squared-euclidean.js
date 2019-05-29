@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var agora_graph_1 = require("agora-graph");
-var utils_1 = require("../utils");
+var utils_1 = require("../../utils");
 /**
  * TODO: MSTH03
  * Evaluates the updatedGraph
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-exports.changeSquareMsth = function (initialGraph, updatedGraph) {
+exports.phiChange = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     var sum = 0;
@@ -19,9 +19,9 @@ exports.changeSquareMsth = function (initialGraph, updatedGraph) {
     }
     return { value: sum };
 };
-exports.NodeMouvementDistanceMovedSquaredCriteria = utils_1.criteriaWrap({
-    criteria: exports.changeSquareMsth,
-    name: 'node-mouvement/distance-moved/squared',
-    short: 'nm_dm_s'
+exports.NodeMovementDistanceMovedEuclideanSquareCriteria = utils_1.criteriaWrap({
+    criteria: exports.phiChange,
+    name: 'node-movement/distance-moved/squared-euclidean',
+    short: 'nm_dm_se'
 });
-exports.default = exports.NodeMouvementDistanceMovedSquaredCriteria;
+exports.default = exports.NodeMovementDistanceMovedEuclideanSquareCriteria;

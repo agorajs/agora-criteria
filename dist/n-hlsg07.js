@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mn_hlsg07_1 = require("./node-mouvement/mn-hlsg07");
+var moved_nodes_1 = require("./node-movement/moved-nodes");
 var kendall_tau_distance_1 = require("./orthogonal-ordering/kendall-tau-distance");
 var area_normalized_1 = require("./spread/bounding-box/area-normalized");
-var dm_h_hl03_1 = require("./node-mouvement/dm-h-hl03");
+var hamiltonian_1 = require("./node-movement/distance-moved/hamiltonian");
 /**
  *
  * TODO: HLSG07
@@ -25,9 +25,9 @@ exports.nHlsg = function (initialGraph, updatedGraph) {
         throw 'Criteria degree-layout-adjustment-HLSG07 abording : not same number of nodes';
     }
     return {
-        value: 0.25 * mn_hlsg07_1.lambda1Hlsg(initialGraph, updatedGraph).value +
+        value: 0.25 * moved_nodes_1.lambda1(initialGraph, updatedGraph).value +
             0.25 * kendall_tau_distance_1.lambda2(initialGraph, updatedGraph).value +
             0.25 * area_normalized_1.areaNormalized(initialGraph, updatedGraph).value +
-            0.25 * dm_h_hl03_1.changeHl(initialGraph, updatedGraph).value
+            0.25 * hamiltonian_1.costFunction(initialGraph, updatedGraph).value
     };
 };

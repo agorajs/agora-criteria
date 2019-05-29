@@ -12,6 +12,9 @@ import { Graph } from 'agora-graph';
 export declare const edgeLength: (initialGraph: Graph<number>, updatedGraph: Graph<number>, withDelaunay?: boolean) => {
     value: number;
 };
-export declare const EdgeRelativeStandardDeviationDelaunayCriteria: import("../interfaces").Criteria<"e_rsd_d", "edge/relative-standard-deviation/delaunay">;
-export declare const EdgeRelativeStandardDeviationCriteria: import("../interfaces").Criteria<"e_rsd", "edge/relative-standard-deviation">;
-export default EdgeRelativeStandardDeviationDelaunayCriteria;
+export declare const EdgeBasedRelativeStandardDeviationDelaunayCriteria: import("../interfaces").Criteria<"e_rsdd", "edge-based/relative-standard-deviation/delaunay">;
+/**
+ * @deprecated
+ */
+export declare const EdgeBasedRelativeStandardDeviationCriteria: import("../interfaces").Criteria<"e_rsd", "edge-based/relative-standard-deviation">;
+export default EdgeBasedRelativeStandardDeviationDelaunayCriteria;
