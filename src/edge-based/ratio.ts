@@ -1,20 +1,16 @@
-import { norm, Edge, Graph } from 'agora-graph';
-import { Criteria, CriteriaFunction } from '../interfaces';
+import { norm, Graph } from 'agora-graph';
+import { CriteriaFunction } from '../interfaces';
 import { criteriaWrap } from '../utils';
 
 // TODO: LEN05
 export const edgeRatioLen: CriteriaFunction = function(initial, updated) {
-  try {
-    let ratioOfInitial = calculateEdgeRatio(initial);
-    let ratioOfUpdated = calculateEdgeRatio(updated);
-    return {
-      value: ratioOfUpdated / ratioOfInitial,
-      initial: ratioOfInitial,
-      updated: ratioOfUpdated
-    };
-  } catch (error) {
-    return { value: -1, error };
-  }
+  let ratioOfInitial = calculateEdgeRatio(initial);
+  let ratioOfUpdated = calculateEdgeRatio(updated);
+  return {
+    value: ratioOfUpdated / ratioOfInitial,
+    initial: ratioOfInitial,
+    updated: ratioOfUpdated
+  };
 };
 
 function calculateEdgeRatio(graph: Graph): number {
@@ -31,13 +27,13 @@ function calculateEdgeRatio(graph: Graph): number {
   }
 
   if (max == undefined || min == undefined)
-    throw 'could not evaluate edge/ratio';
+    throw 'could not evaluate edge-based/ratio';
   return max / min;
 }
 
-export const EdgeLengthRatioCriteria = criteriaWrap({
+export const EdgeBasedRatioCriteria = criteriaWrap({
   criteria: edgeRatioLen,
-  name: 'edge/ratio',
-  short: 'e_r'
+  name: 'edge-based/ratio',
+  short: 'eb_r'
 });
-export default EdgeLengthRatioCriteria;
+export default EdgeBasedRatioCriteria;

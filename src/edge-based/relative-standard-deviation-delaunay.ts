@@ -61,15 +61,18 @@ function delta(edges: Edge[], r: (e: Edge) => number) {
   );
 }
 
-export const EdgeRelativeStandardDeviationDelaunayCriteria = criteriaWrap({
+export const EdgeBasedRelativeStandardDeviationDelaunayCriteria = criteriaWrap({
   criteria: (initial, updated) => edgeLength(initial, updated, true),
-  name: 'edge/relative-standard-deviation/delaunay',
-  short: 'e_rsd_d'
+  name: 'edge-based/relative-standard-deviation/delaunay',
+  short: 'e_rsdd'
 });
 
-export const EdgeRelativeStandardDeviationCriteria = criteriaWrap({
+/**
+ * @deprecated
+ */
+export const EdgeBasedRelativeStandardDeviationCriteria = criteriaWrap({
   criteria: (initial, updated) => edgeLength(initial, updated, false),
-  name: 'edge/relative-standard-deviation',
+  name: 'edge-based/relative-standard-deviation',
   short: 'e_rsd'
 });
-export default EdgeRelativeStandardDeviationDelaunayCriteria;
+export default EdgeBasedRelativeStandardDeviationDelaunayCriteria;
