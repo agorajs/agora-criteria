@@ -7,7 +7,7 @@ import { criteriaWrap } from '../utils';
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const numberOfInversionsNormalized: CriteriaFunction = function(
+export const normalizedNumberOfInversions: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -33,11 +33,11 @@ export const numberOfInversionsNormalized: CriteriaFunction = function(
   };
 };
 
-export const OrthogonalOrderingNumberInversionsNormalizedCriteria = criteriaWrap(
+export const OrthogonalOrderingNumberNormalizedInversionsCriteria = criteriaWrap(
   {
-    criteria: numberOfInversionsNormalized,
-    name: 'orthogonal-ordering/number-of-inversions-normalized',
-    short: 'oo_nin'
+    criteria: normalizedNumberOfInversions,
+    name: 'orthogonal-ordering/normalized-number-of-inversions',
+    short: 'oo_nni'
   }
 );
-export default OrthogonalOrderingNumberInversionsNormalizedCriteria;
+export default OrthogonalOrderingNumberNormalizedInversionsCriteria;

@@ -1,12 +1,12 @@
 import OrthogonalOrderingCriteria from './original';
 import OrthogonalOrderingNumberInversionsCriteria from './number-of-inversions';
-import OrthogonalOrderingNumberInversionsNormalizedCriteria from './number-of-inversions-normalized';
+import OrthogonalOrderingNumberNormalizedInversionsCriteria from './normalized-number-of-inversions';
 import OrthogonalOrderingKendallTauDistanceCriteria from './kendall-tau-distance';
 
 export const OrthogonalOrdering = {
   Default: OrthogonalOrderingCriteria,
   NumberInversions: OrthogonalOrderingNumberInversionsCriteria,
-  NumberInversionsNormalized: OrthogonalOrderingNumberInversionsNormalizedCriteria,
+  NormalizedNumberInversions: OrthogonalOrderingNumberNormalizedInversionsCriteria,
   KendallTauDistance: OrthogonalOrderingKendallTauDistanceCriteria
 };
 export default OrthogonalOrdering;

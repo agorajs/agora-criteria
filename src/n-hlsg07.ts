@@ -2,7 +2,7 @@ import { CriteriaFunction } from './interfaces';
 import _ from 'lodash';
 import { lambda1 } from './node-movement/moved-nodes';
 import { lambda2 } from './orthogonal-ordering/kendall-tau-distance';
-import { areaNormalized } from './spread/bounding-box/area-normalized';
+import { lambda3 } from './spread/bounding-box/normalized-area';
 import { costFunction } from './node-movement/distance-moved/hamiltonian';
 
 /**
@@ -32,7 +32,7 @@ export const nHlsg: CriteriaFunction = function(initialGraph, updatedGraph) {
     value:
       0.25 * lambda1(initialGraph, updatedGraph).value +
       0.25 * lambda2(initialGraph, updatedGraph).value +
-      0.25 * areaNormalized(initialGraph, updatedGraph).value +
+      0.25 * lambda3(initialGraph, updatedGraph).value +
       0.25 * costFunction(initialGraph, updatedGraph).value
   };
 };
