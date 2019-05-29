@@ -25,9 +25,9 @@ exports.distancesMoved = function (initialGraph, updatedGraph) {
     var k = Math.max(w, h, wp, hp);
     return { value: sum / (k * Math.SQRT2 * n) };
 };
-exports.NodeMovementDistanceMovedEuclideanNormalizedCriteria = utils_1.criteriaWrap({
+exports.NodeMovementDistanceMovedNormalizedEuclideanCriteria = utils_1.criteriaWrap({
     criteria: exports.distancesMoved,
-    name: 'node-movement/distance-moved/euclidean-normalized',
-    short: 'nm_dm_en'
+    name: 'node-movement/distance-moved/normalized-euclidean',
+    short: 'nm_dm_ne'
 });
-exports.default = exports.NodeMovementDistanceMovedEuclideanNormalizedCriteria;
+exports.default = exports.NodeMovementDistanceMovedNormalizedEuclideanCriteria;

@@ -8,7 +8,7 @@ var utils_1 = require("../../utils");
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-exports.areaNormalized = function (initialGraph, updatedGraph) {
+exports.lambda3 = function (initialGraph, updatedGraph) {
     var initialNodes = initialGraph.nodes;
     var updatedNodes = updatedGraph.nodes;
     var w = agora_graph_1.right(agora_graph_1.right(initialNodes)) - agora_graph_1.left(agora_graph_1.left(initialNodes));
@@ -17,9 +17,9 @@ exports.areaNormalized = function (initialGraph, updatedGraph) {
     var hp = agora_graph_1.bottom(agora_graph_1.bottom(updatedNodes)) - agora_graph_1.top(agora_graph_1.top(updatedNodes));
     return { value: 1 - (w * h) / (wp * hp) };
 };
-exports.SpreadBoundingBoxAreaNormalizedCriteria = utils_1.criteriaWrap({
-    criteria: exports.areaNormalized,
-    name: 'spread/bounding-box/area-normalized',
-    short: 'sp_bb_an'
+exports.SpreadBoundingBoxNormalizedAreaCriteria = utils_1.criteriaWrap({
+    criteria: exports.lambda3,
+    name: 'spread/bounding-box/normalized-area',
+    short: 'sp_bb_na'
 });
-exports.default = exports.SpreadBoundingBoxAreaNormalizedCriteria;
+exports.default = exports.SpreadBoundingBoxNormalizedAreaCriteria;

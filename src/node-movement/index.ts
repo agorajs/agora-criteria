@@ -1,4 +1,4 @@
-import NodeMovementDistanceMovedEuclideanNormalizedCriteria from './distance-moved/euclidean-normalized';
+import NodeMovementDistanceMovedNormalizedEuclideanCriteria from './distance-moved/normalized-euclidean';
 import NodeMovementDistanceMovedHamiltonianCriteria from './distance-moved/hamiltonian';
 import NodeMovementDistanceMovedEuclideanSquareCriteria from './distance-moved/squared-euclidean';
 import NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria from './distance-moved/improved-mean-squared-euclidean';
@@ -10,7 +10,7 @@ import NodeMovement8NearestNeighborsCriteria, {
 
 export const NodeMovement = {
   DistanceMoved: {
-    EuclideanNormalized: NodeMovementDistanceMovedEuclideanNormalizedCriteria,
+    NormalizedEuclidean: NodeMovementDistanceMovedNormalizedEuclideanCriteria,
     Hamiltonian: NodeMovementDistanceMovedHamiltonianCriteria,
     SquaredEuclidean: NodeMovementDistanceMovedEuclideanSquareCriteria,
     MeanEuclidean: NodeMovementDistanceMovedMeanEuclideanCriteria,

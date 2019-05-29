@@ -8,10 +8,7 @@ import { criteriaWrap } from '../../utils';
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const areaNormalized: CriteriaFunction = function(
-  initialGraph,
-  updatedGraph
-) {
+export const lambda3: CriteriaFunction = function(initialGraph, updatedGraph) {
   const initialNodes = initialGraph.nodes;
   const updatedNodes = updatedGraph.nodes;
 
@@ -23,10 +20,10 @@ export const areaNormalized: CriteriaFunction = function(
   return { value: 1 - (w * h) / (wp * hp) };
 };
 
-export const SpreadBoundingBoxAreaNormalizedCriteria = criteriaWrap({
-  criteria: areaNormalized,
-  name: 'spread/bounding-box/area-normalized',
-  short: 'sp_bb_an'
+export const SpreadBoundingBoxNormalizedAreaCriteria = criteriaWrap({
+  criteria: lambda3,
+  name: 'spread/bounding-box/normalized-area',
+  short: 'sp_bb_na'
 });
 
-export default SpreadBoundingBoxAreaNormalizedCriteria;
+export default SpreadBoundingBoxNormalizedAreaCriteria;

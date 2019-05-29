@@ -10,7 +10,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var euclidean_normalized_1 = __importDefault(require("./distance-moved/euclidean-normalized"));
+var normalized_euclidean_1 = __importDefault(require("./distance-moved/normalized-euclidean"));
 var hamiltonian_1 = __importDefault(require("./distance-moved/hamiltonian"));
 var squared_euclidean_1 = __importDefault(require("./distance-moved/squared-euclidean"));
 var improved_mean_squared_euclidean_1 = __importDefault(require("./distance-moved/improved-mean-squared-euclidean"));
@@ -19,7 +19,7 @@ var mean_euclidean_1 = __importDefault(require("./distance-moved/mean-euclidean"
 var k_nearest_neighbors_1 = __importStar(require("./k-nearest-neighbors"));
 exports.NodeMovement = {
     DistanceMoved: {
-        EuclideanNormalized: euclidean_normalized_1.default,
+        NormalizedEuclidean: normalized_euclidean_1.default,
         Hamiltonian: hamiltonian_1.default,
         SquaredEuclidean: squared_euclidean_1.default,
         MeanEuclidean: mean_euclidean_1.default,

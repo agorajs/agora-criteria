@@ -35,11 +35,11 @@ export const distancesMoved: CriteriaFunction = function(
   return { value: sum / (k * Math.SQRT2 * n) };
 };
 
-export const NodeMovementDistanceMovedEuclideanNormalizedCriteria = criteriaWrap(
+export const NodeMovementDistanceMovedNormalizedEuclideanCriteria = criteriaWrap(
   {
     criteria: distancesMoved,
-    name: 'node-movement/distance-moved/euclidean-normalized',
-    short: 'nm_dm_en'
+    name: 'node-movement/distance-moved/normalized-euclidean',
+    short: 'nm_dm_ne'
   }
 );
-export default NodeMovementDistanceMovedEuclideanNormalizedCriteria;
+export default NodeMovementDistanceMovedNormalizedEuclideanCriteria;

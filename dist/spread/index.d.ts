@@ -1,7 +1,7 @@
 export declare const Spread: {
     BoundingBox: {
         Area: import("../interfaces").Criteria<"sp_bb_a", "spread/bounding-box/area">;
-        AreaNormalized: import("../interfaces").Criteria<"sp_bb_an", "spread/bounding-box/area-normalized">;
+        NormalizedArea: import("../interfaces").Criteria<"sp_bb_na", "spread/bounding-box/normalized-area">;
         L1MetricLength: import("../interfaces").Criteria<"sp_bb_l1ml", "spread/bounding-box/l1-metric-length">;
     };
     ConvexHull: {
