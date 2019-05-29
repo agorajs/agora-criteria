@@ -1,24 +1,24 @@
-import NodeMouvementDistanceMovedNormalizedCriteria from './square-normalized';
-import NodeMouvementDistanceMovedHamiltonianCriteria from './distance-moved/hamiltonian';
-import NodeMovementDistanceMovedSquareCriteria from './distance-moved/square';
-import NodeMouvementDistanceMovedCustomCriteria from './dm-ime';
+import NodeMovementDistanceMovedEuclideanNormalizedCriteria from './distance-moved/euclidean-normalized';
+import NodeMovementDistanceMovedHamiltonianCriteria from './distance-moved/hamiltonian';
+import NodeMovementDistanceMovedEuclideanSquareCriteria from './distance-moved/squared-euclidean';
+import NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria from './distance-moved/improved-mean-squared-euclidean';
 import NodeMovementMovedNodesCriteria from './moved-nodes';
-import NodeMovementDistanceMovedMeanEuclideanCriteria from './distance-moved/mean-euclidian';
-import NodeMouvement8NearestNeighborsCriteria, {
+import NodeMovementDistanceMovedMeanEuclideanCriteria from './distance-moved/mean-euclidean';
+import NodeMovement8NearestNeighborsCriteria, {
   createKNearestNeighborsCriteria
-} from './knn-nnb16';
+} from './k-nearest-neighbors';
 
 export const NodeMovement = {
   DistanceMoved: {
-    Normalized: NodeMouvementDistanceMovedNormalizedCriteria,
-    Hamiltonian: NodeMouvementDistanceMovedHamiltonianCriteria,
-    Square: NodeMovementDistanceMovedSquareCriteria,
+    EuclideanNormalized: NodeMovementDistanceMovedEuclideanNormalizedCriteria,
+    Hamiltonian: NodeMovementDistanceMovedHamiltonianCriteria,
+    SquaredEuclidean: NodeMovementDistanceMovedEuclideanSquareCriteria,
     MeanEuclidean: NodeMovementDistanceMovedMeanEuclideanCriteria,
-    Custom: NodeMouvementDistanceMovedCustomCriteria
+    ImprovedMeanSquaredEuclidean: NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria
   },
   MovedNodes: NodeMovementMovedNodesCriteria,
   KNearestNeighbors: {
-    default: NodeMouvement8NearestNeighborsCriteria,
+    default: NodeMovement8NearestNeighborsCriteria,
     setK: createKNearestNeighborsCriteria
   }
 };

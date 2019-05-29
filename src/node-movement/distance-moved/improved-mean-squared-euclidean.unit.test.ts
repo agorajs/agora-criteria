@@ -1,4 +1,4 @@
-import NodeMouvementDistanceMovedCustomCriteria from './dm-ime';
+import NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria from './improved-mean-squared-euclidean';
 
 const init = {
   nodes: [
@@ -72,40 +72,58 @@ const nudgedDoubleXY = {
   edges: []
 };
 test('Custom is working correctly', () => {
-  expect(NodeMouvementDistanceMovedCustomCriteria.criteria(init, init)).toEqual(
-    {
-      value: 0,
-      displacement: [0, 0, 0, 0, 0, 0]
-    }
-  );
+  expect(
+    NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria.criteria(
+      init,
+      init
+    )
+  ).toEqual({
+    value: 0,
+    displacement: [0, 0, 0, 0, 0, 0]
+  });
 
   expect(
-    NodeMouvementDistanceMovedCustomCriteria.criteria(init, change)
+    NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria.criteria(
+      init,
+      change
+    )
   ).toEqual({ displacement: [2, 0, 0, 0, 0, 0], value: 0.6666666666666666 });
 
   expect(
-    NodeMouvementDistanceMovedCustomCriteria.criteria(init, doubleInitX)
+    NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria.criteria(
+      init,
+      doubleInitX
+    )
   ).toEqual({
     value: 0,
     displacement: [0, 0, 0, 0, 0, 0]
   });
 
   expect(
-    NodeMouvementDistanceMovedCustomCriteria.criteria(init, doubleInitY)
+    NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria.criteria(
+      init,
+      doubleInitY
+    )
   ).toEqual({
     value: 0,
     displacement: [0, 0, 0, 0, 0, 0]
   });
 
   expect(
-    NodeMouvementDistanceMovedCustomCriteria.criteria(init, doubleXY)
+    NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria.criteria(
+      init,
+      doubleXY
+    )
   ).toEqual({
     value: 0,
     displacement: [0, 0, 0, 0, 0, 0]
   });
 
   expect(
-    NodeMouvementDistanceMovedCustomCriteria.criteria(init, nudgedDoubleXY)
+    NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria.criteria(
+      init,
+      nudgedDoubleXY
+    )
   ).toEqual({
     value: 0.16666666666666666,
     displacement: [1, 0, 0, 0, 0, 0]

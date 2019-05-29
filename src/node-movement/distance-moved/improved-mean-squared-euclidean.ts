@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Graph, Point, Node, norm, round } from 'agora-graph';
-import { criteriaWrap } from '../utils';
-import { CriteriaResult } from '../interfaces';
+import { criteriaWrap } from '../../utils';
+import { CriteriaResult } from '../../interfaces';
 
 interface IndexedPoint extends Point {
   index: number;
@@ -19,7 +19,7 @@ function getCenter(nodes: Node[], orientation: 'x' | 'y') {
   const max = _.maxBy(nodes, orientation);
 
   if (!min || !max) {
-    throw `Criteria nm_dm_c getSpan error either: ${min} or ${max}`;
+    throw `Criteria nm_dm_imse getSpan error either: ${min} or ${max}`;
   }
 
   return max[orientation] / 2 + min[orientation] / 2;
@@ -30,7 +30,7 @@ function getSpan(nodes: Node[], orientation: 'x' | 'y') {
   const max = _.maxBy(nodes, orientation);
 
   if (!min || !max) {
-    throw `Criteria nm_dm_c getSpan error either: ${min} or ${max}`;
+    throw `Criteria nm_dm_imse getSpan error either: ${min} or ${max}`;
   }
 
   return max[orientation] - min[orientation];
@@ -64,11 +64,12 @@ export function scaleChange(initial: Graph, updated: Graph): CriteriaResult {
       const up = _.find(updatedCenteredNodes, ['index', index]);
 
       if (!up)
-        throw `Criteria nm_dm_c : index ${index} does not exist in updated`;
+        throw `Criteria nm_dm_imse : index ${index} does not exist in updated`;
 
       const diff = norm(projected, up);
       value += (diff * diff) / nodesLength;
       displacement.push(diff);
+
       return { value, displacement };
     },
     { value: 0, displacement: [] }
@@ -86,9 +87,11 @@ function positionFromCenter(nodes: Node[]): IndexedPoint[] {
   }));
 }
 
-export const NodeMouvementDistanceMovedCustomCriteria = criteriaWrap({
-  criteria: scaleChange,
-  name: 'node-mouvement/distance-moved/custom',
-  short: 'nm_dm_c'
-});
-export default NodeMouvementDistanceMovedCustomCriteria;
+export const NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria = criteriaWrap(
+  {
+    criteria: scaleChange,
+    name: 'node-mouvement/distance-moved/improved-mean-squared-euclidean',
+    short: 'nm_dm_imse'
+  }
+);
+export default NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria;

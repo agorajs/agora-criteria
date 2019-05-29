@@ -20,7 +20,7 @@ export const euclideanDistance: CriteriaFunction = function(
   const nodesLength = initialNodes.length;
 
   let change = 0;
-  let displacement = [];
+  let displacement: Edge<Point>[] = [];
 
   for (let index = 0; index < nodesLength; index++) {
     const node = initialNodes[index];

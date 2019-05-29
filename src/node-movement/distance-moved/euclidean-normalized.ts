@@ -1,6 +1,6 @@
-import { CriteriaFunction } from '../interfaces';
+import { CriteriaFunction } from '../../interfaces';
 import { right, left, bottom, top, norm } from 'agora-graph';
-import { criteriaWrap } from '../utils';
+import { criteriaWrap } from '../../utils';
 
 /**
  * TODO: LMR98
@@ -8,7 +8,7 @@ import { criteriaWrap } from '../utils';
  * @param initialGraph the initial graph sorted by index
  * @param updatedGraph the updated graph sorted by index
  */
-export const aspectRatioLmr: CriteriaFunction = function(
+export const distancesMoved: CriteriaFunction = function(
   initialGraph,
   updatedGraph
 ) {
@@ -22,8 +22,7 @@ export const aspectRatioLmr: CriteriaFunction = function(
     const u = initialNodes[u_index];
     const u_prime = updatedNodes[u_index];
 
-    const dist = norm(u_prime, u);
-    sum += dist * dist;
+    sum += norm(u_prime, u);
   }
 
   const w = right(right(initialNodes)) - left(left(initialNodes));
@@ -36,9 +35,11 @@ export const aspectRatioLmr: CriteriaFunction = function(
   return { value: sum / (k * Math.SQRT2 * n) };
 };
 
-export const NodeMouvementDistanceMovedNormalizedCriteria = criteriaWrap({
-  criteria: aspectRatioLmr,
-  name: 'node-mouvement/distance-moved-normalized',
-  short: 'nm_dm_n'
-});
-export default NodeMouvementDistanceMovedNormalizedCriteria;
+export const NodeMovementDistanceMovedEuclideanNormalizedCriteria = criteriaWrap(
+  {
+    criteria: distancesMoved,
+    name: 'node-movement/distance-moved/euclidean-normalized',
+    short: 'nm_dm_en'
+  }
+);
+export default NodeMovementDistanceMovedEuclideanNormalizedCriteria;

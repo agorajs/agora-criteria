@@ -26,9 +26,9 @@ export const phiChange: CriteriaFunction = function(
   return { value: sum };
 };
 
-export const NodeMovementDistanceMovedSquareCriteria = criteriaWrap({
+export const NodeMovementDistanceMovedEuclideanSquareCriteria = criteriaWrap({
   criteria: phiChange,
-  name: 'node-movement/distance-moved/square',
-  short: 'nm_dm_s'
+  name: 'node-movement/distance-moved/squared-euclidean',
+  short: 'nm_dm_se'
 });
-export default NodeMovementDistanceMovedSquareCriteria;
+export default NodeMovementDistanceMovedEuclideanSquareCriteria;
