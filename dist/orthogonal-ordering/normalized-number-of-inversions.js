@@ -27,9 +27,9 @@ exports.normalizedNumberOfInversions = function (initialGraph, updatedGraph) {
         value: sum / (initialNodes.length * (initialNodes.length - 1))
     };
 };
-exports.OrthogonalOrderingNumberNormalizedInversionsCriteria = utils_1.criteriaWrap({
+exports.OrthogonalOrderingNormalizedNumberInversionsCriteria = utils_1.criteriaWrap({
     criteria: exports.normalizedNumberOfInversions,
     name: 'orthogonal-ordering/normalized-number-of-inversions',
     short: 'oo_nni'
 });
-exports.default = exports.OrthogonalOrderingNumberNormalizedInversionsCriteria;
+exports.default = exports.OrthogonalOrderingNormalizedNumberInversionsCriteria;
