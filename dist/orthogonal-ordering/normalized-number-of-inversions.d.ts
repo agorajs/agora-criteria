@@ -6,5 +6,5 @@ import { CriteriaFunction } from '../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const normalizedNumberOfInversions: CriteriaFunction;
-export declare const OrthogonalOrderingNumberNormalizedInversionsCriteria: import("../interfaces").Criteria<"oo_nni", "orthogonal-ordering/normalized-number-of-inversions">;
-export default OrthogonalOrderingNumberNormalizedInversionsCriteria;
+export declare const OrthogonalOrderingNormalizedNumberInversionsCriteria: import("../interfaces").Criteria<"oo_nni", "orthogonal-ordering/normalized-number-of-inversions">;
+export default OrthogonalOrderingNormalizedNumberInversionsCriteria;
