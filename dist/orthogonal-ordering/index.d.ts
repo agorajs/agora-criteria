@@ -1,7 +1,7 @@
 export declare const OrthogonalOrdering: {
-    Default: import("../interfaces").Criteria<"oo", "orthogonal-ordering">;
+    Default: import("../interfaces").Criteria<"oo_o", "orthogonal-ordering/original">;
     NumberInversions: import("../interfaces").Criteria<"oo_ni", "orthogonal-ordering/number-of-inversions">;
-    NumberInversionsMean: import("../interfaces").Criteria<"oo_ni_m", "orthogonal-ordering/number-of-inversions/mean">;
-    KendallTau: import("../interfaces").Criteria<"oo_kt", "orthogonal-ordering/kendall-tau">;
+    NumberInversionsNormalized: import("../interfaces").Criteria<"oo_nin", "orthogonal-ordering/number-of-inversions-normalized">;
+    KendallTauDistance: import("../interfaces").Criteria<"oo_ktd", "orthogonal-ordering/kendall-tau-distance">;
 };
 export default OrthogonalOrdering;

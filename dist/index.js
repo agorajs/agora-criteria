@@ -16,12 +16,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = __importDefault(require("lodash"));
 var interfaces_1 = require("./interfaces");
-var edge_1 = __importDefault(require("./edge"));
-exports.EdgeLength = edge_1.default;
+var edge_based_1 = __importDefault(require("./edge-based"));
+exports.EdgeBased = edge_based_1.default;
 var global_shape_1 = __importDefault(require("./global-shape"));
 exports.GlobalShape = global_shape_1.default;
-var node_mouvement_1 = __importDefault(require("./node-mouvement"));
-exports.NodeMouvement = node_mouvement_1.default;
+var node_movement_1 = __importDefault(require("./node-movement"));
+exports.NodeMovement = node_movement_1.default;
 var orthogonal_ordering_1 = __importDefault(require("./orthogonal-ordering"));
 exports.OrthogonalOrdering = orthogonal_ordering_1.default;
 var spread_1 = __importDefault(require("./spread"));
