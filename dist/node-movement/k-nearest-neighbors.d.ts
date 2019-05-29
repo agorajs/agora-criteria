@@ -7,9 +7,9 @@ import { CriteriaResult } from '../interfaces';
  *
  * @returns {{value: number, displacement: Edge[]}}
  */
-export declare const kNearestNeighborsNNB: (initialGraph: Graph<number>, updatedGraph: Graph<number>, options: {
+export declare const kNearestNeighbors: (initialGraph: Graph<number>, updatedGraph: Graph<number>, options: {
     k: number;
 }) => CriteriaResult;
 export declare function createKNearestNeighborsCriteria(k?: number): import("../interfaces").Criteria<string, string>;
-export declare const NodeMouvement8NearestNeighborsCriteria: import("../interfaces").Criteria<string, string>;
-export default NodeMouvement8NearestNeighborsCriteria;
+export declare const NodeMovement8NearestNeighborsCriteria: import("../interfaces").Criteria<string, string>;
+export default NodeMovement8NearestNeighborsCriteria;
