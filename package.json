@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "criteria repository for Agora Framework",
   "main": "dist/index.js",
-  "author": "stardisblue <stardisblue@gmail.com>",
+  "author": "Fati CHEN <fati.chen@lirmm.fr>",
   "license": "MIT",
   "private": false,
   "scripts": {
