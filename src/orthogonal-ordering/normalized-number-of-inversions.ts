@@ -33,11 +33,11 @@ export const normalizedNumberOfInversions: CriteriaFunction = function(
   };
 };
 
-export const OrthogonalOrderingNumberNormalizedInversionsCriteria = criteriaWrap(
+export const OrthogonalOrderingNormalizedNumberInversionsCriteria = criteriaWrap(
   {
     criteria: normalizedNumberOfInversions,
     name: 'orthogonal-ordering/normalized-number-of-inversions',
     short: 'oo_nni'
   }
 );
-export default OrthogonalOrderingNumberNormalizedInversionsCriteria;
+export default OrthogonalOrderingNormalizedNumberInversionsCriteria;
