@@ -90,7 +90,7 @@ function positionFromCenter(nodes: Node[]): IndexedPoint[] {
 export const NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria = criteriaWrap(
   {
     criteria: scaleChange,
-    name: 'node-mouvement/distance-moved/improved-mean-squared-euclidean',
+    name: 'node-movement/distance-moved/improved-mean-squared-euclidean',
     short: 'nm_dm_imse'
   }
 );
