@@ -8,7 +8,7 @@ var number_of_inversions_1 = __importDefault(require("./number-of-inversions"));
 var normalized_number_of_inversions_1 = __importDefault(require("./normalized-number-of-inversions"));
 var kendall_tau_distance_1 = __importDefault(require("./kendall-tau-distance"));
 exports.OrthogonalOrdering = {
-    Default: original_1.default,
+    Original: original_1.default,
     NumberInversions: number_of_inversions_1.default,
     NormalizedNumberInversions: normalized_number_of_inversions_1.default,
     KendallTauDistance: kendall_tau_distance_1.default

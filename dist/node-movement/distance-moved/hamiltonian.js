@@ -21,7 +21,7 @@ exports.costFunction = function (initialGraph, updatedGraph) {
 };
 exports.NodeMovementDistanceMovedHamiltonianCriteria = utils_1.criteriaWrap({
     criteria: exports.costFunction,
-    name: 'node-mouvement/distance-moved/hamiltonian',
+    name: 'node-movement/distance-moved/hamiltonian',
     short: 'nm_dm_h'
 });
 exports.default = exports.NodeMovementDistanceMovedHamiltonianCriteria;

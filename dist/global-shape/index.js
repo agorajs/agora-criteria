@@ -9,7 +9,7 @@ var convex_hull_standard_deviation_1 = __importDefault(require("./convex-hull_st
 exports.GlobalShape = {
     BoundingBox: {
         AspectRatio: aspect_ratio_1.default,
-        AspectRatioPlus: improved_aspect_ratio_1.default
+        ImprovedAspectRatio: improved_aspect_ratio_1.default
     },
     ConvexHull: {
         StandardDeviation: convex_hull_standard_deviation_1.default

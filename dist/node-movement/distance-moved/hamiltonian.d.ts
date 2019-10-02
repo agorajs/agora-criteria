@@ -6,5 +6,5 @@ import { CriteriaFunction, Criteria } from '../../interfaces';
  * @param updatedGraph the updated graph sorted by index
  */
 export declare const costFunction: CriteriaFunction;
-export declare const NodeMovementDistanceMovedHamiltonianCriteria: Criteria<"nm_dm_h", "node-mouvement/distance-moved/hamiltonian">;
+export declare const NodeMovementDistanceMovedHamiltonianCriteria: Criteria<"nm_dm_h", "node-movement/distance-moved/hamiltonian">;
 export default NodeMovementDistanceMovedHamiltonianCriteria;

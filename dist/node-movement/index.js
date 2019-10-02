@@ -19,11 +19,11 @@ var mean_euclidean_1 = __importDefault(require("./distance-moved/mean-euclidean"
 var k_nearest_neighbors_1 = __importStar(require("./k-nearest-neighbors"));
 exports.NodeMovement = {
     DistanceMoved: {
-        NormalizedEuclidean: normalized_euclidean_1.default,
         Hamiltonian: hamiltonian_1.default,
-        SquaredEuclidean: squared_euclidean_1.default,
+        ImprovedMeanSquaredEuclidean: improved_mean_squared_euclidean_1.default,
+        NormalizedEuclidean: normalized_euclidean_1.default,
         MeanEuclidean: mean_euclidean_1.default,
-        ImprovedMeanSquaredEuclidean: improved_mean_squared_euclidean_1.default
+        SquaredEuclidean: squared_euclidean_1.default
     },
     MovedNodes: moved_nodes_1.default,
     KNearestNeighbors: {

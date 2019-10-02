@@ -33,6 +33,6 @@ exports.euclideanDistance = function (initialGraph, updatedGraph) {
 exports.NodeMovementDistanceMovedMeanEuclideanCriteria = utils_1.criteriaWrap({
     criteria: exports.euclideanDistance,
     name: 'node-movement/distance-moved/mean-euclidean',
-    short: 'mn_dm_me'
+    short: 'nm_dm_me'
 });
 exports.default = exports.NodeMovementDistanceMovedMeanEuclideanCriteria;

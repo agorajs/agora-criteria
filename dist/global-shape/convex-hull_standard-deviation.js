@@ -65,7 +65,7 @@ function calculateConvexHullDistances(hull) {
         if (intersection)
             distances.push(agora_graph_1.magnitude(intersection));
         else
-            throw 'it is supposed to intersect :(';
+            throw Error('it is supposed to intersect :(');
     });
     return distances;
 }
@@ -77,7 +77,7 @@ function getIntersectingLine(lines, ray) {
             return line;
     }
     // should never be in this case
-    throw 'Cannot be here';
+    throw Error('Unreachable error, how did you manage to get here');
     return lines[0];
 }
 function getLines(elements) {

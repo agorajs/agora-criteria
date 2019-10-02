@@ -16,7 +16,7 @@ function getCenter(nodes, orientation) {
     var min = lodash_1.default.minBy(nodes, orientation);
     var max = lodash_1.default.maxBy(nodes, orientation);
     if (!min || !max) {
-        throw "Criteria nm_dm_imse getSpan error either: " + min + " or " + max;
+        throw Error("Criteria nm_dm_imse getCenter error either: " + min + " or " + max);
     }
     return max[orientation] / 2 + min[orientation] / 2;
 }
@@ -24,7 +24,7 @@ function getSpan(nodes, orientation) {
     var min = lodash_1.default.minBy(nodes, orientation);
     var max = lodash_1.default.maxBy(nodes, orientation);
     if (!min || !max) {
-        throw "Criteria nm_dm_imse getSpan error either: " + min + " or " + max;
+        throw Error("Criteria nm_dm_imse getSpan error either: " + min + " or " + max);
     }
     return max[orientation] - min[orientation];
 }
@@ -45,7 +45,7 @@ function scaleChange(initial, updated) {
         };
         var up = lodash_1.default.find(updatedCenteredNodes, ['index', index]);
         if (!up)
-            throw "Criteria nm_dm_imse : index " + index + " does not exist in updated";
+            throw Error("Criteria nm_dm_imse : index " + index + " does not exist in updated");
         var diff = agora_graph_1.norm(projected, up);
         value += (diff * diff) / nodesLength;
         displacement.push(diff);
@@ -67,7 +67,7 @@ function positionFromCenter(nodes) {
 }
 exports.NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria = utils_1.criteriaWrap({
     criteria: scaleChange,
-    name: 'node-mouvement/distance-moved/improved-mean-squared-euclidean',
+    name: 'node-movement/distance-moved/improved-mean-squared-euclidean',
     short: 'nm_dm_imse'
 });
 exports.default = exports.NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria;
