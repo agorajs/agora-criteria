@@ -1,16 +1,16 @@
-import SpreadBoundingBoxAreaCriteria from './bounding-box/area';
-import SpreadBoundingBoxNormalizedAreaCriteria from './bounding-box/normalized-area';
-import SpreadBoundingBoxL1MetricLengthCriteria from './bounding-box/l1-metric-length';
-import SpreadConvexHullAreaCriteria from './convex-hull_area';
+import BoundingBoxArea from './bounding-box/area';
+import NormalizedArea from './bounding-box/normalized-area';
+import L1MetricLength from './bounding-box/l1-metric-length';
+import ConvexHullArea from './convex-hull_area';
 
 export const Spread = {
   BoundingBox: {
-    Area: SpreadBoundingBoxAreaCriteria,
-    NormalizedArea: SpreadBoundingBoxNormalizedAreaCriteria,
-    L1MetricLength: SpreadBoundingBoxL1MetricLengthCriteria
+    Area: BoundingBoxArea,
+    NormalizedArea,
+    L1MetricLength
   },
   ConvexHull: {
-    Area: SpreadConvexHullAreaCriteria
+    Area: ConvexHullArea
   }
 };
 export default Spread;

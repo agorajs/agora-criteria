@@ -1,22 +1,22 @@
-import NodeMovementDistanceMovedNormalizedEuclideanCriteria from './distance-moved/normalized-euclidean';
-import NodeMovementDistanceMovedHamiltonianCriteria from './distance-moved/hamiltonian';
-import NodeMovementDistanceMovedEuclideanSquareCriteria from './distance-moved/squared-euclidean';
-import NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria from './distance-moved/improved-mean-squared-euclidean';
-import NodeMovementMovedNodesCriteria from './moved-nodes';
-import NodeMovementDistanceMovedMeanEuclideanCriteria from './distance-moved/mean-euclidean';
+import NormalizedEuclidean from './distance-moved/normalized-euclidean';
+import Hamiltonian from './distance-moved/hamiltonian';
+import SquaredEuclidean from './distance-moved/squared-euclidean';
+import ImprovedMeanSquaredEuclidean from './distance-moved/improved-mean-squared-euclidean';
+import MovedNodes from './moved-nodes';
+import MeanEuclidean from './distance-moved/mean-euclidean';
 import NodeMovement8NearestNeighborsCriteria, {
   createKNearestNeighborsCriteria
 } from './k-nearest-neighbors';
 
 export const NodeMovement = {
   DistanceMoved: {
-    NormalizedEuclidean: NodeMovementDistanceMovedNormalizedEuclideanCriteria,
-    Hamiltonian: NodeMovementDistanceMovedHamiltonianCriteria,
-    SquaredEuclidean: NodeMovementDistanceMovedEuclideanSquareCriteria,
-    MeanEuclidean: NodeMovementDistanceMovedMeanEuclideanCriteria,
-    ImprovedMeanSquaredEuclidean: NodeMovementDistanceMovedImprovedMeanSquaredEuclideanCriteria
+    Hamiltonian,
+    ImprovedMeanSquaredEuclidean,
+    NormalizedEuclidean,
+    MeanEuclidean,
+    SquaredEuclidean
   },
-  MovedNodes: NodeMovementMovedNodesCriteria,
+  MovedNodes,
   KNearestNeighbors: {
     default: NodeMovement8NearestNeighborsCriteria,
     setK: createKNearestNeighborsCriteria
