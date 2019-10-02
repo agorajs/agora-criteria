@@ -41,8 +41,8 @@ function createKNearestNeighborsCriteria(k) {
     if (k === void 0) { k = 8; }
     return utils_1.criteriaWrap({
         criteria: function (initial, updated) { return exports.kNearestNeighbors(initial, updated, { k: k }); },
-        name: 'node-mouvement/' + k + '-nearest-neighbors',
-        short: 'mn_' + k + 'nn'
+        name: 'node-movement/' + k + '-nearest-neighbors',
+        short: 'nm_' + k + 'nn'
     });
 }
 exports.createKNearestNeighborsCriteria = createKNearestNeighborsCriteria;

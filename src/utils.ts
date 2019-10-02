@@ -20,9 +20,9 @@ export function criteriaWrap<S extends string, N extends string>({
         'not the same number of nodes' // reason
       ); */
 
-        throw `Criteria ${
-          short ? short : name
-        } abording : not same number of nodes`;
+        throw Error(
+          `Criteria ${short ? short : name} abording : not same number of nodes`
+        );
       }
       return criteria(initial, updated);
     }

@@ -27,7 +27,7 @@ function calculateEdgeRatio(graph) {
             max = norm_uv;
     }
     if (max == undefined || min == undefined)
-        throw 'could not evaluate edge-based/ratio';
+        throw Error('could not evaluate edge-based/ratio');
     return max / min;
 }
 exports.EdgeBasedRatioCriteria = utils_1.criteriaWrap({

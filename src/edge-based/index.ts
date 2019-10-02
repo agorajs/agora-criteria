@@ -1,11 +1,11 @@
-import EdgeBasedRelativeStandardDeviationDelaunayCriteria, {
+import RelativeStandardDeviationDelaunay, {
   EdgeBasedRelativeStandardDeviationCriteria
 } from './relative-standard-deviation-delaunay';
-import EdgeBasedRatioCriteria from './ratio';
+import Ratio from './ratio';
 
 export const EdgeBased = {
-  Ratio: EdgeBasedRatioCriteria,
-  RelativeStandardDeviationDelaunay: EdgeBasedRelativeStandardDeviationDelaunayCriteria,
+  Ratio,
+  RelativeStandardDeviationDelaunay,
   RelativeStandardDeviation: EdgeBasedRelativeStandardDeviationCriteria
 };
 export default EdgeBased;

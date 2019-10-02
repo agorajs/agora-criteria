@@ -42,6 +42,6 @@ export const euclideanDistance: CriteriaFunction = function(
 export const NodeMovementDistanceMovedMeanEuclideanCriteria = criteriaWrap({
   criteria: euclideanDistance,
   name: 'node-movement/distance-moved/mean-euclidean',
-  short: 'mn_dm_me'
+  short: 'nm_dm_me'
 });
 export default NodeMovementDistanceMovedMeanEuclideanCriteria;

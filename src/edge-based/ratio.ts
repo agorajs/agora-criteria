@@ -27,7 +27,7 @@ function calculateEdgeRatio(graph: Graph): number {
   }
 
   if (max == undefined || min == undefined)
-    throw 'could not evaluate edge-based/ratio';
+    throw Error('could not evaluate edge-based/ratio');
   return max / min;
 }
 

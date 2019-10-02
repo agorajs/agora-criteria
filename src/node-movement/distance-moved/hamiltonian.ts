@@ -28,7 +28,7 @@ export const costFunction: CriteriaFunction = function(
 
 export const NodeMovementDistanceMovedHamiltonianCriteria = criteriaWrap({
   criteria: costFunction,
-  name: 'node-mouvement/distance-moved/hamiltonian',
+  name: 'node-movement/distance-moved/hamiltonian',
   short: 'nm_dm_h'
 });
 export default NodeMovementDistanceMovedHamiltonianCriteria;

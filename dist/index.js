@@ -51,12 +51,10 @@ exports.manager = {
     batch: function (initial, updatedGraphs, list) {
         var _this = this;
         if (list === void 0) { list = lodash_1.default.keys(this.criterias); }
-        console.group('criterias');
         var results = [];
         lodash_1.default.forEach(list, function (name) {
             results.push(__assign({ name: name }, _this.execute(name, initial, updatedGraphs)));
         });
-        console.groupEnd();
         return results;
     },
     execute: function (criteria, initial, updatedGraphs) {
@@ -64,18 +62,16 @@ exports.manager = {
         if (typeof criteria === 'string') {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
-            throw 'Criteria does not exist';
+            throw Error("Cannot execute a criteria that wasn't added : " + criteria);
         }
         if (!interfaces_1.isCriteria(criteria))
-            throw criteria + ' is not a criterai';
+            throw Error(criteria + ' cannot be used as a criteria, the structure does not match');
         var results = {};
-        console.group(criteria.name);
         var start = new Date();
         lodash_1.default.forEach(updatedGraphs, function (updated, name) {
             results[name] = _this.evaluate(criteria, initial, updated);
         });
         var diff = new Date().getTime() - start.getTime();
-        console.groupEnd();
         return { results: results, time: diff };
     },
     evaluate: function (criteria, initial, updated) {
@@ -83,11 +79,11 @@ exports.manager = {
             if (this.criterias[criteria])
                 criteria = this.criterias[criteria];
             else
-                throw 'criteria ' + criteria + ' was not added';
+                throw Error("Cannot execute a criteria that wasn't added : " + criteria);
         }
         if (interfaces_1.isCriteria(criteria))
             return criteria.criteria(initial, updated);
-        throw 'reached unreachable code (should not happen though)';
+        throw Error(criteria + ' cannot be used as a criteria, the structure does not match');
     }
 };
 exports.default = exports.manager;

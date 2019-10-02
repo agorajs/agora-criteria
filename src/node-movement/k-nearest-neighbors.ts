@@ -52,8 +52,8 @@ function n(k: number): (nodes: Node[], node: Node) => number[] {
 export function createKNearestNeighborsCriteria(k: number = 8) {
   return criteriaWrap({
     criteria: (initial, updated) => kNearestNeighbors(initial, updated, { k }),
-    name: 'node-mouvement/' + k + '-nearest-neighbors',
-    short: 'mn_' + k + 'nn'
+    name: 'node-movement/' + k + '-nearest-neighbors',
+    short: 'nm_' + k + 'nn'
   });
 }
 

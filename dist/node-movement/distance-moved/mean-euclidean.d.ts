@@ -8,5 +8,5 @@ import { CriteriaFunction, Criteria } from '../../interfaces';
  * @returns {{value: number, displacement: Edge[]}}
  */
 export declare const euclideanDistance: CriteriaFunction;
-export declare const NodeMovementDistanceMovedMeanEuclideanCriteria: Criteria<"mn_dm_me", "node-movement/distance-moved/mean-euclidean">;
+export declare const NodeMovementDistanceMovedMeanEuclideanCriteria: Criteria<"nm_dm_me", "node-movement/distance-moved/mean-euclidean">;
 export default NodeMovementDistanceMovedMeanEuclideanCriteria;

@@ -1,11 +1,10 @@
 {
   "name": "agora-criteria",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "criteria repository for Agora Framework",
   "main": "dist/index.js",
   "author": "Fati CHEN <fati.chen@lirmm.fr>",
   "license": "MIT",
-  "private": false,
   "scripts": {
     "test": "jest",
     "build": "tsc",
@@ -22,21 +21,19 @@
   },
   "dependencies": {
     "@types/d3-polygon": "^1.0.6",
-    "@types/lodash": "^4.14.116",
-    "@types/mathjs": "^4.4.1",
+    "@types/lodash": "^4.14.141",
     "d3-polygon": "^1.0.5",
-    "lodash": "^4.17.11",
-    "mathjs": "^5.1.2"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "@types/jest-diff": "^20.0.1",
+    "agora-graph": "https://github.com/agorajs/agora-graph.git#semver:^1.1.1",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5",
-    "agora-graph": "git+ssh://git@gite.lirmm.fr/chen/agora-graph.git#semver:^0.1.0"
+    "typescript": "^3.6.3"
   },
   "peerDependencies": {
-    "agora-graph": "git+ssh://git@gite.lirmm.fr/chen/agora-graph.git#semver:^0.1.0"
+    "agora-graph": "https://github.com/agorajs/agora-graph.git#semver:^1.1.1"
   }
 }
