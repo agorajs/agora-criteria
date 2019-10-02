@@ -20,7 +20,7 @@ export function criteriaWrap<S extends string, N extends string>({
         'not the same number of nodes' // reason
       ); */
 
-        throw new Error(
+        throw Error(
           `Criteria ${short ? short : name} abording : not same number of nodes`
         );
       }

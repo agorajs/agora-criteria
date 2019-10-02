@@ -83,7 +83,7 @@ export function calculateConvexHullDistances(hull: [number, number][]) {
     );
 
     if (intersection) distances.push(magnitude(intersection));
-    else throw 'it is supposed to intersect :(';
+    else throw Error('it is supposed to intersect :(');
   });
 
   return distances;
@@ -95,7 +95,7 @@ function getIntersectingLine(lines: Line[], ray: PolarVector): Line {
   }
 
   // should never be in this case
-  throw 'Cannot be here';
+  throw Error('Unreachable error, how did you manage to get here');
   return lines[0];
 }
 

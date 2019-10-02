@@ -19,7 +19,7 @@ function getCenter(nodes: Node[], orientation: 'x' | 'y') {
   const max = _.maxBy(nodes, orientation);
 
   if (!min || !max) {
-    throw `Criteria nm_dm_imse getSpan error either: ${min} or ${max}`;
+    throw Error(`Criteria nm_dm_imse getCenter error either: ${min} or ${max}`);
   }
 
   return max[orientation] / 2 + min[orientation] / 2;
@@ -30,7 +30,7 @@ function getSpan(nodes: Node[], orientation: 'x' | 'y') {
   const max = _.maxBy(nodes, orientation);
 
   if (!min || !max) {
-    throw `Criteria nm_dm_imse getSpan error either: ${min} or ${max}`;
+    throw Error(`Criteria nm_dm_imse getSpan error either: ${min} or ${max}`);
   }
 
   return max[orientation] - min[orientation];
@@ -64,7 +64,9 @@ export function scaleChange(initial: Graph, updated: Graph): CriteriaResult {
       const up = _.find(updatedCenteredNodes, ['index', index]);
 
       if (!up)
-        throw `Criteria nm_dm_imse : index ${index} does not exist in updated`;
+        throw Error(
+          `Criteria nm_dm_imse : index ${index} does not exist in updated`
+        );
 
       const diff = norm(projected, up);
       value += (diff * diff) / nodesLength;
