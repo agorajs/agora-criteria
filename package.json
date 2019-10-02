@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "author": "Fati CHEN <fati.chen@lirmm.fr>",
   "license": "MIT",
-  "private": false,
   "scripts": {
     "test": "jest",
     "build": "tsc",
