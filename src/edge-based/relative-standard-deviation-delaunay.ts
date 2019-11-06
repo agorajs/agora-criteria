@@ -64,7 +64,7 @@ function delta(edges: Edge[], r: (e: Edge) => number) {
 export const EdgeBasedRelativeStandardDeviationDelaunayCriteria = criteriaWrap({
   criteria: (initial, updated) => edgeLength(initial, updated, true),
   name: 'edge-based/relative-standard-deviation/delaunay',
-  short: 'e_rsdd'
+  short: 'eb_rsdd'
 });
 
 /**
@@ -73,6 +73,6 @@ export const EdgeBasedRelativeStandardDeviationDelaunayCriteria = criteriaWrap({
 export const EdgeBasedRelativeStandardDeviationCriteria = criteriaWrap({
   criteria: (initial, updated) => edgeLength(initial, updated, false),
   name: 'edge-based/relative-standard-deviation',
-  short: 'e_rsd'
+  short: 'eb_rsd'
 });
 export default EdgeBasedRelativeStandardDeviationDelaunayCriteria;
