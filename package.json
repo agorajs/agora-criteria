@@ -1,6 +1,6 @@
 {
   "name": "agora-criteria",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "criteria repository for Agora Framework",
   "main": "dist/index.js",
   "author": "Fati CHEN <fati.chen@lirmm.fr>",
