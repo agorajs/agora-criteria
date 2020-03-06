@@ -24,6 +24,8 @@ export const edgeLength = function(
   const updatedSorted = _.sortBy(updatedNodes, 'index');
 
   const r = (e: Edge) => {
+    // if source is equal to target, consider as same length
+    if (e.source === e.target) return 1;
     const initLength = norm(initialSorted[e.source], initialSorted[e.target]);
     const uLength = norm(updatedSorted[e.source], updatedSorted[e.target]);
     return uLength / initLength;
@@ -67,9 +69,6 @@ export const EdgeBasedRelativeStandardDeviationDelaunayCriteria = criteriaWrap({
   short: 'eb_rsdd'
 });
 
-/**
- * @deprecated
- */
 export const EdgeBasedRelativeStandardDeviationCriteria = criteriaWrap({
   criteria: (initial, updated) => edgeLength(initial, updated, false),
   name: 'edge-based/relative-standard-deviation',
