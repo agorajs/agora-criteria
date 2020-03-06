@@ -28,11 +28,13 @@ Contains 5 classes of criteria :
 
 > Li, W., Eades, P., Nikolov, N.: _Using spring algorithms to remove node overlapping._ In: Proceedings of the 2005 Asia-Pacific Symposium on Information Visualisation - Volume 45. pp. 131–140. APVis ’05, Australian Computer Society, Inc., Darlinghurst, Australia (2005)
 
-#### `EdgeBased.RelativeStandardDeviation`
-
-and `EdgeBased.RelativeStandardDeviation`
+#### `EdgeBased.RelativeStandardDeviationDelaunay`
 
 > Gansner, E., Hu, Y.: _Efficient, proximity-preserving node overlap removal._ Journal of Graph Algorithms and Applications 14(1), 53–74 (2010)
+
+#### `EdgeBased.RelativeStandardDeviation`
+
+> Authors of [agorajs](https://github.com/agorajs).
 
 ### Global Shape
 
