@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1.1] (March 6, 2020)
+
+... building dists
+
 ## [2.1.0] (March 6, 2020)
 
 ### ✨ Features:
@@ -46,6 +50,7 @@
 - ⬆️ `agora-graph` has been upgraded to `1.1.1` and is now imported from github.com/agorajs/agora-graph
 - ⬆️ `typescript` has been upgraded to `3.6.3`
 
+[2.1.1]: https://github.com/agorajs/agora-criteria/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/agorajs/agora-criteria/compare/2.0.2...2.1.0
 [2.0.2]: https://github.com/agorajs/agora-criteria/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/agorajs/agora-criteria/compare/2.0.0...2.0.1
