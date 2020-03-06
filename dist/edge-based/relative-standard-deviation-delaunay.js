@@ -23,6 +23,9 @@ exports.edgeLength = function (initialGraph, updatedGraph, withDelaunay) {
     var initialSorted = lodash_1.default.sortBy(initialNodes, 'index');
     var updatedSorted = lodash_1.default.sortBy(updatedNodes, 'index');
     var r = function (e) {
+        // if source is equal to target, consider as same length
+        if (e.source === e.target)
+            return 1;
         var initLength = agora_graph_1.norm(initialSorted[e.source], initialSorted[e.target]);
         var uLength = agora_graph_1.norm(updatedSorted[e.source], updatedSorted[e.target]);
         return uLength / initLength;
@@ -55,14 +58,11 @@ function delta(edges, r) {
 exports.EdgeBasedRelativeStandardDeviationDelaunayCriteria = utils_1.criteriaWrap({
     criteria: function (initial, updated) { return exports.edgeLength(initial, updated, true); },
     name: 'edge-based/relative-standard-deviation/delaunay',
-    short: 'e_rsdd'
+    short: 'eb_rsdd'
 });
-/**
- * @deprecated
- */
 exports.EdgeBasedRelativeStandardDeviationCriteria = utils_1.criteriaWrap({
     criteria: function (initial, updated) { return exports.edgeLength(initial, updated, false); },
     name: 'edge-based/relative-standard-deviation',
-    short: 'e_rsd'
+    short: 'eb_rsd'
 });
 exports.default = exports.EdgeBasedRelativeStandardDeviationDelaunayCriteria;
