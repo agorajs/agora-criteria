@@ -12,7 +12,7 @@ import {
   toPolar,
   magnitude,
   Point,
-  toCartesian
+  toCartesian,
 } from 'agora-graph';
 import { criteriaWrap } from '../utils';
 
@@ -22,7 +22,7 @@ type Line = { start: [Pos, number]; end: [Pos, number] };
 /**
  * TODO: SSS12
  */
-export const shapePreservation: CriteriaFunction = function(initial, updated) {
+export const shapePreservation: CriteriaFunction = function (initial, updated) {
   // STEP 1 : retrieve convex hull
   const initialHull = d3.polygonHull(convertNodes(initial.nodes));
   const updatedHull = d3.polygonHull(convertNodes(updated.nodes));
@@ -31,7 +31,7 @@ export const shapePreservation: CriteriaFunction = function(initial, updated) {
   if (initialHull === null || updatedHull === null)
     return {
       value: -1,
-      error: 'could not compute initial or updated convex hull'
+      error: 'could not compute initial or updated convex hull',
     };
 
   // DO STEP 2-3-4-5
@@ -44,7 +44,7 @@ export const shapePreservation: CriteriaFunction = function(initial, updated) {
 
   const mean_d = _.mean(d);
 
-  const value = _.sumBy(d, d_a => (d_a - mean_d) ** 2);
+  const value = _.sumBy(d, (d_a) => (d_a - mean_d) ** 2);
 
   return { value, initial: initialDistances, updated: updatedDistances };
 };
@@ -52,29 +52,29 @@ export const shapePreservation: CriteriaFunction = function(initial, updated) {
 export function calculateConvexHullDistances(hull: [number, number][]) {
   // STEP 2 get center of the hull and set as center
   const center = d3.polygonCentroid(hull);
-  const centeredHull = _.map<Pos, Pos>(hull, pos => [
+  const centeredHull = _.map<Pos, Pos>(hull, (pos) => [
     pos[0] - center[0],
-    pos[1] - center[1]
+    pos[1] - center[1],
   ]);
   // STEP 3 create radian lines from center each 10 degrees.
-  let rays: PolarVector[] = [];
+  let rays: Required<PolarVector>[] = [];
   for (let angle = 0; angle < 360; angle += 10) {
     rays.push({
       angle,
       length: 1,
-      theta: round(angle * (Math.PI / 180), -14)
+      theta: round(angle * (Math.PI / 180), -14),
     });
   }
 
   // STEP 4 convert point of the hull to polar coordinates (to know which line do i need to raytrace)
-  let elements = _.map<Pos, [Pos, PolarVector]>(centeredHull, pos => [
-    pos,
-    toPolar({ x: pos[0], y: pos[1] })
-  ]);
+  let elements = _.map<Pos, [Pos, Required<PolarVector>]>(
+    centeredHull,
+    (pos) => [pos, toPolar({ x: pos[0], y: pos[1] }) as Required<PolarVector>]
+  );
 
   const lines = getLines(elements);
   const distances: number[] = [];
-  _.forEach(rays, ray => {
+  _.forEach(rays, (ray) => {
     const line = getIntersectingLine(lines, ray);
     const cartesianRay = toCartesian(ray);
     const intersection = lineIntersection(
@@ -89,7 +89,7 @@ export function calculateConvexHullDistances(hull: [number, number][]) {
   return distances;
 }
 
-function getIntersectingLine(lines: Line[], ray: PolarVector): Line {
+function getIntersectingLine(lines: Line[], ray: Required<PolarVector>): Line {
   for (const line of lines) {
     if (line.start[1] <= ray.angle && line.end[1] > ray.angle) return line;
   }
@@ -99,8 +99,8 @@ function getIntersectingLine(lines: Line[], ray: PolarVector): Line {
   return lines[0];
 }
 
-function getLines(elements: [Pos, PolarVector][]): Line[] {
-  const sorted = _.sortBy(elements, a => a[1].angle);
+function getLines(elements: [Pos, Required<PolarVector>][]): Line[] {
+  const sorted = _.sortBy(elements, (a) => a[1].angle);
 
   if (sorted.length === 0) {
     return [];
@@ -110,8 +110,8 @@ function getLines(elements: [Pos, PolarVector][]): Line[] {
     return [
       {
         start: [sorted[0][0], sorted[0][1].angle],
-        end: [sorted[0][0], sorted[0][1].angle + 360]
-      }
+        end: [sorted[0][0], sorted[0][1].angle + 360],
+      },
     ];
   }
   let lastEl = sorted[sorted.length - 1];
@@ -120,21 +120,21 @@ function getLines(elements: [Pos, PolarVector][]): Line[] {
   const lines: Line[] = [
     {
       start: [lastEl[0], lastEl[1].angle - 360],
-      end: [buffer[0], buffer[1].angle]
-    }
+      end: [buffer[0], buffer[1].angle],
+    },
   ];
 
   for (let i = 1; i < sorted.length; i++) {
     lines.push({
       start: [buffer[0], buffer[1].angle],
-      end: [sorted[i][0], sorted[i][1].angle]
+      end: [sorted[i][0], sorted[i][1].angle],
     });
     buffer = sorted[i];
   }
 
   lines.push({
     start: [buffer[0], buffer[1].angle],
-    end: [sorted[0][0], sorted[0][1].angle + 360]
+    end: [sorted[0][0], sorted[0][1].angle + 360],
   });
 
   return lines;
@@ -166,24 +166,29 @@ function lineIntersection(
   // if we cast these lines infinitely in both directions, they intersect here:
   return {
     x: line1.start[0] + a * (line1.end[0] - line1.start[0]),
-    y: line1.start[1] + a * (line1.end[1] - line1.start[1])
+    y: line1.start[1] + a * (line1.end[1] - line1.start[1]),
   };
 }
 
 function convertNodes(nodes: Node[]): [number, number][] {
   // TODO: add node boxes
-  return _.flatMap(nodes, function(n): [number, number][] {
+  return _.flatMap(nodes, function (n): [number, number][] {
     const t = top(n),
       l = left(n),
       r = right(n),
       b = bottom(n);
-    return [[l, t], [r, t], [r, b], [l, b]];
+    return [
+      [l, t],
+      [r, t],
+      [r, b],
+      [l, b],
+    ];
   });
 }
 
 export const GlobalShapeConvexHullStandardDeviationCriteria = criteriaWrap({
   criteria: shapePreservation,
   name: 'global-shape/convex-hull/standard-deviation',
-  short: 'gs_ch_sd'
+  short: 'gs_ch_sd',
 });
 export default GlobalShapeConvexHullStandardDeviationCriteria;

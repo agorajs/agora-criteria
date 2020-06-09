@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.2.0] (June 9, 2020)
+
+migrating to rollup
+
 ## [2.1.1] (March 6, 2020)
 
 ... building dists
