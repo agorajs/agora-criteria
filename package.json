@@ -34,7 +34,7 @@
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "@types/jest-diff": "^24.3.0",
-    "agora-graph": "agorajs/agora-graph.git#semver:^1.3.3",
+    "agora-graph": "agorajs/agora-graph#semver:^1.3.3",
     "jest": "^26.0.1",
     "ts-jest": "^26.1.0",
     "@babel/core": "^7.10.2",
@@ -51,6 +51,6 @@
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
-    "agora-graph": "agorajs/agora-graph.git#semver:^1.3.3"
+    "agora-graph": "agorajs/agora-graph#semver:^1.3.3"
   }
 }
