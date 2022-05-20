@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.2.1] (May 20, 2022)
+
+Better dependencies
+
 ## [2.2.0] (June 9, 2020)
 
 migrating to rollup

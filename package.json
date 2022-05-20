@@ -1,6 +1,6 @@
 {
   "name": "agora-criteria",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "criteria repository for Agora Framework",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
