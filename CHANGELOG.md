@@ -1,4 +1,7 @@
 # Changelog
+## [2.2.2] (May 20, 2022)
+
+Update build
 
 ## [2.2.1] (May 20, 2022)
 
